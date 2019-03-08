@@ -1,0 +1,148 @@
+/*脚部样式开始*/
+div.footer_up {
+    margin-top: 20px;
+}
+div.footer_up .fl{
+    float: left;
+}
+div.footer_up .fr{
+    float: right;
+}
+div.footer_up .meiti_title{
+    overflow: hidden;
+    width: 100%;
+}
+div.footer_up .meiti_title p{
+    font-weight: bold;
+    margin: 5px 5px 5px 4px;
+    color: #333;
+    font-size: 1.5rem;
+}
+div.footer_up .line_01{
+    width: 44%;
+    height: 3px;
+    overflow: hidden;
+    background-color: #000;
+    margin: 14px 0 0 0;
+}
+
+ul.footer_cen_ul{
+    list-style: none;
+}
+ul.footer_cen_ul li{
+    float: left;
+    margin-right: 40px;
+    margin-left: 40px;
+
+}
+ul.footer_cen_ul li a{
+    color: #000;
+    font-size: 14px;
+}
+ul.footer_cen_ul li a:hover{
+    color: #9C292A;
+}
+.footer_center{
+    border-bottom:2px dashed #555;
+    padding-bottom: 30px;
+}
+.footer_down_ul{
+    list-style: none;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+.footer_down_ul li{
+    float: left;
+    width: 15%;
+    margin-right: 1%;
+}
+.footer_down_ul li .img{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+}
+.footer_down_ul li span{
+    width: 50%;
+    display: inline-block;
+    margin-top: 10px;
+    color: #000;
+}
+.connector{
+    background-color: #484848;
+    padding: 20px;
+}
+.connector .connector_right .guanzhu{
+    display: inline-block;
+    margin-right: 20px;
+}
+.connector .connector_right .app{
+    display: inline-block;
+}
+.connector .connector_right  img{
+    width: 100px;
+}
+.connector .connector_right p{
+    margin-top: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.connector_left p{
+    color: #fff;
+    line-height: 20px;
+    font-size: 14px;
+}
+.connector_left p a{
+    color: #fff;
+    font-size: 14px;
+}
+.connector_left p a:hover{
+    color:#9C292A;
+}
+div.copyright{
+    background-color: #000;
+
+}
+div.copyright p{
+    text-align: center;
+    color: #fff;
+    padding-top: 10px;
+}
+/*脚部样式结束*/
+
+@media (min-width:993px) and (max-width:1200px){
+    .navbar-inverse .navbar-nav>li>a{
+        font-size: 1.1rem !important;
+    }
+    .navbar-collapse{
+        width: 110%;
+    }
+    a.carousel-control{
+        font-size: 50px;
+        line-height: 600%;
+    }
+    div.footer_up .line_01{
+        width: 42%;
+        height: 3px;
+        overflow: hidden;
+        background-color: #000;
+        margin: 14px 0 0 0;
+    }
+}
+@media (min-width:700px) and (max-width:992px){
+    .navbar-inverse .navbar-nav>li>a{
+        font-size: 1.1rem !important;
+    }
+    .navbar-collapse{
+        width: 150%;
+    }
+    div.footer_up .line_01{
+        width: 40%;
+        height: 3px;
+        overflow: hidden;
+        background-color: #000;
+        margin: 14px 0 0 0;
+    }
+}

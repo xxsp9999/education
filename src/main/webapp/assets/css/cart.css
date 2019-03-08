@@ -1,0 +1,182 @@
+
+/**
+ * 作者:李丹
+ * 2016-12-30 于成都诚俊科技有限公司
+ * 功能：此文件实现购物车页面的样式
+ */
+/*导航部分*/
+.nav{
+	margin-top:20px;
+}
+.nav ul{
+	width: 100%;
+	overflow:hidden;
+	border-bottom:3px solid #8B0304;
+}
+.nav ul>li{
+	float:left;
+	width:100px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+}
+.nav ul>li>a{
+	font-size:16px;
+}
+.nav ul>li.active{
+	background:#8B0304;
+	font-weight: bold;
+}
+.nav ul>li.active a{
+	color:#fff;
+}
+
+/*主体内容*/
+a{
+	text-decoration: none;
+}
+#cart
+{
+    border: 1px solid #f1f1f1;
+    width:100%;
+    margin:0px auto;
+    margin-top:20px;
+    border-collapse: collapse;
+}
+#cart th{
+	background:#F0F0F0;
+	color:#666;
+}
+label{
+	margin-bottom:0;
+}
+#cart td,#cart th{
+    min-height:25px;
+    line-height:25px;
+    border-top:1px solid #DDDDDD;
+     border-bottom:1px solid #ddd;
+    padding:5px;
+    font-size:14px;
+    vertical-align: middle;
+    text-align: left;
+}
+#cart tr>td:nth-child(2) span{
+	display:block;
+	margin-top:20px;
+	color:#999;
+}
+#cart thead input{
+    vertical-align: text-top;
+}
+#cart tbody input[type='checkbox']{
+    float:left;
+    margin-right: 10px;
+    position:relative;
+    top:50px;
+}
+#cart tbody div{
+    /*border:1px solid #f1f1f1;*/
+    padding:5px;
+    float:left;
+    width:150px;
+    height:130px;
+    text-align: center;
+}
+#cart tbody img {
+    width:90%;
+}
+#cart a{
+	font-size:16px;
+}
+#cart tbody tr td:last-child a
+{
+	display:block;
+    width:16px;
+    height:16px;
+    background:url("../img/iconlist.png") no-repeat 0 -192px;
+}
+#cart .footer{
+	height:80px;
+	color:#999;
+}
+#cart .footer td{
+	padding-left:30px;
+}
+#cart .footer td:last-child{
+	text-align:right;
+	padding-right:30px;
+}
+#cart .footer td:last-child b{
+	font-size:22px;
+	font-weight: normal;
+	color:#8B0304;
+}
+
+#cart tbody td.button-group input{
+   width:30px;
+	height:30px;
+	background:#fff;
+	border:1px solid #d1d1d1;
+	text-align:center;
+	vertical-align: middle;
+}
+#cart tbody td.button-group input[type="text"]{
+	width:60px;
+	margin:0 -5px;
+}
+/*去结算*/
+.btn-tobuy{
+	margin:20px 0;
+	text-align:right;
+}
+.btn-tobuy a{
+	display:inline-block;
+	width:180px;
+	height:50px;
+	background:#8B0304;
+	color:#fff;
+	text-align: center;
+	line-height:50px;
+	border-radius:3px;
+	font-size:20px;
+	font-weight:bold;
+	margin-right:30px;
+}
+
+
+
+body{
+    overflow-x: hidden;
+}
+
+/*transition过渡：某种样式属性（数值）在一段时间内缓慢变化*/
+#cart tbody img{
+    transition: transform 0.5s linear;
+}
+
+/*transform：转换（变形：放大、移动、旋转、skew）*/
+#cart tbody img:hover{
+    transform:scale(1.1);
+    /*transform:rotate(45deg);*/
+}
+
+#cart:hover::before{
+    transition: left 3s;
+    left: 1360px;
+}
+#cart:before{
+    /*border:1px solid red;*/
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 400px;
+    top: 180px;
+    left: -150px;
+    overflow: hidden;
+    background-image: linear-gradient(to right,rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 50%,rgba(255,255,255,0.2) 100%);
+    transform: skewX(-25deg);
+}
+
+
+
+

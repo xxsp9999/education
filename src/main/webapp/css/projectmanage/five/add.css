@@ -1,0 +1,52 @@
+/* RanYang  新增项目合作记录 2019/3/1  */
+
+form {
+	
+	width: 80%;
+	margin: 30px auto;
+	padding-bottom:20px;
+}
+
+form h2 {
+	text-align: center;
+	font-size: 24px;
+}
+
+ul {
+	margin-top: 20px;
+	padding-top: 20px;
+}
+
+form ul li {
+	width: 100%;
+	margin-bottom: 40px;
+}
+
+form label {
+	width:13%;
+	text-align: right;
+}
+
+form textarea {
+	width: 83.8%;
+	height: 200px;
+}
+form #submitBut {
+	width: 60px;
+	height: 30px;
+	border: none;
+	margin-left: 40%;
+	background: #316182;
+	color: #ffffff;
+	text-align: center;
+}
+
+form #back {
+	width: 60px;
+	height: 30px;
+	border: none;
+	margin-left: 30px;
+	background: #316182;
+	color: #ffffff;
+	text-align: center;
+}

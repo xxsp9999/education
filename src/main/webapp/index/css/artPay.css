@@ -1,0 +1,34 @@
+/* author JiangXue 2018/12/19 */
+body{margin: 0;padding: 0;background:#cccccc;}
+/* .clearfix:after{content: "";height: 0;display: block;clear: both;}
+.clearfix{zoom: 1;} */
+a{text-decoration: none; color: #000000; }
+table{margin-bottom: 30px;width: 100%;}
+.content{width:60%;margin: 20px auto;}
+.head{font-weight: bolder;font-size: 20px;margin: 20px 0;}
+.orderInfo{color:#333333;border-width: 1px;border-color:#c5c5c5;border-collapse: collapse;}
+.tHead{text-align: left;height: 20px;line-height: 20px;padding: 10px;}
+tr{border-width: 1px;padding: 10px;border-style: solid;border-color: #c5c5c5;background-color: #dedada;}
+td{border-width: 1px;padding: 10px;border-style: solid;border-color: #c5c5c5;background-color: #ffffff;}
+/* .product a img{width:80px; float: left;margin-right: 10px;} */
+.unitPrice{display:inline-block; width:100%;color:red;text-align: center;}
+.number{display:inline-block; width:100%;text-align: center;}
+.number1{color:red;}
+.totalFare{color:red; font-weight: bolder;font-size: 18px;}
+.leaveMessage{width:400px;height:20px;}
+.descript{color: #9a9a9a;font-size: 14px;}
+.payCode .wechartMark{width:80px;height:60px;vertical-align:top;}
+.payCode .wechartText{vertical-align: top;color:red;display:inline-block;margin-top:15px;}
+.payCode .qrCode{margin-left:50px;}
+.information .receiver{display:inline-block;margin-right:20px;}
+.product td{height:100px;}
+.product a img{width:120px;height:80px;vertical-align: middle;float:left;margin-right:10px;}
+.product a label{color:#808080;font-size:14px;line-height:25px;text-indent:28px;display: list-item;list-style: none}
+.descript{height:100px;overflow:hidden;}
+.descript img{width:80px;height:50px;float:left;margin-right: 10px;}
+.descript p{display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px;}
+.billInfo{font-size:14px;color:#828181;display:inline-block;padding-right:5px;}
+/* .payCode img{margin-left:25%} */
+/* .contentLeft{width: 30%;float: left;}
+.contentLeft ul li{list-style: none;margin-bottom: 20px;width: 100%;height:200px;}
+.contentLeft ul li img{width:200px;} */

@@ -1,0 +1,121 @@
+.nav-container {
+    padding: 0 !important;
+}
+.nav{
+    border-bottom:3px solid #8B0304;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.nav ul li{
+    float: left;
+    width: 8%;
+    text-align: center;
+    font-size: 1.6rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.nav ul li.active{
+    background-color: #8B0304;
+    font-weight: bold;
+}
+.nav ul li.active a{
+    color: #fff;
+}
+.nav ul li.active a:hover{
+    color: #000;
+}
+.nav ul li a:hover{
+    color:#8B0304;
+}
+.nav ul li a{
+    color: #1c1c1c;
+}
+.m-nav{
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.m-nav .crumb{
+    display: inline-block;
+}
+.m-nav .crumb span{
+    font-size: 1.5rem;
+    margin-right: 10px;
+    font-weight: bold;
+}
+.m-nav .crumb i{
+    font-weight: normal;
+}
+.check-artist{
+    display: inline-block;
+    color: #1c1c1c;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+}
+.check-artist a{
+   border:1px solid #ccc;
+    padding: 3px 5px;
+    color: #1c1c1c;
+    display:inline-block;
+}
+.check-artist a:hover{
+     border:1px solid #8B0304; 
+}
+.check-artist a i{
+    font-size: 10px;
+    color: red;
+    margin-left: 10px;
+}
+
+.groups{
+    border:1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.groups .group{
+    margin-left: 10px;
+}
+.groups .head{
+    display: inline-block;
+}
+.groups .body{
+    display: inline-block;
+}
+.groups .head h4{
+    font-size: 1.5rem;
+}
+.groups .body .items .item-inner a{
+    padding-left: 15px;
+    padding-right: 20px;
+    font-size: 1.4rem;
+    display: inline-block;
+}
+.groups .row-first{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px dashed #ccc;
+}
+.groups .row-five{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.search-body{
+    padding: 0;
+}
+.search-body .thumbnail{
+    border:none;
+}
+.thumbnail_up_img{
+	width:100%;
+}
+.search-body .thumbnail .thumbnail_up_img img{
+    cursor: pointer;
+}
+.search-body .thumbnail .thumbnail_up_intro h4{
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+}
+.mar_bottom{
+    margin-bottom: 20px;
+}

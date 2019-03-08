@@ -1,0 +1,10 @@
+/* 2018å¹´11æ26æ¥ fanchaojun jqGridè¡¨æ ¼*/
+#jqTableTitle{text-align: center; padding: 5px 0; border: 1.5px solid #d1d1d1; width: 96%; margin: 0 auto;}
+
+
+/*面包屑   ChenCongLiang	2019-2-26  */
+#head{width:100%;height:40px;line-height:40px;border-bottom:1px solid #d8d8d8;}
+#crumbs{margin-left:10px;font-size:13px;font-weight:bold;}
+
+input{outline:none;border:1px solid #d8d8d8;text-indent: 5px;}
+select{outline:none;border:1px solid #d8d8d8;}

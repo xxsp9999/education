@@ -1,0 +1,508 @@
+.nav{
+  position: relative;
+}
+.nav>i{
+  display: inline-block;
+  width: 50px;
+  height: 68px;
+  background: url(../img/iconlist.png) no-repeat 0 0;
+  margin-left: -50px;
+  margin-top: -20px;
+}
+.nav .breadCrumb{
+  position: absolute;
+  top: -20px;
+  left: 10px;
+}
+.nav .breadCrumb>li{
+  float: left;
+  height: 68px;
+  line-height: 68px;
+  padding-right: 10px;
+}
+.nav .breadCrumb>li>a{
+  font-size: 18px;
+}
+.nav .breadCrumb>li.active a{
+  color: #8B0304;
+}
+
+/*子搜索框*/
+.sub-search{
+	float:right;
+}
+#input-search{
+	width:250px;
+	height:30px;
+	padding-left:10px;
+	border-radius:3px;
+	border:1px solid #ccc;
+	outline: none;
+}
+#btn-search{
+	width:60px;
+	height:30px;
+	background:#8B0304;
+	color:#fff;
+	border:0;
+	border-radius:3px;
+}
+
+/*主体内容*/
+/*艺术家简介*/
+.main-content>.profile{
+	width:100%;
+	height:400px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	margin-bottom:20px;
+	padding:30px;
+	background:url("../img/artist/bg-artist.png") no-repeat 0 -100px;
+}
+.profile>div{
+	float:left;
+	margin-right:50px;
+	margin-top:10px;
+}
+.profile>div.profile-img{
+	width:22%;
+	margin-left:40px;
+}
+.profile>div.profile-img img{
+	width:210px;
+	height:300px;
+}
+.profile>div.profile-img p{
+	font-size:24px;
+	color:#fff;
+	font-family: "songti";
+	margin-top:10px;
+	text-align:center;
+	position: relative;
+}
+.profile>div.profile-detail{
+	width:45%;
+	/*padding-top:10px;*/
+	max-height: 300px;
+
+	cursor: pointer;
+/*	overflow: hidden; !*自动隐藏文字*!
+	text-overflow: ellipsis;!*文字隐藏后添加省略号*!
+	white-space: nowrap;!*强制不换行*!*/
+}
+.profile-detail>h3{
+	font-family: "微软雅黑";
+	font-size:22px;
+	margin:0 0 10px;
+}
+.profile-detail>a{
+	color:#8B0304;
+	display: block;
+	text-align: right;
+	font-size:14px;
+}
+.profile-detail>p{
+	font-size:16px;
+	line-height:28px;
+	text-indent: 2em;
+}
+
+.profile>div.profile-code{
+	width:15%;
+	margin-right: 0;
+}
+.profile-code>img{
+	padding-top:30%;
+}
+.profile-code>p{
+	font-size:14px;
+	margin-top:10px;
+	text-align:center;
+}
+/*作品欣赏*/
+.main-content h4{
+	color:#8B0304;
+	font-size:22px;
+	font-weight: bold;
+	margin-bottom:3px;
+}
+
+.title a>i{
+	display:inline-block;
+	width:15px;
+	height:15px;
+	background:url("../img/index/ico_02.png") no-repeat 0 0;
+	background-size: 100% 100%;
+	vertical-align: text-bottom;
+}
+div.title_right{
+	cursor: pointer;
+}
+div.title_right a:hover{
+	text-decoration: none;
+}
+div.title_right span{
+	color: #CC2B2B;
+}
+
+div.divider{
+	width:100%;
+	height:1px;
+	margin-bottom:3px;
+	background:#8B0304;
+}
+div.divider:last-child{
+	margin-bottom:10px;
+}
+.artwork-list>ul{
+	width:95%;
+	margin:0 auto;
+	overflow:hidden;
+}
+.artwork-list>ul:after{
+	content:"";
+	display:block;
+	height:0;
+	clear:both;
+}
+.artwork-list>ul>li{
+	float:left;
+	width:23%;
+	margin-right:2.65%;
+	margin-top:5px;
+}
+.artwork-list>ul>li:last-child,
+.artwork-list>ul>li:nth-child(4){
+	margin:0;
+}
+.artwork-list>ul>li p{
+	text-align:center;
+	line-height:30px;
+	font-family: "微软雅黑";
+	font-size:16px;
+	font-weight: bold;
+	/* margin-top:6px; */
+	margin-top:10px;
+    height:30px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+/*精品推荐*/
+.recommend-product>.recommend-list>ul{
+	overflow:hidden;
+}
+.recommend-product>.recommend-list>ul>li{
+	width:49.25%;
+	float:left;
+	border:1px solid #ccc;
+	padding:5px;
+	margin-right:1.5%;
+	margin-bottom:20px;
+}
+.recommend-product>.recommend-list>ul>li:nth-child(2),
+.recommend-product>.recommend-list>ul>li:nth-child(4){
+	margin-right:0;
+}
+.recommend-list>ul>li>div{
+	width:50%;
+	float:left;
+	/* padding:5px; */
+	padding:10px;
+}
+.recommend-word{
+	line-height:25px;
+	font-size:14px;
+	
+}
+.recommend-word>b{
+	display:block;
+	/* font-size:16px; */
+	font-size:18px;
+	margin-bottom:25px;
+	margin-top:35px;
+}
+.recommend-word>span{
+	color:#666;
+}
+.recommend-word>p>span{
+	font-size:16px;
+}
+.recommend-word>p{
+	margin-top:10px;
+}
+/*艺术动态*/
+.dynamics-con>p{
+		padding-left:2%;
+		font-size:14px;
+		line-height:25px;
+}
+.dynamics-con>p:nth-child(2),
+.dynamics-con>p:nth-child(3){
+	text-indent: 2em;
+}
+.dynamics-con>p>a{
+	font-size:14px;
+	font-weight: bold;
+}
+
+/*艺术家推荐*/
+.teacher {
+	position: relative
+}
+ .teacher .member_head {
+	width: 100%;
+	height:auto;
+	border: 2px solid #fff;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	height:100%;
+}
+.teacher .member_head a img{
+	width:100%;
+	height:100%;
+}
+ .teacher .teacher-title {
+	-webkit-transform: translateX(42%);
+	-ms-transform: translateX(42%);
+	transform: translateX(42%);
+	transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+	width: 30%;
+	margin: auto;
+	-webkit-transform: translateX(42%);
+	opacity: 0;
+}
+ .teacher .logo {
+	position: absolute;
+	width: 16%;
+	left: 12%;
+	top: -1%;
+	filter: drop-shadow(1px 1px 6px #545454);
+	-webkit-filter: drop-shadow(1px 1px 6px #545454);
+}
+ .teacher li {
+	list-style: none;
+	-webkit-transition: all ease-in 0.5s;
+	transition: all ease-in 0.5s;
+}
+ .teacher li:hover .member_head {
+	border: 5px solid #E81D2C;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+}
+
+ .teacher li:hover p {
+	color: #E81D2C;
+}
+ .teacher .teacher {
+	position: relative;
+}
+ .teacher .teacher-title {
+	text-align: center;
+	font-size: 28px;
+}
+ .teacher .teacher-detail {
+	width: 50%;
+	text-align: center;
+	margin: 1% auto auto;
+	-ms-transform: translateX(42%);
+	transform: translateX(42%);
+	-webkit-transform: translateX(42%);
+	transition: all 1s;
+	-webkit-transition: all 1s;
+	transition-delay: 0.1s;
+	-webkit-transition-delay: 0.1s;
+	opacity: 0;
+}
+ .teacher .teacher-adv {
+	width: 90%;
+	margin: auto;
+	margin-top: 0%;
+	position: relative;
+	/*padding-bottom: 5%;*/
+	padding-top: 28%;
+	overflow: hidden;
+}
+ .teacher .teacher-adv li {
+	width: 15%;
+	float: left;
+	margin-left: 1.4%;
+	cursor:pointer;
+	height:100%;
+}
+.teacher .teacher-pic {
+	position: relative;
+	width:100%;
+	margin-left:1%;
+	height:63%;
+	margin-bottom:20%;
+}
+ .teacher .teacher-content:hover {
+	opacity: 1;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+.teacher p {
+	margin: 0;
+	padding: 0;
+}
+.teacher .teacher-intro {
+	text-align: center;
+	margin-top: 5%;
+}
+.teacher .teacher-name {
+	color:#333;
+	/* margin-bottom: 5%; */
+	font-size: 1.7rem;
+	margin-bottom:10px;
+	
+}
+ .teacher .teacher-left {
+	width: 3.8%;
+	position: absolute;
+	top: 48%;
+	left: 5%;
+	cursor: pointer;
+}
+ .teacher .teacher-right {
+	width: 3.8%;
+	position: absolute;
+	top: 48%;
+	right: 5%;
+	cursor: pointer;
+}
+ .teacher .teacher-title {
+	font-size: 28px !important;
+}
+.teacher .teacher-detail {
+	font-size: 14px !important;
+}
+.teacher .teacher-left {
+	width: 7.8%;
+	position: absolute;
+	top: 78%;
+	left: 5%;
+	cursor: pointer;
+}
+ .teacher .teacher-right {
+	width: 7.8%;
+	position: absolute;
+	top: 78%;
+	right: 5%;
+	cursor: pointer;
+}
+ .title1{
+	position: relative;
+	color: #E81D2C;
+	margin: auto;
+	text-align: center;
+	padding-top: 4%;
+	width: 50%;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	transform: translateX(30%) skew(-20deg);
+	-webkit-transform: translateX(30%) skew(-20deg);
+	opacity: 0;
+}
+ .title2{
+	position: relative;
+	color: white;
+	margin: auto;
+	text-align: center;
+	margin-bottom: 1%;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	transform: translateX(30%) skew(-20deg);
+	-webkit-transform: translateX(30%) skew(-20deg);
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+	opacity: 0;
+}
+
+ .teacher .teacher-in {
+	width: 90%;
+	/* margin: auto; */
+}
+.teacher .teacher-in p{
+	font-size: 1.5rem;
+}
+.teacher .teacher-title {
+	width: 70%;
+}
+ .teacher .teacher-detail {
+	width: 90%;
+}
+.teacher .teacher-scroll-wrap {
+	width: 100%;
+	position: relative;
+	padding-bottom:2%;
+}
+.teacher ul {
+	margin: 0;
+	padding: 0;
+}
+.teacher .teacher-side {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 1000%;
+	margin-top: 3%;
+}
+ .teacher .teacher-side ul {
+	float: left;
+	width: 10%;
+	height:290px;
+}
+.teacher .teacher-btn-wrap {
+	position: absolute;
+	top: 30%;
+	left: 0;
+	width: 100%;
+}
+ .teacher .teacher-slide-prev,
+ .teacher .teacher-slide-next {
+	float: left;
+	display: block;
+	width: 40px;
+	height: 69px;
+}
+ .teacher .teacher-slide-prev {
+	position: absolute;
+	top: 0;
+	left: 1%;
+	background: url(../img/index/left.png) no-repeat;
+}
+.teacher .teacher-slide-next {
+	position: absolute;
+	top: 0;
+	right: 1%;
+	background: url(../img/index/right.png) no-repeat;
+}
+ .teacher .teacher-slide-prev:hover {
+	background: url(../img/index/left-1.png) no-repeat;
+}
+ .teacher .teacher-slide-next:hover {
+	background: url(../img/index/right-1.png) no-repeat;
+}
+
+
+ .artwork .artwork-list ul li a img{
+	 -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	 transition: opacity 0.35s, transform 0.35s;
+	 -webkit-transform: scale(1);
+	 transform: scale(1);
+ }
+.artwork .artwork-list ul li a:hover img{
+/*	opacity: 0.8;*/
+	-webkit-transform: scale(1.12);
+	transform: scale(1.12);
+}
+
+.breadCrumb  li a:hover{
+	text-decoration: none;
+}
+
+
+
+

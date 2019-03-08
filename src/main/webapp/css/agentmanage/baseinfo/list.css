@@ -1,0 +1,11 @@
+#search{height:90px;line-height:40px;}
+#search li{margin-left:2%;}
+#search li input{width:220px;height:30px;border:1px solid #d8d8d8}
+#search li button{height:30px;line-height:30px;width:60px;border:0;background:#316182;color:#fff;margin-left:0.8%}
+.layui-input-inline{margin-left:50px}
+#search li select{width:115px;height:30px;border:1px solid #d8d8d8;margin-right:5px}
+.layui-input-inline:first-child{margin-left:0}
+.layui-input-inline:nth-child(5){margin-left:0}
+.layui-input-inline:nth-child(6){margin-left:112px}
+.layui-input-inline:nth-child(7){margin-left:4%;margin-right:4.4%}
+#search li .vagueSerch{width:150px}

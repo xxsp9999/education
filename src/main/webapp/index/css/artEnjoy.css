@@ -1,0 +1,80 @@
+.nav{
+  position: relative;
+}
+.nav>i{
+  display: inline-block;
+  width: 50px;
+  height: 68px;
+  background: url(../img/iconlist.png) no-repeat 0 0;
+  margin-left: -50px;
+  margin-top: -20px;
+}
+.nav .breadCrumb{
+  position: absolute;
+  top: -20px;
+  left: 10px;
+}
+.nav .breadCrumb>li{
+  float: left;
+  height: 68px;
+  line-height: 68px;
+  padding-right: 10px;
+}
+.nav .breadCrumb>li>a{
+  font-size: 18px;
+}
+.nav .breadCrumb>li.active a{
+  color: #8B0304;
+}
+.nav .breadCrumb li a:hover{
+  text-decoration: none;
+}
+/*****************/
+.main-content h4{
+  color:#8B0304;
+  font-size:22px;
+  font-weight: bold;
+  margin-bottom:3px;
+}
+div.divider{
+  width:100%;
+  height:1px;
+  margin-bottom:3px;
+  background:#8B0304;
+}
+div.divider:last-child{
+  margin-bottom:10px;
+}
+/*************/
+.main-content .content{
+  padding-left: 1.5%;
+}
+.main-content .content>ul>li{
+  width: 23.5%;
+  margin-right: 1.5%;
+  float: left;
+}
+.main-content .content>ul>li>a{
+  display: inline-block;
+}
+.main-content .content>ul>li p{
+  text-align: center;
+  padding: 8px 0;
+}
+.main-content .content>ul>li p a{
+  font-size: 1.6em;
+}
+/*底部分页*/
+.main-content .content .pager{
+  text-align: center;
+  clear:both;
+}
+.main-content .content .pager .pagination>.active>a{
+  background-color: #8B0304;
+  border-color: #8B0304;
+}
+.main-content .content .pager li>a{
+  border-radius:3px;
+  margin:0 5px;
+  border:none;
+}

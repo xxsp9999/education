@@ -1,0 +1,165 @@
+/**
+ * 作者:李丹
+ * 2016-12-30 于成都诚俊科技有限公司
+ * 功能：此文件实现艺术家详情介绍页面的样式
+ */
+.nav{
+  position: relative;
+}
+.nav>i{
+  display: inline-block;
+  width: 50px;
+  height: 68px;
+  background: url(../img/iconlist.png) no-repeat 0 0;
+  margin-left: -50px;
+  margin-top: -20px;
+}
+.nav .breadCrumb{
+  position: absolute;
+  top: -20px;
+  left: 10px;
+}
+.nav .breadCrumb>li{
+  float: left;
+  height: 68px;
+  line-height: 68px;
+  padding-right: 10px;
+}
+.nav .breadCrumb>li>a{
+  font-size: 18px;
+}
+.nav .breadCrumb>li.active a{
+  color: #8B0304;
+}
+
+
+/*主体内容*/
+/*艺术家简介*/
+.main-content>.profile{
+	width:100%;
+	height:400px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	margin-bottom:20px;
+	padding:30px;
+	background:url("../img/artist/bg-artist.png") no-repeat 0 -100px;
+}
+.profile>div{
+	float:left;
+	margin-right:20px;
+	margin-top:10px;
+}
+.profile>div.profile-img{
+	width:22%;
+	margin-left:40px;
+}
+.profile>div.profile-img img{
+	width:210px;
+	height:300px;
+}
+.profile>div.profile-img p{
+	font-size:24px;
+	color:#fff;
+	font-family: "songti";
+	margin-top:10px;
+	text-align:center;
+	position: relative;
+}
+.profile>div.profile-detail{
+	width:50%;
+	/*padding-top:10px;*/
+	max-height: 300px;
+
+	cursor: pointer;
+/*	overflow: hidden; !*自动隐藏文字*!
+	text-overflow: ellipsis;!*文字隐藏后添加省略号*!
+	white-space: nowrap;!*强制不换行*!*/
+}
+.profile-detail{
+	font-size:16px;
+}
+.profile-detail table tr{
+	height:40px;
+}
+.profile-detail  span{
+	color:#666;
+	display:inline-block;
+	width:90px;
+	line-height:40px;
+	padding-left:10px;
+}
+.product-detail-achieve{
+	width:80%;
+	float:left;
+}
+.product-detail-achieve span{
+	float:left;
+}
+.product-detail-achieve ul{
+	margin-top:5px;
+	line-height:30px;
+}
+
+.profile>div.profile-code{
+	width:15%;
+	margin-right: 0;
+}
+.profile-code>img{
+	padding-top:30%;
+}
+.profile-code>p{
+	font-size:14px;
+	margin-top:10px;
+	text-align:center;
+}
+/*艺术家详细介绍*/
+.main-content h4{
+	color:#8B0304;
+	font-size:22px;
+	font-weight: bold;
+	margin-bottom:3px;
+}
+
+.title a>i{
+	display:inline-block;
+	width:15px;
+	height:15px;
+	background:url("../img/index/ico_02.png") no-repeat 0 0;
+	background-size: 100% 100%;
+	vertical-align: text-bottom;
+}
+div.title_right{
+	cursor: pointer;
+}
+div.title_right a:hover{
+	text-decoration: none;
+}
+div.title_right span{
+	color: #CC2B2B;
+}
+
+div.divider{
+	width:100%;
+	height:1px;
+	margin-bottom:3px;
+	background:#8B0304;
+}
+div.title>div.divider:last-child{
+	margin-bottom:20px;
+}
+
+.word-con>p{
+		padding-left:2%;
+		font-size:14px;
+		line-height:25px;
+		text-indent: 2em;
+}
+.word-con p span{
+	display:block;
+	text-align:right;
+	color:#999;
+}
+.none-in p{
+	text-indent:0;
+}
+

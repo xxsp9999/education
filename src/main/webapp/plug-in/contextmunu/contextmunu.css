@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+/* Created by 罗茂 on 2016/10/25. */
+
+/*
+ * 最外层的div
+ */
+.contextmenu_container {
+	margin: 0;
+	padding: 0;
+	z-index: 99;
+	position: absolute;
+	display: none;
+}
+
+/*
+ * div里面的ul
+ */
+.contextmenu_container .contextmenu {
+	border: 1px solid #979797;
+	background: #EEE;
+	padding: 2px;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, .6);
+	width: 150px;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 微软雅黑;
+	line-height: 1.5;
+}
+
+/*
+ * ul的li
+ */
+.contextmenu_container .contextmenu li {
+	float: left;
+	clear: both;
+	height: 24px;
+	cursor: pointer;
+	line-height: 24px;
+	white-space: nowrap;
+	/* padding-left: 30px; */
+	padding: 0 30px;
+	display: inline-block;
+	/* border: 1px white solid; */
+}
+
+/*
+ * li的第一个span
+ */
+.contextmenu_container .contextmenu li span:nth-child(odd) {
+	/* text-align: left; */
+	/* float: left; */
+	/* background-color: pink; */
+	width: 100px;
+	display: inline-block;
+}
+
+/*
+ * li的hover样式
+ */
+.contextmenu_container .contextmenu li:hover {
+	/* background: #E6EDF6; */
+	background: #D7E0EF;
+	/* border: 1px solid #98C0E2; */
+}

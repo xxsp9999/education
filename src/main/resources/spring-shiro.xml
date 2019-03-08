@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	  http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+	<bean id="logoutFilter"
+		class="org.apache.shiro.web.filter.authc.LogoutFilter">
+		<property name="redirectUrl" value="/main" />
+	</bean>
+
+	<!-- Spring-shiro入门配置 -->
+
+	<!-- 配置Realm -->
+	<bean id="userRealm" class="pers.xx.edu.support.UserRealm">
+		<!-- 配置密码匹配器 -->
+		<!-- <property name="credentialsMatcher"> <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher"> -->
+		<!-- 加密算法为MD5 -->
+		<!-- <property name="hashAlgorithmName" value="MD5"></property> -->
+		<!-- 加密次数 -->
+		<!-- <property name="hashIterations" value="1024"></property> -->
+		<!-- </bean> </property> -->
+	</bean>
+
+	<!-- 配置使用自定义认证器，可以实现多Realm认证，并且可以指定特定Realm处理特定类型的验证 -->
+	<bean id="authenticator"
+		class="pers.xx.edu.support.CustomizedModularRealmAuthenticator">
+		<!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
+		<property name="authenticationStrategy">
+			<bean
+				class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+		</property>
+	</bean>
+
+	<!-- 1.创建securityManager -->
+	<bean id="securityManager"
+		class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="authenticator" ref="authenticator"></property>
+		<!-- 可以配置多个Realm，其实会把realms属性赋值给ModularRealmAuthenticator的realms属性 -->
+		<property name="realms">
+			<list>
+				<ref bean="userRealm" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 2.创建securityManager工厂 -->
+	<bean id="shiroFilter"
+		class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<!-- 项目首页 此网站首页直接访问，无需验证 -->
+		<property name="loginUrl" value="/main" />
+		<!-- 登录认证成功后的首页 -->
+		<property name="successUrl" value="/doLogin" />
+		<!-- 登录成功后访问某些页面但是没有权限时跳转的页面 -->
+		<property name="unauthorizedUrl" value="/toLogin" />
+		<!-- 配置相应的JSP页面访问权限 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- anon 表示可以被匿名即访问公开的页面 authc 表示需要认证即登录后才能访问的页面 /** 表示所有的页面 -->
+				/toLogin = anon
+				/doLogin = anon
+				/logout = anon
+				/inform/* = anon
+				/news/* = anon
+				/Power/* = anon
+				/code = anon
+				/jqueryConfirm/* = anon
+				/assets/* = anon
+				/css/* = anon
+				/images/* = anon
+				/files/* = anon
+				/js/* = anon
+				/plug-in/* = anon
+				/error/* = anon
+				/test/* = anon
+				/tokenError = anon
+			<!-- 	/System/toMainReport = authc
+				/System/toMainExamine = authc -->
+			</value>
+		</property>
+	</bean>
+
+</beans>

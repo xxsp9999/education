@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+    <!-- 扫描包 -->                    
+	<context:component-scan base-package="pers.xx.edu.*"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+	
+	 <!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 多部分文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	     <property name="maxUploadSize" value="104857600" />
+	     <property name="maxInMemorySize" value="4096" />
+	     <property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	
+	<mvc:interceptors>
+       <!-- 对所有的请求记性拦截 -->
+       <!--  <beans:bean class="com.sunp.common.interceptor.Myinterceptor"/> -->
+       <!--  对特定的请求进行拦截 -->
+        <mvc:interceptor>
+        	<mvc:mapping path="/**"/> 
+ 			<mvc:exclude-mapping path="/toLogin"/>
+ 			<mvc:exclude-mapping path="/login"/>
+        	<mvc:exclude-mapping path="/tokenError"/>
+        	<mvc:exclude-mapping path="//user/code"/>
+        	<mvc:exclude-mapping path="/**/*.js"/>
+        	<mvc:exclude-mapping path="/**/*.jpg"/>
+			<mvc:exclude-mapping path="/**/*.css"/>
+			<mvc:exclude-mapping path="/**/*.png"/>
+			<mvc:exclude-mapping path="/**/*.ttf"/>
+			<mvc:exclude-mapping path="/**/*.woff"/>
+			<mvc:exclude-mapping path="/images/**"/>
+			<mvc:exclude-mapping path="/assets/js/skin/default/img.gif"/>
+			<mvc:exclude-mapping path="/apk/FamilyWideband.apk"/>
+			<mvc:exclude-mapping path="/apk/appInfo.json"/>
+			<mvc:exclude-mapping path="/apk/**"/>
+			<mvc:exclude-mapping path="/uploadJianPic"/>
+            <bean class="pers.xx.edu.listener.PemissionFilter" ></bean>
+        </mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 开启SpringMVC注解驱动，并调用转换器 -->
+	<mvc:annotation-driven />
+	
+	<!-- 自动处理静态资源 -->
+	<mvc:default-servlet-handler />
+	
+	
+	<!-- 开启apache-shiro注解 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+</beans>

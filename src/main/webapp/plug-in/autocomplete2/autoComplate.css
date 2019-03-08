@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+.autoCompleteTable * {
+	margin: 0px;
+}
+
+.autoCompleteTable { /* border-spacing: 0px; */
+	z-index: 99;
+	font-size: 14px;
+}
+
+.autoCompleteTable>thead {
+	font-family: 宋体;
+}
+
+.autoCompleteTable>.autoComplateData {
+	font-family: 楷体;
+}
+
+.autoCompleteTable>thead>tr {
+	background-color: #5B9BD5;
+	color: white;
+}
+
+.autoCompleteTable>thead>tr>td {
+	padding: 5px 10px;
+	margin: 2px 2px;
+}
+
+.autoCompleteTable>thead>tr>td {
+	text-align: center;
+}
+
+.autoCompleteTable>.autoComplateData>tr>td {
+	padding: 5px 10px;
+	margin: 2px 2px;
+	max-width: 70px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.autoCompleteTable>.autoComplateData>tr>td>.highLight {
+	color: red;
+}
+
+.autoCompleteTable>.autoComplateData>tr:nth-child(odd) {
+	background-color: #D2DEEF;
+}
+
+.autoCompleteTable>.autoComplateData>tr:nth-child(even) {
+	background-color: #EAEFF7;
+}
+
+.autoCompleteTable>.autoComplateData>tr:hover {
+	background-color: pink;
+	color: #0000FF;
+}
+
+.autoCompleteTable>.autoComplateData>tr.active {
+	background-color: pink;
+}
+
+.autoCompleteTable>tbody>a:VISITED {
+	color: pink;
+}

@@ -1,0 +1,253 @@
+.nav{
+  position: relative;
+}
+.nav>i{
+  display: inline-block;
+  width: 50px;
+  height: 68px;
+  background: url(../img/iconlist.png) no-repeat 0 0;
+  margin-left: -50px;
+  margin-top: -20px;
+}
+.nav .breadCrumb{
+  position: absolute;
+  top: -20px;
+  left: 10px;
+}
+.nav .breadCrumb>li{
+  float: left;
+  height: 68px;
+  line-height: 68px;
+  padding-right: 10px;
+}
+.nav .breadCrumb>li>a{
+  font-size: 18px;
+}
+.nav .breadCrumb>li.active a{
+  color: #8B0304;
+}
+
+/*子搜索框*/
+.sub-search{
+	float:right;
+}
+#input-search{
+	width:250px;
+	height:30px;
+	padding-left:10px;
+	border-radius:3px;
+	border:1px solid #ccc;
+	outline: none;
+}
+#btn-search{
+	width:60px;
+	height:30px;
+	background:#8B0304;
+	color:#fff;
+	border:0;
+	border-radius:3px;
+}
+
+/*主体内容*/
+/*字母检索*/
+.letter-search>a{
+	color:#333;
+	font-size:1.5em;
+	font-weight:bold;
+}
+div.divider{
+	width:100%;
+	height:1px;
+	margin-bottom:3px;
+	background:#8B0304;
+}
+div.divider:last-child{
+	margin-bottom:10px;
+}
+
+/*艺术家列表详情*/
+.art{
+	width:72%;
+	float:left;
+}
+/*字母链接*/
+.letter-link>ul{
+	overflow:hidden;
+}
+.letter-link>ul>li{
+	float:left;
+	width:25px;
+	height:25px;
+	background:#C8C8C8;
+	margin-right:6px;
+	margin-bottom:20px;
+	text-align:center;
+	line-height:25px;
+	font-size:16px;
+	font-family: "songti";
+	font-weight:bold;
+	border-radius:3px;
+}
+.letter-link>ul>li:last-child{
+	margin:0;
+}
+.letter-link>ul>li.active{
+	background:#8B0304;
+	
+}
+.letter-link>ul>li.active>a{
+	color:#eee;
+}
+/*艺术家列表*/
+.art-list>ul{
+	overflow:hidden;
+}
+.art-list>ul>li{
+	float:left;
+	width:18%;
+	height:auto;
+	margin-right:2%;
+	/*margin-bottom:20px;*/
+}
+.art-list>ul>li:last-child{
+	margin:0;
+}
+.art-list>ul>li img{
+	width:100%;
+	height:100%;
+}
+.art-list>ul>li p{
+	text-align:center;
+	line-height:30px;
+	font-size:16px;
+}
+
+/*艺术资讯*/
+.information{
+	margin-left:72%;
+	padding:15px;
+	background:#ececec;
+}
+.info-title{
+	margin-bottom:10px;
+	color:#8B0304;
+}
+.info-title>i{
+	float:left;
+	width:35px;
+	height:35px;
+	background:url("../img/iconlist.png") no-repeat 0 -86px;
+	margin-right:10px;
+}
+.info-title>h3{
+	line-height:35px;
+}
+
+.info-list>ul{
+	margin-left:5%;
+	margin-bottom:20px;
+}
+.info-list>ul>li:first-child>a{
+	font-size:18px;
+	color:#000;
+}
+.info-list>ul>li{
+	font-size:14px;
+	margin-bottom:5px;
+}
+/*底部分页*/
+.pager{
+  text-align: center;
+  clear:both;
+}
+.pager .pagination>.active>a{
+  background-color: #8B0304;
+  border-color: #8B0304;
+}
+.pager li>a{
+	border-radius:3px;
+	margin:0 5px;
+	border:none;
+}
+
+
+
+
+
+.nav-container {
+	padding: 0 !important;
+}
+.m-nav{
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+.m-nav .crumb{
+	display: inline-block;
+}
+.m-nav .crumb span{
+	font-size: 1.5rem;
+	margin-right: 10px;
+	font-weight: bold;
+}
+.m-nav .crumb i{
+	font-weight: normal;
+}
+.check-artist{
+	display: inline-block;
+	color: #1c1c1c;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.check-artist a{
+	border:1px solid #ccc;
+	padding: 3px 5px;
+	color: #1c1c1c;
+}
+.check-artist a:hover{
+	border:1px solid #8B0304;
+}
+.check-artist a i{
+	font-size: 10px;
+	color: red;
+	margin-left: 10px;
+}
+
+.groups{
+	border:1px solid #ccc;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.groups .group{
+	margin-left: 10px;
+}
+.groups .head{
+	display: inline-block;
+}
+.groups .body{
+	display: inline-block;
+}
+.groups .head h4{
+	font-size: 1.5rem;
+}
+.groups .body .items .item-inner a{
+	padding-left: 15px;
+	padding-right: 20px;
+	font-size: 1.4rem;
+	display: inline-block;
+}
+.groups .row-first{
+	padding-bottom: 10px;
+	padding-top: 10px;
+	border-bottom: 1px dashed #ccc;
+}
+.groups .row-five{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+
+
+
+
+

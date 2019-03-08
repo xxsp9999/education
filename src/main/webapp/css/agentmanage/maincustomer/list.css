@@ -1,0 +1,6 @@
+#search{height:40px;line-height:40px;}
+#search li{margin-left:2%;}
+#search li input{width:200px;height:30px;border:1px solid #d8d8d8}
+#search li button{height:30px;line-height:30px;width:60px;border:0;background:#316182;color:#fff;}
+#search li select{width:55px;height:30px;border:1px solid #d8d8d8}
+#search li span{width:80px;display:inline-block;text-align:center;}

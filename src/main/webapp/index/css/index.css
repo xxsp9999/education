@@ -1,0 +1,597 @@
+﻿/* CSS Document */
+@charset "utf-8";
+a{ text-decoration:none;  }
+::-webkit-scrollbar {
+		  width: 7px;
+	}
+::-webkit-scrollbar-track{
+	background-color:rgba(168, 168, 168, 0.28);
+}
+::-webkit-scrollbar-thumb{
+	background-color:rgba(168, 168, 168, 0.88);
+}
+img{
+	width:100%;
+	border:0;
+}
+.clear{
+	clear: both;
+}
+body{
+	margin:0;
+	font-family: Microsoft Yahei;
+}
+#layout{
+	overflow: hidden;
+	margin: 0px auto;
+	width: 100%;
+	min-width:1000px;
+	position:relative;
+}
+.clear{
+	clear: both;
+}
+.mar_bott{
+	margin-bottom:25px !important;
+}
+/*主体样式开始*/
+img.hot-first{
+	position: absolute;
+	z-index: 1;
+	width: 61px;
+	height: 59px;
+}
+
+/* 轮播图的大小范围在這里修改 */
+
+div.carousel-inner>div.item{
+	width:800px;
+	height:420px;
+}
+ol.carousel-indicators{
+	background-color: rgba(0,0,0,0.5);
+	padding-top: 3%;
+	padding-bottom: 5%;
+	left: 30%;
+	bottom: -10px;
+	height: 15%;
+	
+	width:100%;
+}
+ol.carousel-indicators li{
+	width: 45px;
+	height: 12px;
+	border-radius: 0;
+	border:#000;
+	background:-webkit-linear-gradient(left, #494848,#2D2C2C);
+	background:-moz-linear-gradient(left, #494848,#2D2C2C);
+	background:-o-linear-gradient(left,#494848,#2D2C2C);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#494848, endColorstr=#2D2C2C);/*IE<9>*/
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#494848, endColorstr=#2D2C2C)";/*IE8+*/
+	box-shadow:2px 2px 5px #222 ;
+}
+ol.carousel-indicators li.active{
+	background: #E81828 !important;
+	width: 45px;
+}
+div.carousel-inner h4.ys-hot-title{
+	position: absolute;
+	z-index: 50;
+	bottom: 2.5%;
+	right: 40px;
+	display: inline-block;
+	width: 40%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+div.carousel-inner h4.ys-hot-title a{
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+	margin-left:20%;
+	display:inline-block;
+	width:100%;
+	overflow:hidden;
+}
+a.carousel-control{
+	font-size: 50px;
+	line-height: 900%;
+
+}
+div.panel-danger>.panel-heading{
+	color: #fff;
+	background-color: #8E0203;
+}
+ul.hot-ul{
+	padding: 0;
+}
+ul.hot-ul a{
+	color: #777;
+}
+ul.hot-ul a:hover{
+	color: #8E0203;
+	text-decoration:none;
+}
+ul.hot-ul li{
+	color: #777;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 1.3rem;
+    line-height: 2.5rem;
+}
+ul.hot-ul li a{
+	color: #777;
+	line-height: 29px;
+	font-size: 1.5rem;
+}
+ul.hot-ul li:hover{
+	color: #8E0203;
+}
+ul.hot-ul li a:hover{
+	color: #8E0203;
+}
+ul.hot-ul li:before{
+	content: '•';
+	margin-right: 10px;
+	right: 10px;
+}
+
+/*缩略图样式*/
+div.thumbnail_up_left{
+	width:45%;
+	display:inline-block;
+	vertical-align:top;
+	height:108px;
+	overflow:hidden;
+}
+div.thumbnail_up_left_th{
+	width:45%;
+	display:inline-block;
+	vertical-align:top;
+	height:392px;
+	overflow:hidden;
+}
+div.ys_top_js{
+	display: inline-block;
+	width: 48%;
+	height:108px;
+	overflow:hidden;
+	/* margin-left: 5px; */
+	/* margin-right:5px; */
+}
+div.ys_top_js_th{
+	height:392px;
+}
+div.thu_title{
+	width: 100%;
+	border-bottom: 2px solid #000;
+}
+div.thu_title h3{
+	margin-bottom: 0;
+	color: #9C292A;
+	font-weight: 600;
+}
+div.title_right{
+	cursor: pointer;
+}
+div.adver_slide{
+	margin-bottom:30px;
+}
+div.thumbnail_up_big img{
+	width: 90%;
+	padding-left: 8%;
+	height:193px;
+}
+div.title_right a:hover{
+	text-decoration: none;
+}
+div.title_right span{
+	color: #CC2B2B;
+}
+div.thumbnail_body{
+	margin-top: 8px;
+}
+img.ico_03_style{
+	width: 14px;
+	margin-bottom: -6px;
+	margin-left: 10px;
+}
+img.ico_02_style{
+	width: 12px;
+}
+ul.ys_top,ul.ys_down{
+    list-style-type: none;
+	padding-left: 0;
+}
+ul.ys_top li,ul.ys_down li{
+	line-height: 22px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	list-style: url("../img/index/ico_04.png") outside circle;
+}
+div.thumbnail{
+	height:453px;
+	overflow:hidden;
+}
+ul.ys_top li a,ul.ys_down li a{
+	color:#222;
+	font-size: 1.3rem;
+}
+ul.ys_top li a:link,ul.ys_top li a:visited{
+	background: url("../img/index/ico_04.png") center left no-repeat;
+	padding-left: 15px;
+}
+
+ul.ys_down li a:link,ul.ys_down li a:visited{
+	background: url("../img/index/ico_04.png") center left no-repeat;
+	padding-left: 15px;
+}
+ul.ys_down li a:hover,ul.ys_top li a:hover{
+	color:#95191A ;
+	text-decoration: none;
+}
+div.caption{
+	padding: 0 !important;
+	margin-top: 5px;
+}
+div.thumbnail_up .ys_top_js ul.ys_top{
+	padding-bottom: 0 !important;
+}
+/*div.big-pic .caption .ys_down li.md_vis a{
+	display: none;
+	color: red;
+}
+div.big_pic div.caption{
+	margin-top: 20px !important;
+ }*/
+
+ .teacher {
+	position: relative
+}
+ .teacher .member_head {
+	width: 100%;
+	height:auto;
+	border: 2px solid #fff;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+}
+
+ .teacher .teacher-title {
+	-webkit-transform: translateX(42%);
+	-ms-transform: translateX(42%);
+	transform: translateX(42%);
+	transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+	width: 30%;
+	margin: auto;
+	-webkit-transform: translateX(42%);
+	opacity: 0;
+}
+ .teacher .logo {
+	position: absolute;
+	width: 16%;
+	left: 12%;
+	top: -1%;
+	filter: drop-shadow(1px 1px 6px #545454);
+	-webkit-filter: drop-shadow(1px 1px 6px #545454);
+}
+ .teacher li {
+	list-style: none;
+	-webkit-transition: all ease-in 0.5s;
+	transition: all ease-in 0.5s;
+}
+ .teacher li:hover .member_head {
+	border: 5px solid #E81D2C;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+}
+
+ .teacher li:hover p {
+	color: #E81D2C;
+}
+ .teacher .teacher {
+	position: relative;
+}
+ .teacher .teacher-title {
+	text-align: center;
+	font-size: 28px;
+}
+ .teacher .teacher-detail {
+	width: 50%;
+	text-align: center;
+	margin: 1% auto auto;
+	-ms-transform: translateX(42%);
+	transform: translateX(42%);
+	-webkit-transform: translateX(42%);
+	transition: all 1s;
+	-webkit-transition: all 1s;
+	transition-delay: 0.1s;
+	-webkit-transition-delay: 0.1s;
+	opacity: 0;
+}
+ .teacher .teacher-adv {
+	width: 90%;
+	margin: auto;
+	margin-top: 0%;
+	position: relative;
+	padding-bottom: 5%;
+	padding-top: 28%;
+	overflow: hidden;
+}
+ .teacher .teacher-adv li {
+	width: 23%;
+	float: left;
+	margin-left: 2%;
+	cursor:pointer;
+}
+.teacher .teacher-pic {
+	position: relative;
+	/* width:90%;
+	margin-left:1%; */
+	width:100%;
+	margin-left:1%;
+}
+ .teacher .teacher-content:hover {
+	opacity: 1;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+.teacher p {
+	margin: 0;
+	padding: 0;
+}
+.teacher .teacher-intro {
+	text-align: center;
+	margin-top: 5%;
+}
+.teacher .teacher-name {
+	color:#333;
+	margin-bottom: 5%;
+	font-size: 1.7rem;
+}
+ .teacher .teacher-left {
+	width: 3.8%;
+	position: absolute;
+	top: 48%;
+	left: 5%;
+	cursor: pointer;
+}
+ .teacher .teacher-right {
+	width: 3.8%;
+	position: absolute;
+	top: 48%;
+	right: 5%;
+	cursor: pointer;
+}
+ .teacher .teacher-title {
+	font-size: 28px !important;
+}
+.teacher .teacher-detail {
+	font-size: 14px !important;
+}
+.teacher .teacher-left {
+	width: 7.8%;
+	position: absolute;
+	top: 78%;
+	left: 5%;
+	cursor: pointer;
+}
+ .teacher .teacher-right {
+	width: 7.8%;
+	position: absolute;
+	top: 78%;
+	right: 5%;
+	cursor: pointer;
+}
+ .title1{
+	position: relative;
+	color: #E81D2C;
+	margin: auto;
+	text-align: center;
+	padding-top: 4%;
+	width: 50%;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	transform: translateX(30%) skew(-20deg);
+	-webkit-transform: translateX(30%) skew(-20deg);
+	opacity: 0;
+}
+ .title2{
+	position: relative;
+	color: white;
+	margin: auto;
+	text-align: center;
+	margin-bottom: 1%;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	transform: translateX(30%) skew(-20deg);
+	-webkit-transform: translateX(30%) skew(-20deg);
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+	opacity: 0;
+}
+
+ .teacher .teacher-in {
+	width: 90%;
+	margin: auto;
+}
+.teacher .teacher-in p{
+	font-size: 1.5rem;
+}
+.teacher .teacher-title {
+	width: 70%;
+}
+ .teacher .teacher-detail {
+	width: 90%;
+}
+.teacher .teacher-scroll-wrap {
+	width: 100%;
+	position: relative;
+	padding-bottom:2%;
+}
+.teacher ul {
+	margin: 0;
+	padding: 0;
+}
+.teacher .teacher-side {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 1000%;
+	margin-top: 3%;
+}
+ .teacher .teacher-side ul {
+	float: left;
+	width: 10%;
+}
+.teacher .teacher-btn-wrap {
+	position: absolute;
+	top: 30%;
+	left: 0;
+	width: 100%;
+}
+ .teacher .teacher-slide-prev,
+ .teacher .teacher-slide-next {
+	float: left;
+	display: block;
+	width: 40px;
+	height: 69px;
+}
+ .teacher .teacher-slide-prev {
+	position: absolute;
+	top: 0;
+	left: 1%;
+	background: url(../img/index/left.png) no-repeat;
+}
+.teacher .teacher-side ul li a:hover{
+	text-decoration: none;
+}
+.teacher .teacher-slide-next {
+	position: absolute;
+	top: 0;
+	right: 1%;
+	background: url(../img/index/right.png) no-repeat;
+}
+ .teacher .teacher-slide-prev:hover {
+	background: url(../img/index/left-1.png) no-repeat;
+}
+ .teacher .teacher-slide-next:hover {
+	background: url(../img/index/right-1.png) no-repeat;
+}
+
+
+
+
+
+
+/* 完善主页样式 */
+div#Calligraphy img{
+	width:96%;
+	height:100%;
+}
+div#youhua_top img{
+	width:96%;
+	height:100%;
+}
+div#foxiang_top img{
+	width:96%;
+	height:100%;
+}
+div#zhubao_top img{
+	width:96%;
+	height:100%;
+}
+div#shiyi_down img{
+	width:96%;
+	height:100%;
+}
+div#taoci_top img{
+	width:96%;
+	height:100%;
+}
+div#muyi_top img{
+	width:96%;
+	height:100%;
+}
+div#jinshu_top img{
+	width:96%;
+	height:100%;
+}
+div.thumbnail_up_left img{
+	height:100%;
+}
+div#minyi_top img{
+	height:30%;
+}
+div#minyi_top a:nth-child(2) img{
+	margin-top:5%;
+}
+div#minyi_top a:nth-child(3) img{
+	margin-top:5%;
+}
+/*主体样式结束*/
+
+@media (min-width:993px) and (max-width:1200px){
+	.navbar-inverse .navbar-nav>li>a{
+		font-size: 1.1rem !important;
+	}
+	.navbar-collapse{
+		width: 110%;
+	}
+	a.carousel-control{
+		font-size: 50px;
+		line-height: 600%;
+	}
+	div.footer_up .line_01{
+		width: 42%;
+		height: 3px;
+		overflow: hidden;
+		background-color: #000;
+		margin: 14px 0 0 0;
+	}
+}
+@media (min-width:700px) and (max-width:992px){
+	.navbar-inverse .navbar-nav>li>a{
+		font-size: 1.1rem !important;
+	}
+	.navbar-collapse{
+		width: 150%;
+	}
+	div.footer_up .line_01{
+		width: 40%;
+		height: 3px;
+		overflow: hidden;
+		background-color: #000;
+		margin: 14px 0 0 0;
+	}
+}
+
+@media (min-width:993px) and (max-width:1136px){
+	.top ul{
+		width: 50%;
+	}
+}
+@media (min-width:800px) and (max-width:1035px) {
+	.top ul {
+		width: 50%;
+	}
+	.header .search button{
+		right: 3px;
+	}
+	.header .search{
+		margin-left: 20%;
+	}
+}
+
+@media (min-width:800px) and (max-width:992px){
+	div.ys-xs-12{
+		width: 80% !important;
+	}
+}
+
+
+
+

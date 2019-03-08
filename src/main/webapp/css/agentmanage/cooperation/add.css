@@ -1,0 +1,32 @@
+.cooperration{font-size:16px;font-family:"宋体";color:#666}
+.cooperration li{display:inline-block;border:solid 1px #ccc;text-align:center;}
+.agentNum{height:30px;margin-top:5px}
+.agentNum li{height:30px;}
+.agentNum li:first-child{width:20%;margin-left:0}
+.agentNum li:last-child{width:78%;text-align:left;}
+.agentNum li:last-child input{width:100%;height:30px;}
+.lastSale{height:30px;margin-top:5px}
+.lastSale li{height:30px}
+.lastSale li:first-child{width:20%;margin-left:0}
+.lastSale li:last-child{width:78%;text-align:left;}
+.lastSale li:last-child input{width:100%;height:30px}
+.safeProSale{height:220px;margin-top:5px;margin-left:2.1%;border:solid 1px #ccc;width:96.6%;display:block}
+.safeProSaleInfo{height:220px;float:left;width:33%}
+.safeProSaleInfoLeft{height:220px;line-height:220px;float:left;width:48%}
+.safeProSaleInfoRight{height:220px;float:left;width:45%}
+.safeProSaleInfoRight li{border:none;margin-top:2px}
+.equity{height:140px;margin-left:2.1%;font-size:14px;width:96.6%;display:block}
+.equityLeft{height:140px;float:left;width:18.2%;border:solid 1px #ccc;border-top:none}
+.equityCenter{height:140px;float:left;width:48.8%;border:solid 1px #ccc;border-left:none;border-top:none}
+.equityRight{height:140px;float:left;width:33%;border:solid 1px #ccc;border-left:none;border-top:none}
+.equityRight p{font-size:12px;color:red}
+.equityLeftUp{height:45%;border-bottom:solid 1px #ccc}
+.equityLeftUp p{font-weight:bold}
+.equityLeftUp span{font-weight:normal}
+.equityLeftDown{line-height:70px;font-weight:bold;text-align:center}
+.equityCenterUp{height:45%;border-bottom:solid 1px #ccc;line-height:60px}
+.equityCenterUp input{margin-left:2%}
+.equityCenterDown textarea{width:98%;height:98%;margin-top:2%;margin-left:1%}
+.submit{width:98%;height:30px;margin-left:2.1%;display:block;margin-top:15px}
+.submit input{width:60px;height:30px;margin-left:38%;background:#316182;color:white}
+.submit input:last-child{margin-left:12%}

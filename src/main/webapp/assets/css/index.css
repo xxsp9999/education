@@ -1,0 +1,26 @@
+/**
+ * author李丹
+ * date 2016-12-22
+ * 功能 修改主页面样式
+ */
+
+iframe{
+	width:96%;
+	position:absolute;
+	left:0;
+	/*scrollbar:hidden;*/
+}
+html{
+	/*min-height:90%;*/
+	overflow-y:hidden;
+}
+@media screen and (min-width:992px ) {
+	.sidebar{
+		position: absolute;
+		width:15%;
+	}
+	iframe{
+		width:85%;
+	}
+	
+}

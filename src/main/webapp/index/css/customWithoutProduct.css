@@ -1,0 +1,165 @@
+body{
+	/* background-color: #ECECEC; */
+	overflow:hidden;
+}
+/*瀵艰埅閮ㄥ垎*/
+
+.nav{
+	margin-top:20px;
+}
+.nav ul{
+	width: 100%;
+	overflow:hidden;
+	border-bottom:3px solid #8B0304;
+}
+.nav ul>li{
+	float:left;
+	width:100px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+}
+.nav ul>li>a{
+	font-size:16px;
+}
+.nav ul>li.active{
+	background:#8B0304;
+	font-weight: bold;
+}
+.nav ul>li.active a{
+	color:#fff;
+}
+
+/*涓讳綋鍐呭*/
+.main-container{
+	width: 80%;
+	margin-top: 20px;
+
+	padding: 5px;
+}
+.customize{
+	width: 900px;
+	margin-left: 10%;
+	margin-top: 20px;
+	border:1px solid #ccc;
+	margin:20px auto;
+}
+.case{
+	width: 900px;
+	margin-top: 20px;
+	margin-left: 10%;
+	border:1px solid #ccc;
+}
+.pro_con{
+	width: 900px;
+	margin-top: 20px;
+	margin-left: 10%;
+	border:1px solid #ccc;
+}
+.required{
+	width: 900px;
+	margin-top: 20px;
+	margin-left: 10%;
+	/* border:1px solid #ccc; */
+}
+.required .pro_left{
+	width: 50%;
+	float: left;
+}
+.required .form_group{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 1.6rem;
+}
+.required .form_group:first-child{
+	margin-top: 20px;
+}
+.required .form_group:last-child{
+	margin-bottom: 20px;
+}
+.required .form_group label{
+	width: 30%;
+	text-align: right;
+	font-weight: normal;
+}
+.required .pro_right{
+	width: 50%;
+	float: right;
+}
+#add {
+	margin-left: 45%;
+	width:100px;
+	height: 40px;
+	background-color: #8B0304;
+	border:none;
+	color: #fff;
+	font-weight: bold;
+}
+#graphbox{
+	border:1px solid #e7e7e7;
+	padding:10px;
+	width:250px;
+	margin:5px 0;
+	display:none
+}
+.graph{
+	position:relative;
+	border:1px solid #cccccc;
+	display: inline-block;
+	font-size:8px;
+	font-weight:700;
+}
+.graph{
+	position:relative;
+	text-align:left;
+	color:#ffffff;
+	height:18px;
+	line-height:18px;
+	display:block;
+	margin-left: 100px;
+	margin-top: -18px;
+}
+.graph .orange{background-color:#ff6600;}
+.required .pro_right h4{
+	display: inline-block;
+}
+.required .pro_right  .con_state{
+	margin-top: 10px;
+}
+.required .pro_right  .con_state label{
+	font-size: 1.6rem;
+	font-weight: normal;
+	margin-left: 10px;
+}
+.required .pro_right  .con_state input{
+	margin-left: 10px;
+}
+.required .pro_right .pro_pic{
+	margin-top: 10px;
+}
+.required .pro_right .pro_pic label{
+	font-size: 1.6rem;
+	font-weight: normal;
+	margin-left: 10px;
+	vertical-align: top;
+}
+.required .pro_right .pro_vp{
+	display: inline-block;
+	width: 280px;
+	height: 200px;
+	border:1px solid #ccc;
+}
+.required .pro_right .pro_hetong{
+	margin-top: 10px;
+}
+.required .pro_right .pro_hetong label{
+	font-size: 1.6rem;
+	font-weight: normal;
+	margin-left: 10px;
+	vertical-align: top;
+}
+.required .pro_right .pro_hetong button{
+	margin-left: 15px;
+}
+
+

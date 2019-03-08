@@ -1,0 +1,28 @@
+﻿.intro1, .intro2, .intro3, .intro4{
+	opacity:1;
+}
+.teacher-title{
+	opacity:1;
+}
+.teacher-detail{
+	opacity:1;
+}
+..intro1,.intro2,.intro3,.intro4{
+	opacity:1 !important;
+}
+.sixnav{
+	padding-bottom: 7%;
+}
+.videoplay{
+	background-color: RGB(0, 0, 0);
+	
+}
+.zxzx{
+	margin-top:17%;
+}
+.news-content{
+	padding-top:2.5%;
+}
+.nsct{
+	padding-bottom:28% !important;
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<script src="getAleph.js"></script>
+	<script type="text/javascript">
+		function Query(){
+			var str = document.getElementById("demo").value.trim();
+			if (str == "") {
+				return;
+			}
+			var arrResult = getAleph(str);
+			document.getElementById("aleph").innerHTML = arrResult;
+			alert(arrResult);
+		}
+	</script>
+</head>
+<body>
+	<h3>获取中文字符串首字母字符串:</h3>
+	<input type="text" id="demo" size="30">
+	<span style="color:red;font-family:'Consolas';" id="aleph"></span><br/>
+	<input type="button" onclick="Query()" value="convert" />
+</body>
+</html>

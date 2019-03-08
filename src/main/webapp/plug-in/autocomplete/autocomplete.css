@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+/* 表格宽度及字符居中等 */
+table.autocomplete{
+	width: 400px;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	border-collapse: collapse;
+}
+/* 单元格宽度 */
+table.autocomplete tr td {
+	width: 120px;
+	height: 20px;
+	font-size: 10pt;
+}
+/* 表头样式 */
+table.trhead {
+	background-color: #e7ebf7;
+	height: 35px;
+	font-weight: bold;
+	font-size: 14pt;
+}
+/* 重写表头划入样式 */
+table.trhead:HOVER { /* border: 1px solid #ffffff; */
+	/* font-weight:inherit; */
+	color: black;
+}
+/* 奇数行样式 */
+.coloreven {
+	background-color: #ffffff;
+}
+/* 偶数行样式 */
+.colorodd {
+	background-color: #efefef;
+}
+/* 高亮文本样式 */
+.highclass {
+	font-weight: bold;
+	color: red;

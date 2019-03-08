@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>autocomplete Demo</title>
+<link rel="stylesheet" href="jquery-ui.css">
+<style>
+#project-label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+
+#project-description {
+	margin: 0;
+	padding: 0;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="autocomplete.css"/>
+<script src="jquery.js"></script>
+<script src="jquery-ui.js"></script>
+<script src="replaceHigh.js"></script>
+<script>
+	$(function() {
+		/*- 自定义的表头 -*/
+		var headarray = [ {
+			//id用于判断在鼠标选择表头或滑到表头上时，不将表头内容填入
+			id : "-1",
+			value : "客户代码",
+			label : "客户名",
+			desc : "通讯地址"
+		} ];
+		/*- 自动补全的数据源 -*/
+		var projects = [
+			{"id":1,"desc":"Shanghai","value":"ICBC","label":"工商银行"},
+			{"id":2,"desc":"Beijing","value":"CBA","label":"建设银行"},
+			{"id":3,"desc":"Guangzhou","value":"CBC","label":"农业银行"},
+			{"id":4,"desc":"Tianjing","value":"ICBC","label":"浙江商行"}];
+		/*- 高亮样式名 -*/
+		var highClass = "highclass";
+		$("#project").autocomplete({
+			/*- 自定义表头的赋值 -*/
+			tablehead : headarray,
+			minLength : 0,
+			source : projects,
+			/* 浮动效果影响用户体验
+			focus : function(event, ui) {
+				//使表头内容不自动填入
+				if (ui.item.id == "-1") {
+					$("#project").val(null);
+					$("#project-id").val(null);
+					$("#project-description").html(null);
+					return false;
+				}
+				$("#project").val(ui.item.label);
+				$("#project-id").val(ui.item.id);
+				$("#project-description").html(ui.item.desc);
+				return false;
+			}, */
+			select : function(event, ui) {
+				if (ui.item.id == -1) {
+					$("#project").val(null);
+					$("#project-id").val(null);
+					$("#project-description").html(null);
+					return false;
+				}
+				$("#project").val(ui.item.label);
+				$("#project-id").val(ui.item.id);
+				$("#project-description").html(ui.item.desc);
+				return false;
+			}
+		}).autocomplete("instance")._renderItem = function(ul, item, index) {
+			var row;
+			if (index == 0) {
+				row = 'trhead';
+			} else if (index % 2 == 1) {
+				row = 'coloreven';
+			} else {
+				row = 'colorodd'; 
+			}
+			var inputChar = $("#project").val();
+			/*- 此处有些繁琐，因内部机制使直接调用replaceHigh方法的值显示时会中断效果，
+			 *  因此直接将原内容全部替换后赋值给显示的变量，不改变内部传递变量。
+			 -*/
+			label = item.label.replace(item.label, replaceHigh(inputChar,item.label,highClass));
+			value = item.value.replace(item.value, replaceHigh(inputChar,item.value,highClass));
+			desc = item.desc.replace(item.desc, replaceHigh(inputChar,item.desc,highClass));
+			return $("<table>").append(
+					"<tr class='"+row+"'><td>" + label + "</td><td>" + value
+							+ "</td><td>" + desc + "</td></tr>").appendTo(ul);
+		};
+	});
+</script>
+
+</head>
+<body>
+
+	<div id="project-label">Input some character to test this unit:</div>
+	<input id="project">
+	<input type="text" id="project-id">
+	<p id="project-description"></p>
+
+
+</body>
+</html>

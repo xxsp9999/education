@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+.sale_main h4{
+	width:105%;
+	margin-top:2%;
+	padding:10px 0;
+	background-color:#307ecc;
+	color:#fff;
+	position:fixed;
+	top:6px;
+	left:0;
+	padding-left:45%;
+}
+ul.work_nav{
+	margin-top:7%;
+	margin-left: -1%;
+}
+.work_nav li{
+	list-style:none;
+	float:left;
+}
+.work_nav li button{
+	margin-left: 10px;
+    background-color: #57a6d4;
+    border: none;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+}
+.offer_up_table{
+	border:1px solid #ccc;
+}
+.offer_up_table th,.offer_up_table td{
+	border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    padding: 2px 0;
+}
+.moduleForm_info{
+	clear:both;
+}
+.moduleForm_info legend{
+	font-size:19px;
+	margin-left: 10%;
+    color: #0f3952;
+}
