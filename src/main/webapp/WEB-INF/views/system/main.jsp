@@ -484,11 +484,6 @@ img {
 
 
 			<!--尾部区域-->
-			<!-- <div class="footer-content" style="position:fixed;z-index:999;bottom:0px;width:100%;text-align:center;opacity:0.7">
-				<span class="bigger-100">
-					Copyright &copy; 2016 - 2018  XXXX >> XXXX 版权所有| 技术支持 <a href="http://www.honestdo.com"  style="color: #90000a;" target="blank">成都诚骏科技有限公司</a>
-				</span>
-			</div> -->
 		</div>
 		<a href="#" id="btn-scroll-up"
 			class="btn-scroll-up btn btn-sm btn-inverse"> <i
@@ -496,8 +491,8 @@ img {
 		</a>
 		<div class="footer_bq"
 			style="position: fixed; bottom: 0px; width: 100%; height: 20px; text-align: center; background-color: #316182;">
-			<span class="footer_js" style="color: #fff;"> 技术支持 <a
-				href="http://www.honestdo.com" style="color: #fff;" target="blank">成都诚骏科技有限公司</a>
+			<span class="footer_js" style="color: #fff;font-size: 15px;"> Powered <a
+				href="#" style="color: #fff;" target="blank">By 谢兴</a>
 			</span>
 		</div>
 	</div>
