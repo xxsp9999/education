@@ -35,8 +35,8 @@ public class Instructor {
 	@Column(name="instructor_sex",columnDefinition="varchar(255) COMMENT '导员性别'")
 	private String instructorSex;//性别
 	
-	@Column(name="instructor_nationality ",columnDefinition="varchar(255) COMMENT '导员族别'")
-	private String instructorNationality ;//民族
+	@Column(name="instructor_nationality",columnDefinition="varchar(255) COMMENT '导员族别'")
+	private String instructorNationality;//民族
 	
 	@JSONField(format = "yyyy年MM月dd日")
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
