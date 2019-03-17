@@ -92,7 +92,6 @@ public class PemissionFilter implements HandlerInterceptor {
 	 * @return
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unused")
 	private static String readFile(File file) throws IOException {
 		InputStreamReader read = new InputStreamReader(
 				new FileInputStream(file), "UTF-8");// 考虑到编码格式
@@ -112,7 +111,6 @@ public class PemissionFilter implements HandlerInterceptor {
 	 * @return
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unused")
 	private static void writeFile(File file, int number) throws IOException {
 		byte bt[] = new byte[1024];
 		bt = String.valueOf(number).getBytes();

@@ -87,7 +87,6 @@ public class UserController {
 		Object[] objs = ImageUtils.createImage();
 		request.getSession().removeAttribute("imgCode");
 		request.getSession().setAttribute("imgCode", objs[0]);
-		// TODO 输出生成的验证码字符串
 		BufferedImage img = (BufferedImage) objs[1];
 		response.setContentType("image/png");
 		OutputStream os = response.getOutputStream();
@@ -514,7 +513,7 @@ public class UserController {
 	@RequestMapping("/delete")
 	public void delete(HttpServletRequest request,PrintWriter out,String userIds){
 		String[] ids=userIds.split(",");
-		if(ids.length!=0&&!ids.equals("")){
+		if(ids.length!=0){
 			for(String id:ids){
 				userService.deleteById(Integer.parseInt(id));
 			}
