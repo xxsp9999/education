@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -65,6 +67,10 @@ public class Student {
 	
 	@Column(name="stu_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String stuRemark;//备注
+	
+	@ManyToOne
+	@JoinColumn(name="stu_major",columnDefinition="int(11) COMMENT '学生专业'")
+	private Major stuMajor;//学生专业
 
 	public Integer getId() {
 		return id;
@@ -169,6 +175,15 @@ public class Student {
 	public void setStuEmail(String stuEmail) {
 		this.stuEmail = stuEmail;
 	}
-	
 
+	public Major getStuMajor() {
+		return stuMajor;
+	}
+
+	public void setStuMajor(Major stuMajor) {
+		this.stuMajor = stuMajor;
+	}
+
+	
+	
 }
