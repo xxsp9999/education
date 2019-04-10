@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import pers.xx.edu.dao.BaseDao;
+import pers.xx.edu.dao.StudentDao;
 import pers.xx.edu.entity.Student;
 import pers.xx.edu.service.StudentService;
 
@@ -24,7 +25,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 		super.setBaseDao(baseDao);
 	}
 
-	protected BaseDao<Student> getBaseDao() {
-		return super.getBaseDao();
+	protected StudentDao getBaseDao() {
+		return (StudentDao) super.getBaseDao();
 	}
 }

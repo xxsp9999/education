@@ -188,7 +188,6 @@ public class LoginController {
 			List<Module> modules = new ArrayList<Module>();
 			if (roles != null && roles.size() > 0) {
 				for (Role role : roles) {
-					System.out.println(role.getId());
 					List<ModuleRole> moduleRoles = moduleRoleService
 							.getByRoleId(role.getId());
 					if (moduleRoles != null && moduleRoles.size() > 0) {

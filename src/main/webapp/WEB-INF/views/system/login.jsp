@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>学历系统</title>
+<title>智能教育系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/skin.css" />
 <style>
@@ -76,6 +76,14 @@
 		animation-duration: 3.5s;
 		-webkit-animation-duration: 3.5s;
 	}
+	#loginbtn,#reset{
+		width:85px;
+		height:35px;
+		font-size:15px;
+		line-height:35px;
+		margin-left:40px;
+	}
+	
 	
 </style>
 <script type="text/javascript">
@@ -85,7 +93,6 @@
 </script>
 </head>
 <body class="login_main" style="position: relative; background: url('${pageContext.request.contextPath}/images/bg.jpg') no-repeat;background-size:100% 100%;">
-	<%-- <img class="logo" src="${pageContext.request.contextPath}/images/qslogo.png"/> --%>
 	<table class="login_table animated fadeInDown">
 		<tr>
 			<td id="right_cont">
@@ -97,7 +104,7 @@
 								<table valign="top" width="100%">
 									<tr>
 										<td colspan="2"><h2 class="login_title"
-												style="padding-left: 70px; text-align: left; font-size: 29px; margin-left: 1px; padding-top: 25px;">学历系统</h2></td>
+												style="font-size: 29px; font-family:'微软雅黑';margin-left: -13%;">智能教育系统</h2></td>
 									</tr>
 									<tr>
 										<td align="center" colspan="2"><span id="msg"
@@ -131,18 +138,18 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="login_btn"><input type="button" value="登录"
-				id="loginbtn" style="height: 26px; margin-left: 60px;" /> <input
-				type="button" id="reset" value="重置" style="height: 26px;" /></td>
+			<td class="login_btn" style="text-align:center;"><button type="button"
+				id="loginbtn">登录</button> <button
+				type="button" id="reset">重置</button></td>
 		</tr>
 		<tr>
 			<td style="margin-right: 20px;"></td>
 		</tr>
 	</table>
 	<div class="footer_bq"
-		style="position: absolute; bottom: 25px; right: 73px; width: 81%; height: 20px; text-align: center; opacity: 0.7;">
-		<span style="font-size: 18px; color: white; margin-right: -80%;">
-			@Powered By 成都诚骏科技有限公司 </span>
+		style="position: absolute; /* bottom: 25px; */top:77%; right: 73px; width: 81%; height: 20px; text-align: center; opacity: 0.7;">
+		<span style="font-size: 18px; color: white; margin-right: -98%;">
+			@Powered By 谢兴 </span>
 	</div>
 	<script type="text/javascript">
 		$(function() {

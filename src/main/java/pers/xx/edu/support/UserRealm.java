@@ -87,7 +87,6 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		    System.out.println("userRealm认证处理");
 		    User user = null;
 	        // 1. 把AuthenticationToken转换为CustomizedToken
 	        CustomizedToken customizedToken = (CustomizedToken) token;

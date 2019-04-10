@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import pers.xx.edu.dao.BaseDao;
+import pers.xx.edu.dao.LeaderDao;
 import pers.xx.edu.entity.Leader;
 import pers.xx.edu.service.LeaderService;
 
@@ -24,7 +25,7 @@ public class leaderServiceImpl extends BaseServiceImpl<Leader> implements Leader
 		super.setBaseDao(baseDao);
 	}
 
-	protected BaseDao<Leader> getBaseDao() {
-		return super.getBaseDao();
+	protected LeaderDao getBaseDao() {
+		return (LeaderDao) super.getBaseDao();
 	}
 }

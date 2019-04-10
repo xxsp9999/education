@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pers.xx.edu.dao.BaseDao;
+import pers.xx.edu.dao.DepartmentDao;
 import pers.xx.edu.entity.Department;
 import pers.xx.edu.service.DepartmentService;
 
@@ -20,8 +21,8 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department> implement
 	}
 
 	@Override
-	protected BaseDao<Department> getBaseDao() {
-		return super.getBaseDao();
+	protected DepartmentDao getBaseDao() {
+		return (DepartmentDao) super.getBaseDao();
 	}
 
 

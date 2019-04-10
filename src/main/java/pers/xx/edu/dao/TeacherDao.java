@@ -2,7 +2,7 @@ package pers.xx.edu.dao;
 
 import org.springframework.stereotype.Repository;
 
-import pers.xx.edu.controller.TeacherController;
+import pers.xx.edu.entity.Teacher;
 
 /**
  * @author XieXing
@@ -10,6 +10,6 @@ import pers.xx.edu.controller.TeacherController;
  * @create 2019年3月17日 下午6:24:34
  */
 @Repository
-public class TeacherDao extends BaseDao<TeacherController>{
+public class TeacherDao extends BaseDao<Teacher>{
 
 }

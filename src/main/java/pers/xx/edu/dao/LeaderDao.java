@@ -2,7 +2,7 @@ package pers.xx.edu.dao;
 
 import org.springframework.stereotype.Repository;
 
-import pers.xx.edu.controller.LeaderController;
+import pers.xx.edu.entity.Leader;
 
 /**
  * @author XieXing
@@ -10,6 +10,6 @@ import pers.xx.edu.controller.LeaderController;
  * @create 2019年3月17日 下午6:27:29
  */
 @Repository
-public class LeaderDao extends BaseDao<LeaderController>{
+public class LeaderDao extends BaseDao<Leader>{
 
 }

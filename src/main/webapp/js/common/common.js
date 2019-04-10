@@ -34,3 +34,11 @@ function logoff() {
 		]
 	});
 }
+
+/** 提示错误信息 用于信息新增页面*/
+function getErrorMsg(){
+	var errMsg = "${msg}";
+	if(errMsg!=null && errMsg.length>0){
+		swal("",errMsg,"error");
+	}
+}

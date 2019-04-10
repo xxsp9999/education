@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<title>学历系统</title>
+<title>智能教育系统</title>
 
 <meta name="description" content="" />
 <meta name="viewport"
@@ -208,8 +208,8 @@ img {
 					</div>
 				</a> --%>
 				<img src="${pageContext.request.contextPath}/images/title.jpg" style="width: 47px;margin-top: 6px;border-radius: 5px;"/>
-				<div style="display: inline-block; border: 1px solid #ffffff;width: 1px;height: 29px;margin-top: 13px; vertical-align: top;margin-right: 3px"></div>
-				<span style="display: inline-block;vertical-align: top;font-size: 26px;margin-top: 7px;">学历系统</span>
+				<div style="display: inline-block; border: 1px solid #ffffff;width: 1px;height: 29px;margin-top: 13px; vertical-align: top;margin-right: 3px;    margin-left: 3px;"></div>
+				<span style="display: inline-block;vertical-align: top;font-size: 26px;margin-top: 7px;">智能教育系统</span>
 				<!-- <p style="float: left; height: 60px; width: 45%; font-size: 26px; font-weight: bold; line-height: 60px; margin: 0;margin-left:8%;">齐杉科技CRM系统</p>  -->
 				
 			</div>
@@ -425,10 +425,15 @@ img {
 							</c:if></li>
 					</c:forEach>
 					<script>
-						var iconfont = [ 'icon-qiyeguanli',
-								'icon-querenfangan', 'iconkehu',
-								'iconhezuoqudao', 'iconproject',
-								'iconjiedai', 'iconicon-test','iconxitong',
+						/*
+						 * @create: 2019年3月21日 
+						 * @author: XieXing 
+						 * @description:左侧菜单图标
+						 */
+						 
+						var iconfont = ['','','iconxuesheng-copy',
+								'iconlaoshi', 'iconfudaoyuan',
+								'iconlingdao', 'iconguanliyuan','iconxueyuanzhuanye'
 								];
 						var $iconfont = $(".iconfont");
 						for (var i = 0; i < $iconfont.length; i++) {

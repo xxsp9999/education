@@ -67,7 +67,7 @@ public class DownloadController implements Serializable {
 			path+="\\"+fileName;
 			DownloadUtil.downLoad(path, response,request);
 		}else {
-			System.out.println("文件名为空");
+			System.err.println("文件名为空");
 		}
 	}
 }

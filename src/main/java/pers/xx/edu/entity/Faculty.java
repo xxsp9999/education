@@ -1,11 +1,17 @@
 package pers.xx.edu.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @author XieXing
@@ -20,11 +26,16 @@ public class Faculty {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
+	@Column(name="fac_number",columnDefinition="varchar(255) COMMENT '院系编号'")
+	private String facNumber;//编号
+	
 	@Column(name="fac_name",columnDefinition="varchar(255) COMMENT '院系名称'")
 	private String facName;//院系名称
 	
-	@Column(name="fac_number",columnDefinition="varchar(255) COMMENT '院系编号'")
-	private String facNumber;//编号
+	@JSONField(format = "yyyy年MM月dd日")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@Column(name="fac_add_time",columnDefinition="datetime COMMENT '添加时间'")
+	private Date facAddTime;//添加时间
 	
 	@Column(name="fac_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String facRemark;//备注
@@ -60,7 +71,13 @@ public class Faculty {
 	public void setFacRemark(String facRemark) {
 		this.facRemark = facRemark;
 	}
-	
-	
+
+	public Date getFacAddTime() {
+		return facAddTime;
+	}
+
+	public void setFacAddTime(Date facAddTime) {
+		this.facAddTime = facAddTime;
+	}
 
 }
