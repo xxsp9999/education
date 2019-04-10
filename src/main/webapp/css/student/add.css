@@ -1,0 +1,79 @@
+table{
+	margin:0 auto;
+	width:800px;
+	margin-left: 10%;
+}
+table tr{
+	display:block; 
+	margin:1% 0;
+}
+table tr td{
+	width:400px;
+	padding-right: 10%;
+}
+table label{
+	font-size:15px;
+}
+table input{
+	width: 64%;
+    height: 30px;
+    border-radius: 3px;
+}
+#btn{
+	margin: 3% 35%;
+	width:200px;
+	height:50px;
+}
+#btn button{
+	width: 34%;
+    height: 71%;
+    font-size: 15px;
+    margin-left: 10%;
+    background-color:#316182;
+	color:white;
+	border-radius: 5px;
+}
+
+#manulAdd{
+	font-size:20px;
+}
+
+.module{
+	float:left;
+	font-size: 47px;
+	margin-top: -25px;
+	color: #0186d0;
+	margin-right: 10px;
+	margin-left: 5%;
+}
+.moduleTitle{
+	color: #000;
+	border-bottom: 2px solid #D3D3D3;
+	width: 85%;
+	margin-left: 7%;
+	margin-top: 6px;
+	font-size: 16px;
+}
+#addBatch{
+	margin-left: 10%;
+	margin-top: 2%;
+}
+
+.templet{
+	float:left;
+	background-color:#316182;
+	margin-right:10%;
+	margin-right:10%;
+	color:white;
+	font-size: 15px;
+}
+table textarea {
+	width: 180%;
+    margin-left: 16%;
+    margin-top: -6%;
+    height: 71px;
+}
+#stuFile{
+	font-size: 15px;
+	border: 0px;
+}
