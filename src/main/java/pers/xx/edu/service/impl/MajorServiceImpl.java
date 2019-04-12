@@ -1,5 +1,7 @@
 package pers.xx.edu.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -27,6 +29,16 @@ public class MajorServiceImpl extends BaseServiceImpl<Major> implements MajorSer
 	@Override
 	protected MajorDao getBaseDao() {
 		return (MajorDao) super.getBaseDao();
+	}
+
+	@Override
+	public Major getMajorBymajorNumber(String majorNumber) {
+		return getBaseDao().getMajorBymajorNumber(majorNumber);
+	}
+
+	@Override
+	public List<Major> getMajorsByFacultyId(Integer facId) {
+		return getBaseDao().getMajorsByFacultyId(facId);
 	}
 
 }

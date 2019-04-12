@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>学习信息列表</title>
+<title>学生信息列表</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/student/list.css">
 </head>
 <body>
@@ -25,11 +25,11 @@
 		
 		<div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test3" placeholder="开始时间">
-	      <span class="iconfont iconriqi" style="position:absolute;right:5px;top:-5px;"></span>
+	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test4" placeholder="结束时间">
-	      <span class="iconfont iconriqi" style="position:absolute;right:5px;top:-5px;"></span>
+	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	   	<div class="layui-input-inline" style="vertical-align:unset">
 		<input placeholder="搜索内容" name="content" id="content">
@@ -57,9 +57,9 @@ function drawTable(){
 			datatype: 'json',
 			
 			//设置表格横向滚动条，自适应单元格宽度
-			/* rownumbers: true,
+			rownumbers: true,
 	        shrinkToFit: false,
-	        autoScroll: true, */
+	        autoScroll: true,
 			
 			width: jqTablew,
 			height: 350,
@@ -69,7 +69,7 @@ function drawTable(){
 				{name: 'stuName', index: 'stuName', align: 'center'},
 				{name: 'stuSex', index: 'stuSex', align: 'center'},
 				{name: 'stuBirth', index: 'stuBirth', align: 'center'},
-				{name: 'stuMajor.majorOfFaculty.facName', index: 'stuMajor.majorOfFaculty.facName', align: 'center'},
+				{name: 'stuFaculty.facName', index: 'stuFaculty.facName', align: 'center'},
 				{name: 'stuMajor.majorName', index: 'stuMajor.majorName', align: 'center'},
 				{name: 'stuPhone', index: 'stuPhone', align: 'center'},
 				{name: 'stuEmail', index: 'stuEmail', align: 'center'},
@@ -108,7 +108,7 @@ function drawTable(){
 			
 			//行双击触发事件
 			ondblClickRow:function(id){
-				window.location.href="${pageContext.request.contextPath}/daily/toPublic";
+				window.location.href="${pageContext.request.contextPath}/student/toAdd?id="+id+"&operate=update";
 			}
 		});
 	}
@@ -150,7 +150,7 @@ function drawTable(){
             }
 			window.location.href="${pageContext.request.contextPath}/student/toAdd?id="+id+"&operate=update";
 		}
-	}).navButtonAdd('#pager', {
+	})/* .navButtonAdd('#pager', {
 		caption: '查看',
 		buttonicon: 'iconfont iconchakan',
 		onClickButton: function(){//按钮点击函数
@@ -191,12 +191,12 @@ function drawTable(){
            		});
            	});
 		}
-	})
+	}) */
 	
 
 		$("#searchBtn").click(function(){
 			 $("#table").jqGrid("setGridParam", {
-	                   url: "${pageContext.request.contextPath}/daily/getDaList",
+	                   url: "${pageContext.request.contextPath}/student/getList",
 	                   mtype: "post",
 	                   dataType: "json",
 	                   postData: {	                	   	             

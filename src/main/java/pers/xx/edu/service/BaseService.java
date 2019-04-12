@@ -8,7 +8,7 @@ import pers.xx.edu.utils.Page;
 /**
  * 
  * @description 所有Service的父类类 
- * @author 白贵才
+ * @author XieXing
  * @create 2017-9-13下午2:57:30
  *
  */

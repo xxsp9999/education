@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>学院信息列表</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/college/list.css">
+<style type="text/css">
+	.ui-left{
+		 padding-left: 20%;
+	}
+</style>
 </head>
 <body>
 <!--面包屑  -->
@@ -14,7 +19,7 @@
 		<li id="crumbs">
 			<span>院系信息</span>
 			>
-			<span>学院信息列表</span>
+			<span>院系信息列表</span>
 		</li>
 	</div>
 
@@ -24,11 +29,11 @@
 		
 		<div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test3" placeholder="开始时间">
-	      <span class="iconfont iconriqi" style="position:absolute;right:5px;top:-5px;"></span>
+	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test4" placeholder="结束时间">
-	      <span class="iconfont iconriqi" style="position:absolute;right:5px;top:-5px;"></span>
+	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	   	<div class="layui-input-inline" style="vertical-align:unset">
 		<input placeholder="搜索内容" name="content" id="content">
@@ -38,7 +43,7 @@
 </div>
 
 	<!--jQgrid  -->
-	<h2 id="jqTableTitle">学院信息列表</h2>
+	<h2 id="jqTableTitle">院系信息列表</h2>
 	<div id="jqTable" style="width: 96%; margin: 0 auto;"></div>
 <script>
 	drawTable();
@@ -50,9 +55,10 @@ function drawTable(){
 		
 		var jqTablew = $("#jqTable").css('width');		//获取jq的宽度
 		jqTablew = parseInt(jqTablew);
+		var content = $("#content").val();
 		debugger;
 		$("#table").jqGrid({
-			url:path+"/college/getList",
+			url:path+"/college/getList?content="+content,
 			datatype: 'json',
 			
 			//设置表格横向滚动条，自适应单元格宽度
@@ -94,14 +100,134 @@ function drawTable(){
 				}else{//如果存在记录，则隐藏提示信息。
 					$("#norecords").hide();
 				}	
+				/*去掉多余图标  */
+				/* debugger;
+				for(var i=1;i<$("#table tbody tr").length;i++){
+					$("#table tbody tr").eq(i).find("td").eq(2).find("a").find("span").removeClass("ui-icon");
+				}
+				$("#table tbody tr td").click(function(){
+					$(this).find("a").find("span").removeClass("ui-icon");
+					var mm = this.parentNode;
+					var mm1 = mm.nextSibling;
+					$(mm1).find("td").eq(1).find("span").removeClass("ui-icon");
+					
+				}) */
 			},
-			
-			//行双击触发事件
-			ondblClickRow:function(id){
-				window.location.href="${pageContext.request.contextPath}/college/toAdd?id="+id+"&operate=update";
+			subGrid: true,//子表格
+			// define the icons in subgrid
+	  	    subGridOptions: {
+	  	          "plusicon"  : "fa fa-plus",
+	  	          "minusicon" : "fa fa-minus",
+	  	          "openicon"  : "fa fa-share",
+	  	      // load the subgrid data only once
+	  	      // and the just show/hide
+	  	      "reloadOnExpand" : false,
+	  	      // select the row when the expand column is clicked
+	  	      "selectOnExpand" : false,
+	  	    },
+	  	     subGridRowExpanded: function(subgrid_id, row_id) {
+	  	      var subgrid_table_id, pager_id;
+	  	      subgrid_table_id = subgrid_id+"_t";
+	  	      pager_id = "p_"+subgrid_table_id;
+	  	      $("#"+subgrid_id).html("<table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div>");
+	  	      jQuery("#"+subgrid_table_id).jqGrid({
+	  	        url:"${pageContext.request.contextPath}/major/getList?facId="+row_id,
+	  	        datatype: "json",
+		  	    rownumbers: true,
+		  	 	autoScroll: false,   
+	  	        colNames: ['专业代码','专业名称','添加时间','备注'],
+	  	        colModel: [
+	  	          {name:"majorNumber",index:"majorNumber",align:"center",width:"200px"},
+	  	          {name:"majorName",index:"majorName",align:"center",width:"200px"},
+	  	          {name:"majAddTime",index:"majAddTime",align:"center",width:"200px"},
+	  	          {name:"marjorRemark",index:"marjorRemark",align:"center",sortable:false,width:"200px"},
+	  	        ],
+	  	        rowNum:20,
+  	            pager: pager_id,
+  	            sortname: 'num',
+  	            sortorder: "asc",
+  	            height: '100%',
+  	            multiselect: true,
+  	            width: jqTablew,
+	  	        loadComplete : function() {
+	  	        	$(".ui-pg-div").find("span").removeClass("ui-icon");//移除class:ui-icon
+	  	        	$(".ui-jqgrid-bdiv").css({
+	  	        		overflowX: "hidden"
+	  	        	});
+	  	        	$(".ui-subgrid").find(".ui-jqgrid-view").css({
+	  	        		overflowX: "scroll",
+	  	        		 width: "100%"
+	  	        	})
+					var table = this;
+					var rowNum = $(this).jqGrid('getGridParam','records');
+					if (rowNum==0){
+						if($("#norecords"+subgrid_table_id).html() == null){
+							$(this).parent().append("<div id='norecords"+subgrid_table_id+"' style='text-align:center;'>没有查询记录！</div>");
+						}
+						$("#norecords"+subgrid_table_id).show();
+					}else{//如果存在记录，则隐藏提示信息。
+						$("#norecords"+subgrid_table_id).hide();
+					}	
+					setTimeout(function(){
+						/* styleCheckbox(table);
+						updateActionIcons(table); */
+						updatePagerIcons(table);
+						/* enableTooltips(table); */
+					}, 0);
+				},
+				ondblClickRow:function(id){
+					window.location.href="${pageContext.request.contextPath}/major/toAdd?id="+id+"&operate=update&facId="+row_id;
+				}
+	  	      });
+	  	    var subThead = $(".ui-jqgrid-labels");
+			for(var i = 1; i < subThead.length; i++){
+				$(".ui-jqgrid-labels").eq(i).css({
+					background: "rgba(128,128,128,0.2)",
+				});
+				/* $(".ui-jqgrid-labels").eq(i).find("div").css({
+					color: "white"
+				}) */
 			}
-		});
-	}
+			//左下方按钮 初始化
+			jQuery("#"+subgrid_table_id).jqGrid('navGrid','#'+pager_id,
+				{  //navbar options
+					edit: false,
+					editicon : 'ace-icon fa fa-pencil blue',
+					add: false,
+					addicon : 'ace-icon fa fa-plus-circle purple',
+					del: false,
+					delicon : 'ace-icon fa fa-trash-o red',
+					search: false,
+					searchicon : 'ace-icon fa fa-search orange',
+					refresh: true,
+					refreshtext:"刷新",
+					refreshicon : 'ace-icon fa fa-refresh green',
+					view: false,
+					viewicon : 'ace-icon fa fa-search-plus grey',
+					position: 'left',
+				}).navButtonAdd('#'+pager_id, {
+					caption: '新增',
+					buttonicon: 'ui-left iconfont iconzengjia',
+					onClickButton: function(){//按钮点击函数
+				       window.location.href="${pageContext.request.contextPath}/major/toAdd?operate=add&facId="+row_id;
+					}
+				}).navButtonAdd('#'+pager_id, {
+					caption: '修改',
+					buttonicon: 'ui-left iconfont iconweibiaoti2010104',
+					onClickButton: function(){//按钮点击函数
+						var id = $("#"+subgrid_table_id).jqGrid('getGridParam', "selarrrow");                                      
+			            if (id.length != 1) {
+			                swal("", "请选择一条记录进行修改！", "error");
+			                return false;
+			            }
+						window.location.href="${pageContext.request.contextPath}/major/toAdd?id="+id+"&operate=update&facId="+row_id;
+					}
+				}) 
+	  	      //去除下方的滚动条
+	  	   	 // $("#"+subgrid_table_id ).closest(".ui-jqgrid-bdiv").css({ 'overflow-x' : 'hidden' });
+	  	    }
+	  	  });
+		};
 
 	//左下角按钮设置
 	jQuery("#table").jqGrid('navGrid', '#pager', {
@@ -182,7 +308,26 @@ function drawTable(){
            	});
 		}
 	}) */
-	
+	 //去除下方的滚动条
+   	  //$("#table").closest(".ui-jqgrid-bdiv").css({ 'overflow-x' : 'hidden' });
+	  //去掉右边的 一小块白色的 ，并修改ui.jqgrid.css的第12行
+	  //$("#gbox_table").find("table").css("width","100%");
+	  //解决表格下方无分页的图标
+	  function updatePagerIcons(table) {
+	  	var replacement =
+			{
+				'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+				'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+				'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+				'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+			};
+			$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+				var icon = $(this);
+				var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+				if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+			});
+		}
 
 		$("#searchBtn").click(function(){
 			 $("#table").jqGrid("setGridParam", {

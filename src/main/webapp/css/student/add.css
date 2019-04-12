@@ -14,7 +14,7 @@ table tr td{
 table label{
 	font-size:15px;
 }
-table input{
+table input,select{
 	width: 64%;
     height: 30px;
     border-radius: 3px;
@@ -68,12 +68,29 @@ table input{
 	font-size: 15px;
 }
 table textarea {
-	width: 180%;
-    margin-left: 16%;
-    margin-top: -6%;
+	width: 176%;
+    margin-left: 13%;
+    margin-top: -2%;
     height: 71px;
 }
 #stuFile{
 	font-size: 15px;
 	border: 0px;
+}
+.tmpLength{
+	width: 84%;
+}
+.fixLength{
+	width:800px;
+}
+.timePic{
+	position: relative;
+    left: -6.5%;
+    top: 37.5%;
+}
+
+.timePic2{
+	position: relative;
+    left: -6.5%;
+    top: 37.5%;
 }

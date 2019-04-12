@@ -32,6 +32,9 @@ public class Instructor {
 	@Column(name="instructor_number",columnDefinition="varchar(255) COMMENT '导员编号'")
 	private String instructorNumber;//编号
 	
+	@Column(name="instructor_password",columnDefinition="varchar(255) COMMENT '导员密码'")
+	private String instructorPassword;//密码
+	
 	@Column(name="instructor_sex",columnDefinition="varchar(255) COMMENT '导员性别'")
 	private String instructorSex;//性别
 	
@@ -47,6 +50,9 @@ public class Instructor {
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	@Column(name="instructor_entrance_date",columnDefinition="datetime COMMENT '导员入职时间'")
 	private Date instructorEntranceDate;//入职时间
+	
+	@Column(name="instructor_Id",columnDefinition="varchar(255) COMMENT '导员身份证号'")
+	private String instructorId;//导员身份证号
 	
 	@Column(name="instructor_addr",columnDefinition="varchar(255) COMMENT '导员家庭地址'")
 	private String instructorAddr;//导员家庭地址
@@ -148,8 +154,20 @@ public class Instructor {
 		this.instructorEntranceDate = instructorEntranceDate;
 	}
 
-	
-	
-	
+	public String getInstructorId() {
+		return instructorId;
+	}
+
+	public void setInstructorId(String instructorId) {
+		this.instructorId = instructorId;
+	}
+
+	public String getInstructorPassword() {
+		return instructorPassword;
+	}
+
+	public void setInstructorPassword(String instructorPassword) {
+		this.instructorPassword = instructorPassword;
+	}
 
 }

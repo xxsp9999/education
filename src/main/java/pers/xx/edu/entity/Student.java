@@ -69,6 +69,10 @@ public class Student {
 	private String stuRemark;//备注
 	
 	@ManyToOne
+	@JoinColumn(name="stu_faculty",columnDefinition="int(11) COMMENT '学生学院'")
+	private Faculty stuFaculty;//学生学院
+	
+	@ManyToOne
 	@JoinColumn(name="stu_major",columnDefinition="int(11) COMMENT '学生专业'")
 	private Major stuMajor;//学生专业
 
@@ -184,6 +188,12 @@ public class Student {
 		this.stuMajor = stuMajor;
 	}
 
-	
+	public Faculty getStuFaculty() {
+		return stuFaculty;
+	}
+
+	public void setStuFaculty(Faculty stuFaculty) {
+		this.stuFaculty = stuFaculty;
+	}
 	
 }

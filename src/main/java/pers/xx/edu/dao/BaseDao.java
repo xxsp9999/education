@@ -16,7 +16,7 @@ import pers.xx.edu.utils.Page;
 /**
  *
  * @description 所有Dao的父类
- * @author 白贵才
+ * @author XieXing
  * @create 2017-9-14上午9:14:19
  * @param <T>
  *
@@ -221,7 +221,7 @@ public abstract class BaseDao<T> {
 
 	/**
 	 * 模糊查询获取分页的数据，不分页page和rows设置为0就行
-	 * @update xiexing
+	 * @update XieXing
 	 * @param params
 	 * @param orderOrGroupBy
 	 * @return

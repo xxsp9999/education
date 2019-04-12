@@ -14,75 +14,77 @@
 		<li id="crumbs">
 			<span>学生</span>
 			>
-			<span>学生信息新增</span>
+			<c:if test="${student.id==null}"><span>学生信息新增</span></c:if>
+			<c:if test="${student.id!=null}"><span>学生信息修改</span></c:if>
 		</li>
 	</div>
-	<form id="stu_form">
+	<form id="stu_form" method="post" action="${pageContext.request.contextPath}/student/edit" enctype="multipart/form-data">
 		<div>
 			<p class="module">1</p>
 			<p class="moduleTitle">手动添加</p>
 		</div>
 		<table>
+			<input type="hidden" value="${student.id}" name="id">
 			<tr>
 				<td>
-					<label class="letter">姓名：</label><input name="stuName" id="stuName"> 
+					<label class="letter">姓名：</label><input name="stuName" id="stuName" value="${student.stuName }" class="notNull"> 
 				</td>
 				<td>
-					<label class="letter">学号：</label><input name="stuNumber" id="stuNumber">
+					<label class="letter">学号：</label><input name="stuNumber" id="stuNumber" value="${student.stuNumber }" class="notNull">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label class="letter">性别：</label>
-					<select name="stuSex" id="stuSex">
+					<label class="letter">性别：</label><select name="stuSex" id="stuSex" class="notNull">
 						<option value="">请选择</option>
-						<option value="男">男</option>
-						<option value="女">女</option>
+						<option value="男" <c:if test="${student.stuSex=='男'}">selected</c:if> >男</option>
+						<option value="女" <c:if test="${student.stuSex=='女'}">selected</c:if> >女</option>
 					</select>
 				</td>
 				<td>
-					<label class="letter">民族：</label>
-					<select name="stuNationality" id="national">
+					<label class="letter">民族：</label><select name="stuNationality" id="stuNationality" class="notNull">
 						<option value="">请选择</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label class="letter">电话：</label><input name="stuPhone" id="stuPhone"> 
+					<label class="letter">电话：</label><input name="stuPhone" id="stuPhone" class="notNull" value="${student.stuPhone }"> 
 				</td>
 				<td>
-					<label class="letter">邮箱：</label><input name="stuEmail" id="stuEmail"> 
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="letter">学院：</label><input name="stuAddr" id="stuAddr"> 
-				</td>
-				<td>
-					<label class="letter">专业：</label><input name="stuMajor" id="stuMajor"> 
+					<label class="letter">邮箱：</label><input name="stuEmail" id="stuEmail" class="notNull" value="${student.stuEmail }"> 
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label>入学时间：</label><input name="stuEntranceDate" id="stuEntranceDate"> 
+					<label class="letter">学院：</label><select name="facultyId" id="faculty" class="notNull"></select> 
 				</td>
 				<td>
-					<label>出生日期：</label><input name="stuBirth" id="stuBirth"> 
+					<label class="letter">专业：</label><select name="majorId" id="major"></select>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label>家庭住址：</label><input name="stuAddr" id="stuAddr"> 
+					<label>入学时间：</label><input name="stuEntranceDate" id="stuEntranceDate" class="notNull"><span class="timePic iconfont icontime"></span> 
 				</td>
 				<td>
-					<label>身份证号：</label><input name="stuId" id="stuId"> 
+					<label>出生日期：</label><input name="stuBirth" id="stuBirth" class="notNull"><span class="timePic2 iconfont icontime"></span> 
+				</td>
+			</tr>
+			<tr>
+				<td class="fixLength">
+					<label class="topId">身份证号：</label><input name="stuId" id="stuId" value="${student.stuId }" class="notNull tmpLength"> 
+				</td>
+			</tr>
+			<tr>
+				<td class="fixLength">
+					<label class="topAddr">家庭住址：</label><input name="stuAddr" id="stuAddr" value="${student.stuAddr}" class="notNull tmpLength"> 
 				</td>
 			</tr>
 			<tr >
 				<td colspan="2">
 					<label>备注：</label>
-					<textarea rows="" cols="" name="remark"></textarea> 
+					<textarea rows="" cols="" name="stuRemark">${student.stuRemark}</textarea> 
 				</td>
 			</tr>
 		</table>
@@ -95,13 +97,78 @@
 			<input type="file" name="stuFile" id="stuFile">
 		</div>
 		<div id="btn">
-			<button type="button">提交</button>
-			<button type="reset">重置</button>
+			<button type="submit" id="submitBtn">提交</button>
+			<button type="reset" id="resetBtn">重置</button>
+			<button type="button" onclick="javascript:history.back()" id="backBtn">返回</button>
 		</div>
 	</form>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/student/add.js"></script>
 <script type="text/javascript">
-	//获取民族
-	getNationals();
+	//标签非空判断标识 前提标签有class:notNull
+	$(".notNull").attr("required","required");
+	
+	//民族处理
+	var tmpNation = "${student.stuNationality}";
+	getNationals(tmpNation,"stuNationality");
+
+	/**获取学院 */
+	$.ajax({
+		url:path+"/college/getAllFaculties",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#faculty").empty();
+			var str = "<option value=''>请选择</option>";
+			var facId = "${student.stuFaculty.id}";
+			var majId = "${student.stuMajor.id}";
+			debugger;
+			for(var i=0;i<data.length;i++){
+				if(facId == data[i].id){
+					str += "<option value="+data[i].id+" selected class='tmpFac'>"+data[i].facName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+" class='tmpFac'>"+data[i].facName+"</option>";
+				}
+			}
+			$("#faculty").append(str);
+			if(facId!=null && facId.length>0){
+				getMajorsByFacultyId(facId,majId);
+			}
+			$("#faculty").on("change",function(){
+				var facId = $(this).val();
+				if(facId!=""){
+					getMajorsByFacultyId(facId);
+				}else{
+					$("#major").empty();
+				}
+			})
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
+	
+	/** 重置和返回按钮控制*/
+	var operate = "${operate}";
+	if(operate==null || operate==""){
+		$("#backBtn").remove();
+	}else{
+		$("#resetBtn").remove();
+	}
+	
+	//设置入学时间
+	var stuEntranceDate = "${student.stuEntranceDate}";
+	if(stuEntranceDate!=null&&stuEntranceDate.length>0){
+		$("#stuEntranceDate").val(crtTimeFtt(stuEntranceDate));
+	}
+	
+	//设置出生日期
+	var stuBirth = "${student.stuBirth}";
+	if(stuBirth!=null&&stuBirth.length>0){
+		$("#stuBirth").val(crtTimeFtt(stuBirth));
+	}
 </script>
 </html>

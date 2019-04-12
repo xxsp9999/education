@@ -7,7 +7,7 @@ import pers.xx.edu.entity.Department;
 /**
  * 
  * @description 部门dao类
- * @author 白贵才
+ * @author XieXing
  * @create 2017-10-23下午12:24:53
  *
  */

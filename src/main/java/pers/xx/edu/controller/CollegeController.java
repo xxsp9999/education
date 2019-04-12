@@ -3,16 +3,18 @@ package pers.xx.edu.controller;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pers.xx.edu.entity.Faculty;
 import pers.xx.edu.service.FacultyService;
@@ -66,15 +68,20 @@ public class CollegeController {
 	public String edit(Faculty faculty) {
 		if (faculty.getId() == null) {
 			faculty.setFacAddTime(new Date());//设置添加时间，不可修改
+			facultyService.save(faculty);
+		}else {//修改,添加时间不能改变
+			Faculty faculty2 = facultyService.getById(faculty.getId());
+			Date date = faculty2.getFacAddTime();
+			BeanUtils.copyProperties(faculty, faculty2);
+			faculty2.setFacAddTime(date);
 		}
-		facultyService.saveOrUpdate(faculty);
 		return "redirect:/college/toList";
 	}
 
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月9日 下午3:46:38
-	 * @description 获取专业信息
+	 * @description 获取学院信息
 	 */
 	@RequestMapping("/getList")
 	public void getCpList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int rows,
@@ -101,12 +108,25 @@ public class CollegeController {
 					"(facNumber like :content or facName like :content or facRemark like :content)",
 					"%" + content + "%");
 		}
-		Map<String, String> orderOrGroupBy = new HashMap<>();// 排序参数
-		orderOrGroupBy.put("order by", "id desc");
+		/*Map<String, String> orderOrGroupBy = new HashMap<>();// 排序参数
+		orderOrGroupBy.put("order by", "id desc");*/
 		Page<Faculty> pageBean = new Page<>();
-		pageBean = facultyService.getPageList(params, orderOrGroupBy);
+		pageBean = facultyService.getPageList(params, null);
 		out.print(pageBean.toJqGridString());
 		out.flush();
 		out.close();
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月11日 下午2:28:28
+	 * @description 获取所有的学院
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getAllFaculties")
+	public List<Faculty> getFaculties(){
+		List<Faculty> faculties = facultyService.getAll();
+		return faculties;
 	}
 }

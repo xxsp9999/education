@@ -14,7 +14,9 @@
 		<li id="crumbs">
 			<span>院系信息</span>
 			>
-			<span>学院信息新增</span>
+			<c:if test="${operate=='add'}"><span>学院信息新增</span></c:if>
+			<c:if test="${operate=='update'}"><span>学院信息修改</span></c:if>
+			<c:if test="${operate=='show'}"><span>学院信息查看</span></c:if>
 		</li>
 	</div>
 	<form id="col_form" method="post" action="${pageContext.request.contextPath}/college/edit" enctype="multipart/form-data">

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,7 +17,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @author XieXing
- * @description
+ * @description 教师实体类
  * @create 2019年3月16日 下午5:18:40
  */
 @Entity
@@ -27,13 +29,17 @@ public class Teacher {
 	private Integer id;
 	
 	@Column(name="tea_name",columnDefinition="varchar(255) COMMENT '教师名称'")
-	private String teaName;//教室名称
+	private String teaName;//教师名称
 	
 	@Column(name="tea_number",columnDefinition="varchar(255) COMMENT '教师号'")
 	private String teaNumber;//教师号
 	
 	@Column(name="tea_password",columnDefinition="varchar(255) COMMENT '密码'")
 	private String teaPassword;//密码
+	
+	@ManyToOne
+	@JoinColumn(name="tea_title",columnDefinition="int(11) COMMENT '职称'")
+	private TeaTitle teaTitle;//职称
 	
 	@Column(name="tea_sex",columnDefinition="varchar(255) COMMENT '教师性别'")
 	private String teaSex;//教师性别
@@ -168,6 +174,14 @@ public class Teacher {
 
 	public void setTeaEmail(String teaEmail) {
 		this.teaEmail = teaEmail;
+	}
+
+	public TeaTitle getTeaTitle() {
+		return teaTitle;
+	}
+
+	public void setTeaTitle(TeaTitle teaTitle) {
+		this.teaTitle = teaTitle;
 	}
 	
 	

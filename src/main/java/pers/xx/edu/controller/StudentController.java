@@ -18,6 +18,7 @@ import pers.xx.edu.service.StudentService;
 import pers.xx.edu.utils.DateTimeUtils;
 import pers.xx.edu.utils.Page;
 import pers.xx.edu.utils.StringUtils;
+import pers.xx.edu.vo.StudentVo;
 
 /**
  * @author XieXing
@@ -38,7 +39,12 @@ public class StudentController {
 	 * @return
 	 */
 	@RequestMapping("/toAdd")
-	public String toAdd() {
+	public String toAdd(Integer id, String operate, Map<String, Object> map) {
+		if (id != null) {
+			Student student = studentService.getById(id);
+			map.put("student", student);
+		}
+		map.put("operate", operate);
 		return "student/add";
 	}
 
@@ -73,21 +79,21 @@ public class StudentController {
 		params.put("rows", rows);
 		if (StringUtils.isNotEmpty(start)) {
 			try {
-				params.put("subDate >= ?", pers.xx.edu.utils.DateTimeUtils.deal(start));
+				params.put("stuEntranceDate >= ?", pers.xx.edu.utils.DateTimeUtils.deal(start));
 			} catch (ParseException e) {
 				System.err.println("时间格式不正确！");
 			}
 		}
 		if (StringUtils.isNotEmpty(end)) {
 			try {
-				params.put("subDate < ?", DateTimeUtils.deal(end));
+				params.put("stuEntranceDate < ?", DateTimeUtils.deal(end));
 			} catch (ParseException e) {
 				System.err.println("时间格式不正确！");
 			}
 		}
 		if (StringUtils.isNotEmpty(content)) {
 			params.put(
-					"(user.name like :content or area like :content or status like :content or summary like :content or plan like :content or checkOpinion like :content or checkStatus like :content)",
+					"(stuName like :content or stuNumber like :content or stuId like :content or stuPhone like :content or stuEmail like :content or stuAddr like :content or stuRemark like :content)",
 					"%" + content + "%");
 		}
 		Map<String, String> orderOrGroupBy = new HashMap<>();// 排序参数
@@ -97,5 +103,23 @@ public class StudentController {
 		out.print(pageBean.toJqGridString());
 		out.flush();
 		out.close();
+	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月11日 下午3:32:42
+	 * @description 编辑学生信息
+	 * @param studentVo
+	 * @param stuEntranceDate
+	 * @param stuBirth
+	 * @param facultyId
+	 * @param majorId
+	 * @return
+	 */
+	@RequestMapping("/edit")
+	public String edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId,
+			Integer majorId) {
+		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId);
+		return "redirect:/student/toList";
 	}
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,55 +21,56 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @create 2019年3月16日 下午5:31:14
  */
 @Entity
-@Table(name="leader")
+@Table(name = "leader")
 public class Leader {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
-	@Column(name="leader_name",columnDefinition="varchar(255) COMMENT '领导姓名'")
-	private String leaderName;//姓名
-	
-	@Column(name="leader_Number",columnDefinition="varchar(255) COMMENT '领导编号'")
-	private String leaderNumber;//编号
-	
-	@Column(name="leader_password",columnDefinition="varchar(255) COMMENT '领导密码'")
-	private String leaderPassword;//密码
-	
-	@Column(name="leader_position",columnDefinition="varchar(255) COMMENT '领导职位'")
-	private String leaderPosition;//密码
-	
-	@Column(name="leader_sex",columnDefinition="varchar(255) COMMENT '领导性别'")
-	private String leaderSex;//性别
-	
-	@Column(name="leader_nationality",columnDefinition="varchar(255) COMMENT '领导族别'")
-	private String leaderNationality ;//族别
-	
+
+	@Column(name = "leader_name", columnDefinition = "varchar(255) COMMENT '领导姓名'")
+	private String leaderName;// 姓名
+
+	@Column(name = "leader_Number", columnDefinition = "varchar(255) COMMENT '领导编号'")
+	private String leaderNumber;// 编号
+
+	@Column(name = "leader_password", columnDefinition = "varchar(255) COMMENT '领导密码'")
+	private String leaderPassword;// 密码
+
+	@ManyToOne
+	@JoinColumn(name = "leader_title", columnDefinition = "int(11) COMMENT '领导职位'")
+	private LeaderTitle leaderTitle;// 领导职位
+
+	@Column(name = "leader_sex", columnDefinition = "varchar(255) COMMENT '领导性别'")
+	private String leaderSex;// 性别
+
+	@Column(name = "leader_nationality", columnDefinition = "varchar(255) COMMENT '领导族别'")
+	private String leaderNationality;// 族别
+
 	@JSONField(format = "yyyy年MM月dd日")
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	@Column(name="leader_birth",columnDefinition="datetime COMMENT '领导出生日期'")
-	private Date leaderBirth;//出生日期
-	
+	@Column(name = "leader_birth", columnDefinition = "datetime COMMENT '领导出生日期'")
+	private Date leaderBirth;// 出生日期
+
 	@JSONField(format = "yyyy年MM月dd日")
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	@Column(name="leader_entrance_date",columnDefinition="datetime COMMENT '领导入职时间'")
-	private Date leaderEntranceDate;//入职时间
-	
-	@Column(name="leader_addr",columnDefinition="varchar(255) COMMENT '领导家庭地址'")
-	private String leaderAddr;//家庭地址
-	
-	@Column(name="leader_id",columnDefinition="varchar(255) COMMENT '领导身份者号'")
-	private String leaderId;//身份证号
-	
-	@Column(name="leader_phone",columnDefinition="varchar(255) COMMENT '领导电话'")
-	private String leaderPhone;//领导电话
-	
-	@Column(name="leader_email",columnDefinition="varchar(255) COMMENT '领导邮箱'")
-	private String leaderEmail;//领导邮箱
-	
-	@Column(name="leader_remark",columnDefinition="varchar(255) COMMENT '备注'")
-	private String leaderRemark;//备注
+	@Column(name = "leader_entrance_date", columnDefinition = "datetime COMMENT '领导入职时间'")
+	private Date leaderEntranceDate;// 入职时间
+
+	@Column(name = "leader_addr", columnDefinition = "varchar(255) COMMENT '领导家庭地址'")
+	private String leaderAddr;// 家庭地址
+
+	@Column(name = "leader_id", columnDefinition = "varchar(255) COMMENT '领导身份者号'")
+	private String leaderId;// 身份证号
+
+	@Column(name = "leader_phone", columnDefinition = "varchar(255) COMMENT '领导电话'")
+	private String leaderPhone;// 领导电话
+
+	@Column(name = "leader_email", columnDefinition = "varchar(255) COMMENT '领导邮箱'")
+	private String leaderEmail;// 领导邮箱
+
+	@Column(name = "leader_remark", columnDefinition = "varchar(255) COMMENT '备注'")
+	private String leaderRemark;// 备注
 
 	public Integer getId() {
 		return id;
@@ -83,10 +86,6 @@ public class Leader {
 
 	public String getLeaderPassword() {
 		return leaderPassword;
-	}
-
-	public String getLeaderPosition() {
-		return leaderPosition;
 	}
 
 	public String getLeaderSex() {
@@ -141,8 +140,12 @@ public class Leader {
 		this.leaderPassword = leaderPassword;
 	}
 
-	public void setLeaderPosition(String leaderPosition) {
-		this.leaderPosition = leaderPosition;
+	public LeaderTitle getLeaderTitle() {
+		return leaderTitle;
+	}
+
+	public void setLeaderTitle(LeaderTitle leaderTitle) {
+		this.leaderTitle = leaderTitle;
 	}
 
 	public void setLeaderSex(String leaderSex) {

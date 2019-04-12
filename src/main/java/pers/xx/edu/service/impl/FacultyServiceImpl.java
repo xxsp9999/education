@@ -28,4 +28,9 @@ public class FacultyServiceImpl extends BaseServiceImpl<Faculty> implements Facu
 	protected FacultyDao getBaseDao() {
 		return (FacultyDao) super.getBaseDao();
 	}
+
+	@Override
+	public Faculty getFacultyByfacNumber(String facNumber) {
+		return getBaseDao().getFacultyByfacNumber(facNumber);
+	}
 }

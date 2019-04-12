@@ -1,5 +1,7 @@
 package pers.xx.edu.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @author XieXing
@@ -31,6 +37,11 @@ public class Major {
 	@ManyToOne
 	@JoinColumn(name="major_of_faculty",columnDefinition="int(11) COMMENT '所属院系'")
 	private Faculty majorOfFaculty;//所属院系
+	
+	@JSONField(format = "yyyy年MM月dd日")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@Column(name="maj_add_time",columnDefinition="datetime COMMENT '添加时间'")
+	private Date majAddTime;//添加时间
 	
 	@Column(name="major_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String marjorRemark;//备注
@@ -73,6 +84,15 @@ public class Major {
 
 	public void setMarjorRemark(String marjorRemark) {
 		this.marjorRemark = marjorRemark;
+	}
+
+	public Date getMajAddTime() {
+		return majAddTime;
+	}
+
+
+	public void setMajAddTime(Date majAddTime) {
+		this.majAddTime = majAddTime;
 	}
 	
 	
