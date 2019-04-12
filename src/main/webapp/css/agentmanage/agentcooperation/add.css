@@ -1,9 +1,0 @@
-#customer{width:85%;margin:0 auto;height:500px;margin-top:30px;}
-#customer ul li{width:30%;height:70px;display:inline-block;float:left;}
-#customer ul li span{width:70px;text-align:center;display:inline-block;}
-#customer ul li input{width:49.4%;height:30px;outline:none;border:1px solid #d8d8d8;}
-#customer ul li select{width:50%;height:30px;outline:none;border:1px solid #d8d8d8;}
-#customer ul li textarea{width:80%;vertical-align: top;height:150px;}
-
-#buttonKey{margin-left:41%;}
-#buttonKey button{width:60px;height:30px;margin-right:15px;border:0;background:#316182;color:#fff;}
