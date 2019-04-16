@@ -237,7 +237,7 @@ img {
 						</li> -->
 
 							<li><a
-								href="${pageContext.request.contextPath}/user/toPersonalInfo"
+								href="${pageContext.request.contextPath}/person/toBiMain"
 								target="menuFrame"> <i class="ace-icon fa fa-user"></i> 个人资料
 							</a></li>
 							<li class="divider"></li>
@@ -280,7 +280,7 @@ img {
 	</div>
 	<!--头部导航结束-->
 	
-	<script>
+	<!-- <script>
 		var bodyH = $("body").eq(0).css("height");
 		bodyH = parseInt(bodyH);
 		$("#zhegai").css({
@@ -309,7 +309,7 @@ img {
 		})
 
 		//弹出框动态内容
-		/* $.ajax({
+		$.ajax({
 	   	    url:"${pageContext.request.contextPath}/task/getList",
 	        type:"post",
 	        dataType:"json",
@@ -334,7 +334,7 @@ img {
 	        },
 		   	error:function(){
 		   	}
-	   }); */
+	   });
 		
 		$("#infoBtn").click(function(){
 			if($("#zhegai").css("display") == "none"){
@@ -355,7 +355,7 @@ img {
 		$("#infoNarrowTitle").parent("li").click(function(){
 			$("#zhegai").show();
 		})
-	</script>	
+	</script>	 -->
 	
 	<div class="main-container" id="main-container" style="height: 100%">
 		<script type="text/javascript">
