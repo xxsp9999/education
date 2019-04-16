@@ -38,8 +38,8 @@ import pers.xx.edu.vo.UserVo;
 /**
  *
  * @description 用户管理类
- * @author 白贵才
- * @create 2017-3-24上午9:50:05
+ * @author XieXing
+ * @create 2018-3-24上午9:50:05
  *
  */
 @Controller
@@ -155,7 +155,7 @@ public class UserController {
 
 	/**
 	 * @description 修改密码
-	 * @author 白贵才
+	 * @author XieXing
 	 * @param id
 	 * @param password
 	 * @param out
@@ -179,7 +179,7 @@ public class UserController {
 
 	/**
 	 * @description 重置部分用户的密码，改为原始手机号
-	 * @author 白贵才
+	 * @author XieXing
 	 * @param ids
 	 * @param out
 	 * @throws NoSuchAlgorithmException
@@ -201,7 +201,7 @@ public class UserController {
 
 	/**
 	 * @description 更改权限
-	 * @author 白贵才
+	 * @author XieXing
 	 * @param ids
 	 * @param out
 	 * @throws NoSuchAlgorithmException
@@ -372,8 +372,8 @@ public class UserController {
 
 	/**
 	 * @description 用户新增或者修改或者删除
-	 * @author 白贵才
-	 * @create 2017年10月23日15:19:56
+	 * @author XieXing
+	 * @create 2018年10月23日15:19:56
 	 * @return
 	 */
 	@ResponseBody
@@ -427,8 +427,8 @@ public class UserController {
 
 	/**
 	 * @description 根据编号获取用户
-	 * @createDate 2017年11月2日16:58:17
-	 * @author 白贵才
+	 * @createDate 2018年11月2日16:58:17
+	 * @author XieXing
 	 * @param num
 	 * @param out
 	 */

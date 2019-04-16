@@ -4,8 +4,8 @@ package pers.xx.edu.vo;
 /**
  * 
  * @description 用户vo 
- * @author 白贵才
- * @create 2017年10月31日15:07:26
+ * @author XieXing
+ * @create 2018年10月31日15:07:26
  *
  */
 public class UserVo{

@@ -17,7 +17,7 @@ import pers.xx.edu.utils.Page;
  *
  * @description 所有Dao的父类
  * @author XieXing
- * @create 2017-9-14上午9:14:19
+ * @create 2018-9-14上午9:14:19
  * @param <T>
  *
  */
@@ -219,6 +219,98 @@ public abstract class BaseDao<T> {
 		return newPage;
 	}
 
+	/**
+	 * @author XieXing
+	 * @create 2019年3月5日
+	 * @description  获取分页的数据，不分页page和rows设置为0就行,该方法不支持带in的查询
+	 * @param params
+	 * @param orderOrGroupBy
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public Page<T> getPageListNew(Map<String, Object> params,
+			Map<String, String> orderOrGroupBy) {
+		StringBuffer sb1 = new StringBuffer("FROM " + className);
+		StringBuffer sb2 = new StringBuffer("SELECT COUNT(*) FROM " + className);
+		//如果限制条件不为空，就拼接参数
+		if(params != null && params.size() != 0 && params.size() > 2){
+			sb1.append(" WHERE");
+			sb2.append(" WHERE");
+			for(Entry<String,Object> en:params.entrySet()){
+				//params中key为hql语句的where条件,value为条件注入的参数（格式：params.put("id = ?","12");）
+				//跳过page和rows的拼接，需要单独拼接
+				if(!"page".equals(en.getKey()) && !"rows".equals(en.getKey())){
+					sb1.append(" " + en.getKey() + " AND");
+					sb2.append(" " + en.getKey() + " AND");
+				}
+			}
+			//去除最后一个多余的"AND"字符串
+			sb1.delete(sb1.lastIndexOf(" AND"), sb1.length());
+			sb2.delete(sb2.lastIndexOf(" AND"), sb2.length());
+			//日志输出打印的hql语句
+			log.debug("Class: "+this.getClass().getName()+" method: "+
+					Thread.currentThread().getStackTrace()[1].getMethodName() +" line:"+
+					Thread.currentThread().getStackTrace()[1].getLineNumber()+" out:"+sb1.toString());
+			log.debug("Class: "+this.getClass().getName()+" method: "+
+					Thread.currentThread().getStackTrace()[1].getMethodName() +" line:"+
+					Thread.currentThread().getStackTrace()[1].getLineNumber()+" out:"+sb2.toString());
+		}
+		if(orderOrGroupBy != null && orderOrGroupBy.size() != 0){
+			for(Entry<String,String> en:orderOrGroupBy.entrySet()){
+				//orderOrGroupBy中key为hql语句的group by 或者 order by （格式orderOrGroupBy.put("group by","id");）
+				//orderOrGroupBy中value为hql语句的列
+				//跳过page和rows的拼接，需要单独拼接
+				sb1.append(" " + en.getKey() + " "+en.getValue());
+				sb2.append(" " + en.getKey() + " "+en.getValue());
+			}
+		}
+		Query query1 = getSession().createQuery(sb1.toString());
+		Query query2 = getSession().createQuery(sb2.toString());
+		//如果限制条件不为空，设置查询参数
+		if(params != null && params.size() != 0){
+			//记录用索引找参数的query.setParameter(int arg0, Object arg1);
+			int index = 0;
+			for(Entry<String,Object> en:params.entrySet()){
+				//跳过page和rows的拼接，需要单独拼接
+				if(!"page".equals(en.getKey()) && !"rows".equals(en.getKey())){
+					if(en.getKey().contains("?")){
+						//带有?的hql语句（格式：params.put("id = ?","12");）方法：query.setParameter(int arg0, Object arg1)
+						query1.setParameter(index, en.getValue());
+						query2.setParameter(index, en.getValue());
+						index++;
+					}else if(en.getKey().contains("(") && en.getKey().contains(")") && en.getKey().contains(":")){
+						/*
+						 * // 特殊处理带有OR的模糊查询 (code LIke :searchStr AND cnName LIKE :searchStr
+						 * OR shortName LIKE :searchStr) String key = en.getKey().trim(); int
+						 * beginIndex = key.indexOf(":") + 1; int endIndex = key.indexOf(" ",
+						 * beginIndex);
+						 */
+						String key = en.getKey().trim();
+						int beginIndex = key.indexOf(":") + 1;
+						int endIndex = key.indexOf(" ",beginIndex);
+						String paramsKey = key.substring(beginIndex,endIndex);
+						query1.setParameter(paramsKey, en.getValue());
+						query2.setParameter(paramsKey, en.getValue());
+					}
+				}
+			}
+		}
+		int page = (int) params.get("page");
+		int rows = (int) params.get("rows");
+		//设置分页，如果page和rows都为-1时，不分页获取所有的
+		if(page != -1 && rows != -1){
+			//设置第一条数据的其实索引
+			query1.setFirstResult((page-1)*rows);
+			//设置最多条数据的数量
+			query1.setMaxResults(rows);
+		}
+		List<T> record = query1.list();
+		int count = ((Long) query2.uniqueResult()).intValue();
+
+		Page<T> newPage = new Page<T>(page,(count+rows-1)/rows, count, record);
+		return newPage;
+	}
+	
 	/**
 	 * 模糊查询获取分页的数据，不分页page和rows设置为0就行
 	 * @update XieXing

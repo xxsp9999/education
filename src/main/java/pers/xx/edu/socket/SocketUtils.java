@@ -11,8 +11,8 @@ import pers.xx.edu.utils.HexStringUtils;
 /**
  * 
  * @description socket 工具类 
- * @author 白贵才
- * @create 2017-11-10下午2:03:36
+ * @author XieXing
+ * @create 2018-11-10下午2:03:36
  *
  */
 public class SocketUtils {

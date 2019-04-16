@@ -14,11 +14,9 @@ import javax.persistence.Table;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- *
  * @description 用户表
- * @author 白贵才
- * @create 2017-9-14下午12:03:06
- *
+ * @author XieXing
+ * @create 2019-3-14下午12:03:06
  */
 @Entity
 @Table(name = "user")

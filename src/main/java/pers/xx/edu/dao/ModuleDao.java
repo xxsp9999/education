@@ -7,8 +7,8 @@ import pers.xx.edu.entity.Module;
 /**
  * 
  * @description 模块仓库类 
- * @author 白贵才
- * @create 2017-10-23上午9:39:07
+ * @author XieXing
+ * @create 2018-10-23上午9:39:07
  *
  */
 @Repository

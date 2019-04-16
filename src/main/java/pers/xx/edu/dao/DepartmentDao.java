@@ -8,7 +8,7 @@ import pers.xx.edu.entity.Department;
  * 
  * @description 部门dao类
  * @author XieXing
- * @create 2017-10-23下午12:24:53
+ * @create 2018-10-23下午12:24:53
  *
  */
 @Repository

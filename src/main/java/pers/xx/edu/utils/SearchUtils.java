@@ -104,7 +104,7 @@ return map;
 }
 	/**
 	 * @description 新增根据物品名字查询
-	 * @createByDate 2017年12月11日17:15:01
+	 * @createByDate 2018年12月11日17:15:01
 	 */
 //	if (goodsSearchWord != null && !"".equals(goodsSearchWord)) {
 //		Map<String, Object> params2 = new HashMap<String, Object>();

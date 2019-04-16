@@ -8,8 +8,8 @@ import java.net.Socket;
 /**
  * 
  * @description socket数据处理
- * @author 白贵才
- * @create 2017-11-8下午5:22:33
+ * @author XieXing
+ * @create 2018-11-8下午5:22:33
  *
  */
 public class DealSocketDataThread extends Thread{

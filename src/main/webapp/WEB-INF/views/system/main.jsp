@@ -222,12 +222,12 @@ img {
 							src="assets/avatars/loyer.png" alt="Jason's Photo"
 							style="float: left; margin-top: 1px;" /> <span class="user-info"
 							style="display: block; padding: auto 0; top: 12px;"> <span>欢迎您,</span>
-								${sessionScope.user.name}
+								${loginInfo.userName}
 						</span> <i class="ace-icon fa fa-caret-down"
 							style="position: relative; top: -22px;"></i>
 					</a>
 
-						<ul
+						<ul style="min-width:138px;right:7px;"
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<!-- <li>
 							<a href="#">
@@ -242,13 +242,8 @@ img {
 							</a></li>
 							<li class="divider"></li>
 							
-							<li style="position: relative;"><a id="infoBtn"
-								target="menuFrame"> <i  class="ace-icon fa fa-hand-o-right"></i> 提示消息<span class="infoTishi" style="position: absolute; top: 3; right: 58px;"></span>
-							</a></li>
-							<li class="divider"></li>
-
-							<li><a href="${pageContext.request.contextPath}/logout">
-									<i class="ace-icon fa fa-power-off"></i> 退出
+							<li style="position: relative;"><a id="infoBtn" href="${pageContext.request.contextPath}/person/toPassword"
+								target="menuFrame"> <i  class="iconxiugaimima"></i> 修改密码<span class="infoTishi" style="position: absolute; top: 3; right: 58px;"></span>
 							</a></li>
 						</ul></li>
 						
@@ -433,7 +428,7 @@ img {
 						 
 						var iconfont = ['','','iconxuesheng-copy',
 								'iconlaoshi', 'iconfudaoyuan',
-								'iconlingdao', 'iconguanliyuan','iconxueyuanzhuanye'
+								'iconlingdao','iconxueyuanzhuanye','iconguanliyuan','iconuser','iconshezhi'
 								];
 						var $iconfont = $(".iconfont");
 						for (var i = 0; i < $iconfont.length; i++) {

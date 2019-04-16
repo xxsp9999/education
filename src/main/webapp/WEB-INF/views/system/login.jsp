@@ -186,7 +186,6 @@
 						if (data.status == true) {
 							window.location.href = path + "/main"
 						} else {
-							debugger;
 							swal("", data.message, "error");
 						}
 					},

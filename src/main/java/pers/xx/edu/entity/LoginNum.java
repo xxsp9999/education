@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * @author xiexing
+ * @author XieXing
  * @description 登录统计实体类
  * @create 2018年11月17日 上午9:46:20
  */

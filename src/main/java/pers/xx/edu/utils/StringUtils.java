@@ -15,9 +15,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * @author 白贵才
+ * @author XieXing
  * @description 字符串工具类
- * @create 2017-3-23上午10:58:31
+ * @create 2018-3-23上午10:58:31
  */
 @Component
 public class StringUtils {
@@ -160,8 +160,8 @@ public class StringUtils {
     /**
      * @return
      * @description 生成一个12位的UUID
-     * @author 白贵才
-     * @createDate 2017年10月19日15:24:52
+     * @author XieXing
+     * @createDate 2018年10月19日15:24:52
      */
     public static String get12UUID() {
         String uuid = "";
@@ -172,8 +172,8 @@ public class StringUtils {
     /**
      * @return
      * @description 生成一个12位的物品的UUID（由年月+其余UUID组成）
-     * @author 白贵才
-     * @createDate 2017年11月30日17:32:35
+     * @author XieXing
+     * @createDate 2018年11月30日17:32:35
      */
     public static String getGoodsUUID() {
         String rfid = "";
@@ -187,8 +187,8 @@ public class StringUtils {
     /**
      * @return
      * @description 生成一个12位的RFID
-     * @author 白贵才
-     * @createDate 2017年10月19日15:24:52
+     * @author XieXing
+     * @createDate 2018年10月19日15:24:52
      */
     public static String get12RFID() {
         String rfid = "";
@@ -202,8 +202,8 @@ public class StringUtils {
     /**
      * @return
      * @description 返回一个批次号（20130101）
-     * @author 白贵才
-     * @createDate 2017年10月19日15:56:40
+     * @author XieXing
+     * @createDate 2018年10月19日15:56:40
      */
     public static String getBatch() {
         String batch = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -213,8 +213,8 @@ public class StringUtils {
     /**
      * @return
      * @description 格式化数字
-     * @author 白贵才
-     * @createDate 2017年11月3日14:21:12
+     * @author XieXing
+     * @createDate 2018年11月3日14:21:12
      */
     public static String formatNum(float dou) {
         DecimalFormat d = new DecimalFormat("0.00");

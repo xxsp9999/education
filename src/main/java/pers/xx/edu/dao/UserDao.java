@@ -11,8 +11,8 @@ import pers.xx.edu.entity.User;
 /**
  * 
  * @description 用户的数据操作层 
- * @author 白贵才
- * @create 2017-9-14下午7:12:34
+ * @author XieXing
+ * @create 2018-9-14下午7:12:34
  *
  */
 @Repository
@@ -25,17 +25,17 @@ public class UserDao extends BaseDao<User>{
 
 	/**
 	 * @description 登录
-	 * @author 白贵才
+	 * @author XieXing
 	 * @param userCode
 	 * @param userPassword
 	 * @return
 	 */
-	public User login(String userPhone, String userPassword) {
+	public User login(String code, String userPassword) {
 		String hql = "from User as u where u.number = ? and u.password = ? and state = 1 order by id";
 		Query query = getSession().createQuery(hql);
-		query.setString(0, userPhone);
+		query.setString(0, code);
 		query.setString(1, userPassword);
-		if(query.list().size()<=0){
+		if(query.list().size()==0){
 			return null;
 		}
 		return (User) query.list().get(0);

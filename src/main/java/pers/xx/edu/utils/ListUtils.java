@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * 
  * @description List集合工具类 
- * @author 白贵才
- * @create 2017-11-21上午11:09:56
+ * @author XieXing
+ * @create 2018-11-21上午11:09:56
  *
  */
 public class ListUtils {

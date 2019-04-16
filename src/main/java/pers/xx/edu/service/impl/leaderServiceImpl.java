@@ -69,4 +69,9 @@ public class leaderServiceImpl extends BaseServiceImpl<Leader> implements Leader
 		}
 		saveOrUpdate(leader);
 	}
+
+	@Override
+	public Leader login(String code, String password) {
+		return this.getBaseDao().login(code,password);
+	}
 }

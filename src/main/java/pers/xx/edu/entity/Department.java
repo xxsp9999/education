@@ -15,11 +15,9 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- *
  * @description 部门表
- * @author 白贵才
- * @create 2017-10-19下午8:17:28
- *
+ * @author XieXing
+ * @create 2018-10-19下午8:17:28
  */
 @Table(name = "department")
 @Entity

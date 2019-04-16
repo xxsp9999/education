@@ -70,4 +70,9 @@ public class InstructorServiceImpl extends BaseServiceImpl<Instructor> implement
 		}
 		saveOrUpdate(instructor);
 	}
+
+	@Override
+	public Instructor login(String code, String password) {
+		return this.getBaseDao().login(code,password);
+	}
 }

@@ -9,8 +9,8 @@ import java.net.Socket;
 /**
  * 
  * @description socket 的线程类 
- * @author 白贵才
- * @create 2017-11-8下午5:13:11
+ * @author XieXing
+ * @create 2018-11-8下午5:13:11
  *
  */
 public class SocketThread extends Thread{

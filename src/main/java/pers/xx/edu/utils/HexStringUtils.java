@@ -4,8 +4,8 @@ package pers.xx.edu.utils;
 /**
  * 
  * @description 进制转换 
- * @author 白贵才
- * @create 2017-11-10下午3:20:15
+ * @author XieXing
+ * @create 2018-11-10下午3:20:15
  *
  */
 public class HexStringUtils {

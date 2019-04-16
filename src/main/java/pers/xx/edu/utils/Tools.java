@@ -185,7 +185,7 @@ public class Tools {
 	}
 	/**
 	 * @description 格式化数字
-	 * @createDate 2017年11月3日14:21:12
+	 * @createDate 2018年11月3日14:21:12
 	 * @return
 	 */
 	public static String formatNum(float dou){

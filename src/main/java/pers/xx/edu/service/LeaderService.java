@@ -11,6 +11,16 @@ import pers.xx.edu.vo.LeaderVo;
 public interface LeaderService extends BaseService<Leader> {
 	/**
 	 * @author XieXing
+	 * @createDate 2019年4月15日 上午9:19:52
+	 * @description 领导登陆验证
+	 * @param code
+	 * @param password
+	 * @return
+	 */
+	Leader login(String code,String password);
+	
+	/**
+	 * @author XieXing
 	 * @createDate 2019年4月12日 下午2:32:45
 	 * @description 编辑领导信息
 	 * @param leaderVo

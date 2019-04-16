@@ -81,4 +81,9 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
 		}
 		saveOrUpdate(teacher);
 	}
+
+	@Override
+	public Teacher login(String code, String password) {
+		return this.getBaseDao().login(code,password);
+	}
 }

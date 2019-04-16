@@ -8,8 +8,8 @@ import pers.xx.edu.socket.SocketThread;
 /**
  *
  * @description socket随着tomcat启动而启动
- * @author 白贵才
- * @create 2017-11-8下午5:02:10
+ * @author XieXing
+ * @create 2018-11-8下午5:02:10
  *
  */
 public class SocketServiceLoader implements ServletContextListener {

@@ -90,4 +90,9 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 		}
 		saveOrUpdate(student);
 	}
+
+	@Override
+	public Student login(String code, String password) {
+		return this.getBaseDao().login(code,password);
+	}
 }

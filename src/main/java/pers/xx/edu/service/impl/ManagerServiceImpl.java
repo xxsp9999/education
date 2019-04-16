@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import pers.xx.edu.dao.BaseDao;
+import pers.xx.edu.dao.ManagerDao;
 import pers.xx.edu.entity.Manager;
 import pers.xx.edu.service.ManagerService;
 import pers.xx.edu.utils.DateTimeUtils;
@@ -23,7 +24,7 @@ import pers.xx.edu.vo.ManagerVo;
  */
 @Transactional
 @Service("managerService")
-public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements ManagerService{
+public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements ManagerService {
 
 	@Resource(name = "managerDao")
 	@Override
@@ -31,8 +32,8 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 		super.setBaseDao(baseDao);
 	}
 
-	protected BaseDao<Manager> getBaseDao() {
-		return super.getBaseDao();
+	protected ManagerDao getBaseDao() {
+		return (ManagerDao) super.getBaseDao();
 	}
 
 	@Override
@@ -60,4 +61,10 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 		}
 		saveOrUpdate(manager);
 	}
+
+	@Override
+	public Manager login(String code, String password) {
+		return this.getBaseDao().login(code, password);
+	}
+
 }

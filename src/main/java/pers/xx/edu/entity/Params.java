@@ -17,8 +17,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  *
  * @description 参数模块
- * @author 白贵才
- * @create 2017-9-14下午2:50:23
+ * @author XieXing
+ * @create 2018-9-14下午2:50:23
  *
  */
 @Entity

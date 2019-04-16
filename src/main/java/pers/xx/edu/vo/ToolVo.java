@@ -4,8 +4,8 @@ package pers.xx.edu.vo;
 /**
  * 
  * @description 工具Vo类 
- * @author 白贵才
- * @create 2017-11-3上午9:46:28
+ * @author XieXing
+ * @create 2018-11-3上午9:46:28
  *
  */
 public class ToolVo {

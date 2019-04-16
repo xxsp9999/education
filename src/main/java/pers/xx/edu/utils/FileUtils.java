@@ -16,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  *
  * @description 文件上传工具类
- * @author 白贵才
- * @create 2017-3-30上午9:33:20
+ * @author XieXing
+ * @create 2018-3-30上午9:33:20
  *
  */
 public class FileUtils {

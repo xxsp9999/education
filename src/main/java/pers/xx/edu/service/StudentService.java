@@ -9,6 +9,17 @@ import pers.xx.edu.vo.StudentVo;
  * @create 2019年3月17日 下午6:28:59
  */
 public interface StudentService extends BaseService<Student> {
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月15日 上午9:18:05
+	 * @description 学生登陆验证
+	 * @param code
+	 * @param password
+	 * @return
+	 */
+	Student login(String code,String password);
+	
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月11日 下午4:33:10

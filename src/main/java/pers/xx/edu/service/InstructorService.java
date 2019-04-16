@@ -9,6 +9,17 @@ import pers.xx.edu.vo.InstructorVo;
  * @create 2019年3月17日 下午6:31:08
  */
 public interface InstructorService extends BaseService<Instructor> {
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月15日 上午9:20:30
+	 * @description 导员登陆验证
+	 * @param code
+	 * @param password
+	 * @return
+	 */
+	Instructor login(String code,String password);
+	
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月12日 上午11:19:55

@@ -10,6 +10,15 @@ import pers.xx.edu.vo.TeacherVo;
  */
 public interface TeacherService extends BaseService<Teacher>{
 
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月15日 上午9:17:27
+	 * @description 教师登陆验证
+	 * @param code
+	 * @param password
+	 * @return
+	 */
+	Teacher login(String code,String password);
 	
 	/**
 	 * @author XieXing

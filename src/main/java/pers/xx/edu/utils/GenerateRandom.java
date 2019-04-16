@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * 生成随机数字，防止使用时间戳生成相同的数字
- * @author lichanghua
+ * @author XieXing
  *
  */
 public class GenerateRandom {

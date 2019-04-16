@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * 
  * @description 对JqGrid的数据进行分页格式化 
- * @author 白贵才
- * @create 2017-4-10上午11:45:55
+ * @author XieXing
+ * @create 2018-4-10上午11:45:55
  * @param <T>
  *
  */

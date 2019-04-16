@@ -4,8 +4,8 @@ package pers.xx.edu.vo;
 /**
  * 
  * @description 角色vo 
- * @author 白贵才
- * @create 2017-10-19下午8:06:38
+ * @author XieXing
+ * @create 2018-10-19下午8:06:38
  *
  */
 public class RoleVo{

@@ -9,7 +9,7 @@ import pers.xx.edu.utils.Page;
  * 
  * @description 所有Service的父类类 
  * @author XieXing
- * @create 2017-9-13下午2:57:30
+ * @create 2018-9-13下午2:57:30
  *
  */
 public interface BaseService<T> {
@@ -70,6 +70,16 @@ public interface BaseService<T> {
 	 * @return
 	 */
 	public Page<T> getPageList(Map<String,Object> params,Map<String,String> orderOrGroupBy);
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月15日 上午11:26:50
+	 * @description 获取数据，不使用模糊查询
+	 * @param params
+	 * @param orderOrGroupBy
+	 * @return
+	 */
+	public Page<T> getPageListNew(Map<String,Object> params,Map<String,String> orderOrGroupBy);
 	
 	/**
 	 * 模糊获取分页数据

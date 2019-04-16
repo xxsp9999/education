@@ -4,8 +4,8 @@ package pers.xx.edu.vo;
 /**
  * 
  * @description 模块Vo 
- * @author 白贵才
- * @create 2017-10-23下午5:05:10
+ * @author XieXing
+ * @create 2018-10-23下午5:05:10
  *
  */
 public class ModuleVo{

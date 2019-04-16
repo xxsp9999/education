@@ -111,4 +111,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	public List<T> getAll() {
 		return this.getBaseDao().getAll();
 	}
+
+	@Override
+	public Page<T> getPageListNew(Map<String, Object> params, Map<String, String> orderOrGroupBy) {
+		return this.getBaseDao().getPageListNew(params, orderOrGroupBy);
+	}
 }

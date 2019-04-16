@@ -7,8 +7,8 @@ import pers.xx.edu.entity.Role;
 /**
  * 
  * @description 角色dao类 
- * @author 白贵才
- * @create 2017-10-23下午12:25:16
+ * @author XieXing
+ * @create 2018-10-23下午12:25:16
  *
  */
 @Repository

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 /**
  * 
  * @description 工具Dao 
- * @author 白贵才
- * @create 2017-10-19下午3:36:08
+ * @author XieXing
+ * @create 2018-10-19下午3:36:08
  *
  */
 @Repository
@@ -19,8 +19,8 @@ public class UtilsDao {
 
 	/**
 	 * @description 查询UUID是否已经在数据库
-	 * @author 白贵才
-	 * @createDate 2017年10月19日15:37:41 
+	 * @author XieXing
+	 * @createDate 2018年10月19日15:37:41 
 	 * @param table
 	 * @param column
 	 * @return

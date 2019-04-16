@@ -17,8 +17,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  *
  * @description 角色-部门对应表
- * @author 白贵才
- * @create 2017-10-23上午11:40:46
+ * @author XieXing
+ * @create 2018-10-23上午11:40:46
  *
  */
 @Entity

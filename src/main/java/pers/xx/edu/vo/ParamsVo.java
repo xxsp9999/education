@@ -5,8 +5,8 @@ package pers.xx.edu.vo;
 /**
  * 
  * @description 参数Vo
- * @author 白贵才
- * @create 2017-11-1下午4:19:21
+ * @author XieXing
+ * @create 2018-11-1下午4:19:21
  *
  */
 public class ParamsVo {
