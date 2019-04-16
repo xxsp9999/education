@@ -1,0 +1,9 @@
+/* RanYang 账号管理  2019-3-4 */
+
+#search{height:40px;line-height:40px;}
+#search li{margin-left:2%;}
+#search li input{width:200px;height:30px;border:1px solid #d8d8d8}
+#search li button{height:30px;line-height:30px;width:60px;border:0;background:#316182;color:#fff;}
+.layui-input-inline{margin-left:6%}
+#search li select{width:200px;height:30px;border:1px solid #d8d8d8;/* margin-right:5px; text-align: center;text-align-last: center; */}
+#search .vague{width:200px;}

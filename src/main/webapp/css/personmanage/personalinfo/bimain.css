@@ -1,0 +1,25 @@
+#customer{width:85%;margin:0 auto;height:300px;margin-top:20px;}
+#customer ul li{width:50%;height:70px;line-height:70px;display:inline-block;float:left;}
+#customer ul li span{width:60px;text-align:left;display:inline-block;}
+#customer ul li input{width:280px;height:30px;outline:none;border:1px solid #d8d8d8;}
+#customer ul li select{width:280px;height:30px;outline:none;border:1px solid #d8d8d8;}
+
+#buttonKey{margin-left:42%;}
+#buttonKey button{width:60px;height:30px;margin-right:15px;border:0;background:#316182;color:#fff;}
+h2{
+    padding: 5px 0;
+    margin:0;
+}
+#add{
+	width:80%;
+	height:auto;
+	margin:30px auto;
+	border:1px solid #d5d5d5;
+	padding-bottom:5px;
+}
+#add .title{
+	background:#316182;
+	text-align:center;
+	color:#fff;
+	font-size: 24px;
+}
