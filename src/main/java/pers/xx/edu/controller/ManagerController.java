@@ -7,11 +7,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import pers.xx.edu.entity.Manager;
 import pers.xx.edu.service.ManagerService;
@@ -114,8 +116,8 @@ public class ManagerController {
 	 * @return
 	 */
 	@RequestMapping("/edit")
-	public String edit(ManagerVo managerVo, String managerEntranceDate, String managerBirth) {
-		managerService.edit(managerVo, managerEntranceDate, managerBirth);
+	public String edit(ManagerVo managerVo, String managerEntranceDate, String managerBirth,@RequestParam(value="img",required=false)CommonsMultipartFile img,HttpSession session) {
+		managerService.edit(managerVo, managerEntranceDate, managerBirth,img,session);
 		return "redirect:/manager/toList";
 	}
 }

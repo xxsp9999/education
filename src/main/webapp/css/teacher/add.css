@@ -94,3 +94,8 @@ table textarea {
     left: -6%;
     top: 37.5%;
 }
+.headImg{
+	position: relative;
+    margin-top: -7%;
+    margin-left: 14%;
+}

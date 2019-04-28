@@ -213,14 +213,17 @@ img {
 				<!-- <p style="float: left; height: 60px; width: 45%; font-size: 26px; font-weight: bold; line-height: 60px; margin: 0;margin-left:8%;">齐杉科技CRM系统</p>  -->
 				
 			</div>
-			
 			<div class="navbar-buttons navbar-header pull-right"
 				role="navigation" style="position: absolute; right: 0">
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
-						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="assets/avatars/loyer.png" alt="Jason's Photo"
-							style="float: left; margin-top: 1px;" /> <span class="user-info"
+						class="dropdown-toggle">
+						<c:if test="${loginInfo.img!=null }">
+							<img class="nav-user-photo" src="${pageContext.request.contextPath}/system/loadImgOnline?path=${loginInfo.img}" alt="Jason's Photo" style="float: left; margin-top: 3px;    height: 45px; width: 39px;" />
+						</c:if> 
+						<c:if test="${loginInfo.img==null }">
+							<img class="nav-user-photo" src="assets/avatars/loyer.png" alt="Jason's Photo" style="float: left; margin-top: 1px;" />
+						</c:if> 							<span class="user-info"
 							style="display: block; padding: auto 0; top: 12px;"> <span>欢迎您,</span>
 								${loginInfo.userName}
 						</span> <i class="ace-icon fa fa-caret-down"
@@ -243,7 +246,7 @@ img {
 							<li class="divider"></li>
 							
 							<li style="position: relative;"><a id="infoBtn" href="${pageContext.request.contextPath}/person/toPassword"
-								target="menuFrame"> <i  class="iconxiugaimima"></i> 修改密码<span class="infoTishi" style="position: absolute; top: 3; right: 58px;"></span>
+								target="menuFrame"> <i  class="iconfont iconxiugaimima"></i> 修改密码<span class="infoTishi" style="position: absolute; top: 3; right: 58px;"></span>
 							</a></li>
 						</ul></li>
 						
@@ -400,7 +403,7 @@ img {
 
 					<c:forEach items="${menus}" var="menu">
 						<li class=""><a href="#" class="dropdown-toggle"> <span
-								class="iconfont"
+								class="iconfont ${menu.module.img}"
 								style="width: 20px; height: 20px; display: inline-block;"></span>
 								<span class="menu-text">${menu.module.name}</span> <c:if
 									test="${fn:length(menu.subModule) > 0}">
@@ -419,22 +422,7 @@ img {
 								</ul>
 							</c:if></li>
 					</c:forEach>
-					<script>
-						/*
-						 * @create: 2019年3月21日 
-						 * @author: XieXing 
-						 * @description:左侧菜单图标
-						 */
-						 
-						var iconfont = ['','','iconxuesheng-copy',
-								'iconlaoshi', 'iconfudaoyuan',
-								'iconlingdao','iconxueyuanzhuanye','iconguanliyuan','iconuser','iconshezhi'
-								];
-						var $iconfont = $(".iconfont");
-						for (var i = 0; i < $iconfont.length; i++) {
-							$iconfont.eq(i).addClass(iconfont[i]);
-						}
-					</script>
+					
 				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse"

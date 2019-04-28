@@ -55,14 +55,12 @@
 					<label class="letter">邮箱：</label><input name="managerEmail" id="managerEmail" class="notNull" value="${manager.managerEmail }"> 
 				</td>
 			</tr>
-			<!-- <tr>
+			<tr>
 				<td>
-					<label class="letter">学院：</label><select name="facultyId" id="faculty" class="notNull"></select> 
+					<label class="letter">照片：</label><input type="file" name="img" class="headImg">
 				</td>
-				<td>
-					<label class="letter">专业：</label><select name="majorId" id="major"></select>
-				</td>
-			</tr> -->
+				<td></td>
+			</tr>
 			<tr>
 				<td>
 					<label>入职时间：</label><input name="managerEntranceDate" id="managerEntranceDate" class="notNull"><span class="timePic iconfont icontime"></span> 

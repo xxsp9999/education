@@ -55,14 +55,14 @@
 					<label class="letter">邮箱：</label><input name="instructorEmail" id="instructorEmail" class="notNull" value="${instructor.instructorEmail }"> 
 				</td>
 			</tr>
-			<!-- <tr>
+			<tr>
 				<td>
 					<label class="letter">学院：</label><select name="facultyId" id="faculty" class="notNull"></select> 
 				</td>
 				<td>
-					<label class="letter">专业：</label><select name="majorId" id="major"></select>
+					<label class="letter">照片：</label><input type="file" name="img" class="headImg">
 				</td>
-			</tr> -->
+			</tr>
 			<tr>
 				<td>
 					<label>入职时间：</label><input name="instructorEntranceDate" id="instructorEntranceDate" class="notNull"><span class="timePic iconfont icontime"></span> 
@@ -120,6 +120,31 @@
 		$("#resetBtn").remove();
 	}
 	
+	/**获取学院 */
+	$.ajax({
+		url:path+"/college/getAllFaculties",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#faculty").empty();
+			var str = "<option value=''>请选择</option>";
+			var facId = "${instructor.instructorFaculty.id}";
+			for(var i=0;i<data.length;i++){
+				if(facId == data[i].id){
+					str += "<option value="+data[i].id+" selected>"+data[i].facName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+">"+data[i].facName+"</option>";
+				}
+			}
+			$("#faculty").append(str);
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
 	//设置入学时间
 	var instructorEntranceDate = "${instructor.instructorEntranceDate}";
 	if(instructorEntranceDate!=null&&instructorEntranceDate.length>0){

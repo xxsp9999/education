@@ -59,7 +59,9 @@
 				<td>
 					<label class="letter">职称：</label><select name="teaTitleId" id="teaTitle" class="notNull"></select> 
 				</td>
-				<td></td>
+				<td>
+					<label class="letter">职务：</label><select name="teaAdTitleId" id="teaAdTitleId" class="notNull"></select>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -67,6 +69,14 @@
 				</td>
 				<td>
 					<label>出生日期：</label><input name="teaBirth" id="teaBirth" class="notNull"><span class="timePic2 iconfont icontime"></span> 
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="letter">所在学院：</label><select name="facultyId" id="faculty" class="notNull"></select> 
+				</td>
+				<td>
+					<label class="letter">所在专业：</label><select name="majorId" id="major"></select>
 				</td>
 			</tr>
 			<tr>
@@ -83,6 +93,11 @@
 				<td colspan="2">
 					<label>备注：</label>
 					<textarea rows="" cols="" name="stuRemark">${teacher.teaRemark}</textarea> 
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="letter">照片：</label><input type="file" name="img" class="headImg">
 				</td>
 			</tr>
 		</table>
@@ -155,5 +170,70 @@
 	if(teaBirth!=null&&teaBirth.length>0){
 		$("#teaBirth").val(crtTimeFtt(teaBirth));
 	}
+	
+	/**获取学院 */
+	$.ajax({
+		url:path+"/college/getAllFaculties",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#faculty").empty();
+			var str = "<option value=''>请选择</option>";
+			var facId = "${teacher.teaFaculty.id}";
+			var majId = "${teacher.teaMajor.id}";
+			debugger;
+			for(var i=0;i<data.length;i++){
+				if(facId == data[i].id){
+					str += "<option value="+data[i].id+" selected class='tmpFac'>"+data[i].facName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+" class='tmpFac'>"+data[i].facName+"</option>";
+				}
+			}
+			$("#faculty").append(str);
+			if(facId!=null && facId.length>0){
+				getMajorsByFacultyId(facId,majId);
+			}
+			$("#faculty").on("change",function(){
+				var facId = $(this).val();
+				if(facId!=""){
+					getMajorsByFacultyId(facId);
+				}else{
+					$("#major").empty();
+				}
+			})
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
+	
+	/**获取职务 */
+	$.ajax({
+		url:path+"/leadertitle/getAllTitles",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#teaAdTitleId").empty();
+			var str = "<option value=''>请选择</option>";
+			var leaderTitle = "${teacher.teaAdTitle.id}";
+			for(var i=0;i<data.length;i++){
+				if(leaderTitle == data[i].id){
+					str += "<option value="+data[i].id+" selected>"+data[i].leaTitleName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+">"+data[i].leaTitleName+"</option>";
+				}
+			}
+			$("#teaAdTitleId").append(str);
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
 </script>
 </html>

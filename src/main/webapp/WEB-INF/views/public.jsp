@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/jquery-ui.custom.min.css" />
 	
-	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>	
 <!-- swal弹框 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/sweetAlert/css/sweet-swal.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/sweetAlert/js/sweet-swal.js"></script>
@@ -58,8 +61,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/common/jqGrid/js/i18n/grid.locale-cn.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/common/jqGrid/js/jquery.jqGrid.src.js"></script>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
+
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/common/public.css">

@@ -1,5 +1,12 @@
 package pers.xx.edu.service;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import pers.xx.edu.entity.Teacher;
 import pers.xx.edu.vo.TeacherVo;
 
@@ -29,5 +36,14 @@ public interface TeacherService extends BaseService<Teacher>{
 	 * @param teaBirth
 	 * @param teaTitleId
 	 */
-	void edit(TeacherVo teacherVo, String teaEntranceDate, String teaBirth, Integer teaTitleId);
+	void edit(TeacherVo teacherVo, String teaEntranceDate, String teaBirth, Integer teaTitleId,Integer teaAdTitleId,Integer faculty,Integer major,CommonsMultipartFile img,HttpSession session);
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月23日 下午5:15:31
+	 * @description 获取审核教师
+	 * @param params
+	 * @return
+	 */
+	Teacher getCheckTeacher(Map<String, Object> params);
 }

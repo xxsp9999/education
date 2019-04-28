@@ -18,6 +18,8 @@ public class ModuleVo{
 	
 	private String url;//网址
 	
+	private String img;//图标
+	
 	private String sort;//排序
 	
 	private String type;//请求类型
@@ -78,6 +80,14 @@ public class ModuleVo{
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 

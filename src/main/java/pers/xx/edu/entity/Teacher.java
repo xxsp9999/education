@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -21,56 +22,73 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @create 2019年3月16日 下午5:18:40
  */
 @Entity
-@Table(name="teacher")
-public class Teacher {
-	
+@Table(name = "teacher")
+public class Teacher implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
-	@Column(name="tea_name",columnDefinition="varchar(255) COMMENT '教师名称'")
-	private String teaName;//教师名称
-	
-	@Column(name="tea_number",columnDefinition="varchar(255) COMMENT '教师号'")
-	private String teaNumber;//教师号
-	
-	@Column(name="tea_password",columnDefinition="varchar(255) COMMENT '密码'")
-	private String teaPassword;//密码
-	
+
+	@Column(name = "tea_name", columnDefinition = "varchar(255) COMMENT '教师名称'")
+	private String teaName;// 教师名称
+
+	@Column(name = "tea_number", columnDefinition = "varchar(255) COMMENT '教师号'")
+	private String teaNumber;// 教师号
+
+	@Column(name = "tea_password", columnDefinition = "varchar(255) COMMENT '密码'")
+	private String teaPassword;// 密码
+
 	@ManyToOne
-	@JoinColumn(name="tea_title",columnDefinition="int(11) COMMENT '职称'")
-	private TeaTitle teaTitle;//职称
-	
-	@Column(name="tea_sex",columnDefinition="varchar(255) COMMENT '教师性别'")
-	private String teaSex;//教师性别
-	
-	@Column(name="tea_id",columnDefinition="varchar(255) COMMENT '身份证号'")
-	private String teaId;//身份证号
-	
-	@Column(name="tea_nationality",columnDefinition="varchar(255) COMMENT '民族'")
-	private String teaNationality;//民族
-	
-	@Column(name="tea_phone",columnDefinition="varchar(255) COMMENT '电话'")
-	private String teaPhone;//电话
-	
-	@Column(name="tea_email",columnDefinition="varchar(255) COMMENT '邮箱'")
-	private String teaEmail;//邮箱
-	
-	@Column(name="tea_addr",columnDefinition="varchar(255) COMMENT '家庭地址'")
-	private String teaAddr;//家庭地址
-	
+	@JoinColumn(name = "tea_title", columnDefinition = "int(11) COMMENT '职称'")
+	private TeaTitle teaTitle;// 职称
+
+	@ManyToOne
+	@JoinColumn(name = "tea_ad_title", columnDefinition = "int(11) COMMENT '职务'")
+	private LeaderTitle teaAdTitle;// 职务
+
+	@Column(name = "tea_sex", columnDefinition = "varchar(255) COMMENT '教师性别'")
+	private String teaSex;// 教师性别
+
+	@Column(name = "tea_id", columnDefinition = "varchar(255) COMMENT '身份证号'")
+	private String teaId;// 身份证号
+
+	@Column(name = "tea_nationality", columnDefinition = "varchar(255) COMMENT '民族'")
+	private String teaNationality;// 民族
+
+	@Column(name = "tea_phone", columnDefinition = "varchar(255) COMMENT '电话'")
+	private String teaPhone;// 电话
+
+	@Column(name = "tea_email", columnDefinition = "varchar(255) COMMENT '邮箱'")
+	private String teaEmail;// 邮箱
+
+	@Column(name = "tea_addr", columnDefinition = "varchar(255) COMMENT '家庭地址'")
+	private String teaAddr;// 家庭地址
+
 	@JSONField(format = "yyyy年MM月dd日")
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	@Column(name="tea_birth",columnDefinition="datetime COMMENT '出生日期'")
-	private Date teaBirth;//出生日期
-	
+	@Column(name = "tea_birth", columnDefinition = "datetime COMMENT '出生日期'")
+	private Date teaBirth;// 出生日期
+
 	@JSONField(format = "yyyy年MM月dd日")
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-	@Column(name="tea_entrance_date",columnDefinition="datetime COMMENT '入职时间'")
-	private Date teaEntranceDate;//入职时间
-	
-	@Column(name="tea_remark",columnDefinition="varchar(255) COMMENT '备注'")
-	private String teaRemark;//备注
+	@Column(name = "tea_entrance_date", columnDefinition = "datetime COMMENT '入职时间'")
+	private Date teaEntranceDate;// 入职时间
+
+	@Column(name = "tea_remark", columnDefinition = "varchar(255) COMMENT '备注'")
+	private String teaRemark;// 备注
+
+	@ManyToOne
+	@JoinColumn(name = "tea_faculty", columnDefinition = "int(11) COMMENT '所在学院'")
+	private Faculty teaFaculty;// 所在学院
+
+	@ManyToOne
+	@JoinColumn(name = "tea_major", columnDefinition = "int(11) COMMENT '所在专业'")
+	private Major teaMajor;// 所在专业
+
+	@Column(name = "tea_img", columnDefinition = "varchar(255) COMMENT '老师照片'")
+	private String teaImg;// 老师照片
 
 	public Integer getId() {
 		return id;
@@ -183,7 +201,37 @@ public class Teacher {
 	public void setTeaTitle(TeaTitle teaTitle) {
 		this.teaTitle = teaTitle;
 	}
-	
-	
+
+	public String getTeaImg() {
+		return teaImg;
+	}
+
+	public void setTeaImg(String teaImg) {
+		this.teaImg = teaImg;
+	}
+
+	public LeaderTitle getTeaAdTitle() {
+		return teaAdTitle;
+	}
+
+	public void setTeaAdTitle(LeaderTitle teaAdTitle) {
+		this.teaAdTitle = teaAdTitle;
+	}
+
+	public Faculty getTeaFaculty() {
+		return teaFaculty;
+	}
+
+	public void setTeaFaculty(Faculty teaFaculty) {
+		this.teaFaculty = teaFaculty;
+	}
+
+	public Major getTeaMajor() {
+		return teaMajor;
+	}
+
+	public void setTeaMajor(Major teaMajor) {
+		this.teaMajor = teaMajor;
+	}
 
 }

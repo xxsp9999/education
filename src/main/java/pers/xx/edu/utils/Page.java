@@ -6,11 +6,12 @@ import java.util.List;
  * 
  * @description 对JqGrid的数据进行分页格式化 
  * @author XieXing
- * @create 2018-4-10上午11:45:55
+ * @create 2018-10-21上午11:45:55
  * @param <T>
  *
  */
 public class Page<T> {
+	
 	
 	private int page;//当前页
 	
@@ -99,4 +100,6 @@ public class Page<T> {
 				+"\"rows\":"+JsonUtils.toJson(getRows())
 				+"}";
 	}
+	
+	
 }

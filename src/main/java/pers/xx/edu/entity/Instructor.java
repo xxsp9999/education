@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,8 +23,10 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 @Entity
 @Table(name="instructor")
-public class Instructor {
+public class Instructor implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -65,7 +70,13 @@ public class Instructor {
 	
 	@Column(name="instructor_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String instructorRemark;//备注
+	
+	@ManyToOne
+	@JoinColumn(name="instructor_faculty",columnDefinition="int(11) COMMENT '所属学院'")
+	private Faculty instructorFaculty;//所属学院
 
+	@Column(name="instructor_img",columnDefinition="varchar(255) COMMENT '导员照片'")
+	private String instructorImg;//导员照片
 	public Integer getId() {
 		return id;
 	}
@@ -168,6 +179,22 @@ public class Instructor {
 
 	public void setInstructorPassword(String instructorPassword) {
 		this.instructorPassword = instructorPassword;
+	}
+
+	public Faculty getInstructorFaculty() {
+		return instructorFaculty;
+	}
+
+	public void setInstructorFaculty(Faculty instructorFaculty) {
+		this.instructorFaculty = instructorFaculty;
+	}
+
+	public String getInstructorImg() {
+		return instructorImg;
+	}
+
+	public void setInstructorImg(String instructorImg) {
+		this.instructorImg = instructorImg;
 	}
 
 }

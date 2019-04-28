@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,8 +23,10 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 @Entity
 @Table(name="student")
-public class Student {
+public class Student implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;//主键id
@@ -65,6 +68,9 @@ public class Student {
 	@Column(name="stu_addr",columnDefinition="varchar(255) COMMENT '学生家庭地址'")
 	private String stuAddr;//学生家庭地址
 	
+	@Column(name="stu_img",columnDefinition="varchar(255) COMMENT '学生照片'")
+	private String stuImg;//学生照片
+	
 	@Column(name="stu_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String stuRemark;//备注
 	
@@ -75,6 +81,10 @@ public class Student {
 	@ManyToOne
 	@JoinColumn(name="stu_major",columnDefinition="int(11) COMMENT '学生专业'")
 	private Major stuMajor;//学生专业
+	
+	@ManyToOne
+	@JoinColumn(name="stu_class",columnDefinition="int(11) COMMENT '学生班级'")
+	private EduClass stuClass;//学生班级
 
 	public Integer getId() {
 		return id;
@@ -194,6 +204,22 @@ public class Student {
 
 	public void setStuFaculty(Faculty stuFaculty) {
 		this.stuFaculty = stuFaculty;
+	}
+
+	public EduClass getStuClass() {
+		return stuClass;
+	}
+
+	public void setStuClass(EduClass stuClass) {
+		this.stuClass = stuClass;
+	}
+
+	public String getStuImg() {
+		return stuImg;
+	}
+
+	public void setStuImg(String stuImg) {
+		this.stuImg = stuImg;
 	}
 	
 }

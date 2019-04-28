@@ -69,7 +69,7 @@ public class LoginController {
 		if (loginInfo == null) {
 			return "system/login";
 		}
-		//角色获取，可能存在多角色
+		// 角色获取，可能存在多角色
 		List<Role> roles = new ArrayList<>();
 		roles.add(loginInfo.getUserRole());
 		// 3.根据角色获取模块
@@ -105,6 +105,25 @@ public class LoginController {
 				}
 			}
 		}
+
+		// 对二级菜单进行排序
+		Collections.sort(moduleSub, new Comparator<Module>() {
+			/*
+			 * int compare(ListMenu menu1, ListMenu menu2) 返回一个基本类型的整型， 返回负数表示：menu1 小于
+			 * menu2， 返回0 表示：menu1和menu1相等， 返回正数表示：menu1大于menu1
+			 */
+			public int compare(Module menu1, Module menu2) {
+				// 按照Person的年龄进行升序排列
+				if (Integer.parseInt(menu1.getSort()) > Integer.parseInt(menu2.getSort())) {
+					return 1;
+				}
+				if (Integer.parseInt(menu1.getSort()) > Integer.parseInt(menu2.getSort())) {
+					return 0;
+				}
+				return -1;
+			}
+		});
+
 		// 封装菜单
 		List<ListMenu> menus = new ArrayList<ListMenu>();
 		if (module != null) {

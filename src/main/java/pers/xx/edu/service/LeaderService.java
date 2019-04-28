@@ -1,5 +1,9 @@
 package pers.xx.edu.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import pers.xx.edu.entity.Leader;
 import pers.xx.edu.vo.LeaderVo;
 
@@ -28,5 +32,5 @@ public interface LeaderService extends BaseService<Leader> {
 	 * @param leaderBirth
 	 * @param leaderTitle
 	 */
-	void edit(LeaderVo leaderVo, String leaderEntranceDate, String leaderBirth, Integer leaderTitle);
+	void edit(LeaderVo leaderVo, String leaderEntranceDate, String leaderBirth, Integer leaderTitle,CommonsMultipartFile img,HttpSession session);
 }

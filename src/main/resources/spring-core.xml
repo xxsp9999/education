@@ -96,7 +96,7 @@
 		mode="proxy" />
 	<task:scheduler id="qbScheduler" pool-size="10" />
 
-	<!-- 注册Spring工具类 -->
+	<!-- 注册Spring工具类 ,用于某些继承类，多线程无法注入问题的解决-->
 	<bean id="springContextUtil"
 		class="pers.xx.edu.utils.SpringContextUtil"></bean>
 
@@ -111,4 +111,7 @@
 		<!-- resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常 -->
 		<property name="resolveLazily" value="true" />
 	</bean>
+	
+	<!-- 导入Activiti配置 -->
+	<import resource="classpath:activiti-context.xml"/>
 </beans>

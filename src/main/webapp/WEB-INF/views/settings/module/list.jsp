@@ -140,7 +140,6 @@
 				<li class="gray-bac">
 					<a style="color:black" href="##">系统管理</a>
 				</li>
-
 				<li class="gray-bac">
 					<a style="color:black" href="##">模块管理</a>
 				</li>
@@ -187,14 +186,22 @@
 							  			<div class="moduleInput">
 							  				<span>路径</span>  <input id="url" type="text">
 							  			</div>
+							  			<!--图标  -->
+							  			<div class="moduleInput">
+							  				<span>图标</span>  <input id="img" type="text">
+							  			</div>
+							  			<!--排序  -->
+							  			<div class="moduleInput">
+							  				<span>排序</span>  <input id="sort" type="text">
+							  			</div>
 							  			<!-- 备注 -->
 							  			<div class="moduleInput">
 							  				<span>备注</span>  <input id="remark" type="text">
 							  			</div>
 							  			<!-- 创建时间 -->
-							  			<!-- <div class="moduleInput">
-							  				<span>创建时间</span>  <input type="text" value="">
-							  			</div> -->
+							  			<div class="moduleInput">
+							  				<span>创建时间</span>  <input type="text" id="createDate">
+							  			</div>
 						            	<div class="editModuleButtons">
 						            		<button id="editOk" class="btn btn-success">修改</button>
 						            		<button id="editCancel" class="btn btn-default">取消</button>
@@ -204,13 +211,15 @@
 							  	<script type="text/javascript">
 							  		var editIds;
 							  		function getParentModule(){
-											var i;
 											$.ajax({
+												url : "${pageContext.request.contextPath}/system/getParentModule",
 												type : "post",
 												async : false,
-												url : "${pageContext.request.contextPath}/system/getParentModule",
+												data:{
+													
+												},
 												success : function(result){
-													for(i = 0; i < result.length; i++){
+													for(var i = 0; i < result.length; i++){
 														 var string = result[i].split(":");
 														 $("#parentModule").append("<option value='"+string[0]+"'>"+string[1]+"</option>");
 													}   
@@ -250,7 +259,7 @@
 								  		shrinkToFit:false,//禁止按比例缩放   
 								  		autoScroll: true, 
 								  		height: "350px",
-								  	       colNames:['序号','菜单名称', '父级菜单', '请求类型', '路径', '备注', '创建时间'],
+								  	       colNames:['序号','菜单名称', '父级菜单', '请求类型', '路径','图标','排序', '备注', '创建时间'],
 								  	       colModel:[
 								  	         {name:'id',index:'id', width:160,align:"center",hidden:true},
 								  	         {name:'name',index:'name', width:187,align:"center",editable:true,editrules:{custom:true,custom_func:myExamine}},
@@ -277,6 +286,8 @@
 												},edittype:'select',editoptions:${select}},
 								  	         {name:'type',index:'type', width:187, align:"center",editable:true,editrules:{custom:true,custom_func:myExamine}},
 								  	         {name:'url',index:'url', width:187, align:"left",editable:true,editrules:{custom:true,custom_func:myExamine}},
+								  	       	 {name:'img',index:'img', width:187, align:"left",editable:true,editrules:{custom:true,custom_func:myExamine}},
+								  	         {name:'sort',index:'sort', width:187, align:"left",editable:true,editrules:{custom:true,custom_func:myExamine}},
 								  	         {name:'remark',index:'remark', width:187, align:"center",editable:true,editrules:{custom:true,custom_func:myExamine}},
 								  	         {name:'createDate',index:'createDate', width:185, align:"center",editable:true},
 								  	       ],
@@ -396,17 +407,23 @@
 																	swal("","一次只能修改一条数据","error")
 																}
 																else{
+																	debugger;
 																	$('.editModule')[0].style.visibility = 'visible';
 																	var rowData = $("#table").jqGrid("getRowData",editIds[0]);
 																	$("#menuName").val(rowData.name);
 															  		$("#requestType").val(rowData.type);
 															  		$("#url").val(rowData.url);
+															  		$("#img").val(rowData.img);
+															  		$("#sort").val(rowData.sort);
 															  		$("#remark").val(rowData.remark);
+															  		$("#createDate").val(rowData.createDate);
 															  		var obj = document.getElementById("parentModule");
+															  		debugger;
 															  		for(i=0;i<obj.length;i++){
 																        if(obj[i].text==rowData.parentModuleId)
 																            obj[i].selected = true;
 																    }
+																    
 																}
 															 }
 														}).navButtonAdd(pager_selector,{
@@ -495,7 +512,10 @@
 								  		var parentModuleId = $("#parentModule").val();
 								  		var requestType = $("#requestType").val();
 								  		var url = $("#url").val();
+								  		var img = $("#img").val();
+								  		var sort = $("#sort").val();
 								  		var remark = $("#remark").val();
+								  		debugger;
 							  			$.ajax({
 												type:"POST",
 												url:"${pageContext.request.contextPath}/system/module/edit",
@@ -506,6 +526,8 @@
 													"parentModuleId":parentModuleId,
 													"type":requestType,
 													"url":url,
+													"img":img,
+													"sort":sort,
 													"remark":remark
 													},
 												dataType:"json",

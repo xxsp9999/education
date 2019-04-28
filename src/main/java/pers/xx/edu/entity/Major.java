@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,8 +23,10 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 @Entity
 @Table(name="major")
-public class Major {
+public class Major implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;

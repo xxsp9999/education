@@ -1,5 +1,9 @@
 package pers.xx.edu.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import pers.xx.edu.entity.Manager;
 import pers.xx.edu.vo.ManagerVo;
 
@@ -28,5 +32,5 @@ public interface ManagerService extends BaseService<Manager>{
 	 * @param managerEntranceDate
 	 * @param managerBirth
 	 */
-	void edit(ManagerVo managerVo, String managerEntranceDate, String managerBirth);
+	void edit(ManagerVo managerVo, String managerEntranceDate, String managerBirth,CommonsMultipartFile img,HttpSession session);
 }

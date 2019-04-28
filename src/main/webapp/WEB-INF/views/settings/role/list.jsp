@@ -14,7 +14,7 @@
 	<div id="head">
 		<li id="crumbs">
 			<span>系统设置</span>
-			<span class="iconfont iconarrow-right"></span>
+			>
 			<span>权限管理</span>
 		</li>
 	</div>
@@ -129,7 +129,7 @@ function drawTable(){
 	})
 	.navButtonAdd('#pager', {
 		caption: '新增',
-		buttonicon: 'iconfont iconadd',
+		buttonicon: 'iconfont iconzengjia',
 		onClickButton: function(){//按钮点击函数
 	       window.location.href="${pageContext.request.contextPath }/settings/toRoAdd?operate=add";
 		}

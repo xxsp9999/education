@@ -1,5 +1,9 @@
 package pers.xx.edu.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import pers.xx.edu.entity.Student;
 import pers.xx.edu.vo.StudentVo;
 
@@ -30,6 +34,6 @@ public interface StudentService extends BaseService<Student> {
 	 * @param facultyId
 	 * @param majorId
 	 */
-	void edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId, Integer majorId);
+	void edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId, Integer majorId,Integer stuClassId,CommonsMultipartFile img,HttpSession session);
 
 }

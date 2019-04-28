@@ -4,11 +4,13 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import pers.xx.edu.dao.BaseDao;
 import pers.xx.edu.dao.LeaderDao;
@@ -18,6 +20,7 @@ import pers.xx.edu.service.LeaderService;
 import pers.xx.edu.service.LeaderTitleService;
 import pers.xx.edu.utils.DateTimeUtils;
 import pers.xx.edu.utils.StringUtils;
+import pers.xx.edu.utils.UploadUtils;
 import pers.xx.edu.vo.LeaderVo;
 
 /**
@@ -41,7 +44,7 @@ public class leaderServiceImpl extends BaseServiceImpl<Leader> implements Leader
 	}
 
 	@Override
-	public void edit(LeaderVo leaderVo, String leaderEntranceDate, String leaderBirth, Integer leaderTitle) {
+	public void edit(LeaderVo leaderVo, String leaderEntranceDate, String leaderBirth, Integer leaderTitle,CommonsMultipartFile img,HttpSession session) {
 		Leader leader = null;
 		Integer id = leaderVo.getId();
 		if (id != null) {
@@ -66,6 +69,10 @@ public class leaderServiceImpl extends BaseServiceImpl<Leader> implements Leader
 		if (leaderTitle != null) {
 			LeaderTitle leaderTitle2 = leaderTitleService.getById(leaderTitle);
 			leader.setLeaderTitle(leaderTitle2);
+		}
+		if (img != null && !img.isEmpty()) {
+			String savePath = UploadUtils.saveFile(img, session, "1");
+			leader.setLeaderImg(savePath);
 		}
 		saveOrUpdate(leader);
 	}

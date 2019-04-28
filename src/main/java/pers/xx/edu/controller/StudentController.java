@@ -7,11 +7,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import pers.xx.edu.entity.Student;
 import pers.xx.edu.service.StudentService;
@@ -118,8 +120,8 @@ public class StudentController {
 	 */
 	@RequestMapping("/edit")
 	public String edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId,
-			Integer majorId) {
-		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId);
+			Integer majorId,Integer stuClassId,@RequestParam(value="img",required=false)CommonsMultipartFile img,HttpSession session) {
+		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId,stuClassId,img,session);
 		return "redirect:/student/toList";
 	}
 }

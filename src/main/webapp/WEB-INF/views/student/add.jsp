@@ -65,6 +65,14 @@
 			</tr>
 			<tr>
 				<td>
+					<label class="letter">班级：</label><select name="stuClassId" id="stuClassId" class="notNull"></select> 
+				</td>
+				<td>
+					<label class="letter">照片：</label><input type="file" name="img" class="headImg">
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<label>入学时间：</label><input name="stuEntranceDate" id="stuEntranceDate" class="notNull"><span class="timePic iconfont icontime"></span> 
 				</td>
 				<td>
@@ -148,6 +156,33 @@
 		},
 		error:function(){
 			swal("","获取学院失败","error");
+		}
+	})
+	
+	/**获取班级 */
+	$.ajax({
+		url:path+"/educlass/getAllClasses",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#stuClassId").empty();
+			var str = "<option value=''>请选择</option>";
+			var eduClassId = "${student.stuClass.id}";
+			debugger;
+			for(var i=0;i<data.length;i++){
+				if(eduClassId == data[i].id){
+					str += "<option value="+data[i].id+" selected>"+data[i].claName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+">"+data[i].claName+"</option>";
+				}
+			}
+			$("#stuClassId").append(str);
+		},
+		error:function(){
+			swal("","获取班级失败","error");
 		}
 	})
 	

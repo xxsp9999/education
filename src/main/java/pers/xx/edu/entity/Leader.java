@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,7 +23,9 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 @Entity
 @Table(name = "leader")
-public class Leader {
+public class Leader implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -72,6 +75,9 @@ public class Leader {
 	@Column(name = "leader_remark", columnDefinition = "varchar(255) COMMENT '备注'")
 	private String leaderRemark;// 备注
 
+	@Column(name="leader_img",columnDefinition="varchar(255) COMMENT '领导照片'")
+	private String leaderImg;//领导照片
+	
 	public Integer getId() {
 		return id;
 	}
@@ -182,6 +188,14 @@ public class Leader {
 
 	public void setLeaderRemark(String leaderRemark) {
 		this.leaderRemark = leaderRemark;
+	}
+
+	public String getLeaderImg() {
+		return leaderImg;
+	}
+
+	public void setLeaderImg(String leaderImg) {
+		this.leaderImg = leaderImg;
 	}
 
 }

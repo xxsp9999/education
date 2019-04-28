@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,35 +13,36 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "message")
-public class MessageTran
-{
+public class MessageTran implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;//id
+	private int id;// id
 
-    private String btPacketType;     //数据包头，默认为0xA0
-    private String btDataLen;        //数据包长度，数据包从‘长度’字节后面开始的字节数，不包含‘长度’字节本身
-    private String btReadId;         //读写器地址
-    private String btCmd;            //数据包命令代码
-    private String btAryData;      //数据包命令参数，部分命令无参数
-    private String btCheck;          //校验和，除校验和本身外所有字节的校验和
+	private String btPacketType; // 数据包头，默认为0xA0
+	private String btDataLen; // 数据包长度，数据包从‘长度’字节后面开始的字节数，不包含‘长度’字节本身
+	private String btReadId; // 读写器地址
+	private String btCmd; // 数据包命令代码
+	private String btAryData; // 数据包命令参数，部分命令无参数
+	private String btCheck; // 校验和，除校验和本身外所有字节的校验和
 
-    private String btAryTranData;  //完整数据包
+	private String btAryTranData; // 完整数据包
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date createDate = new Date();// 创建时间
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date createDate = new Date();//创建时间
+	private String orderNumber;// 单子编号
 
-    private String orderNumber;//单子编号
+	private String state = "0";// 状态
 
-    private String state = "0";//状态
+	private String type = ""; // 类型 in;out
 
-    private String type = ""; //类型 in;out
+	// 设置属性
 
-    //设置属性
-
-    public MessageTran(){
-    }
+	public MessageTran() {
+	}
 
 	public int getId() {
 		return id;
@@ -138,17 +140,12 @@ public class MessageTran
 		this.type = type;
 	}
 
-
 	@Override
 	public String toString() {
-		return "MessageTran [id=" + id + ", btPacketType=" + btPacketType
-				+ ", btDataLen=" + btDataLen + ", btReadId=" + btReadId
-				+ ", btCmd=" + btCmd + ", btAryData=" + btAryData
-				+ ", btCheck=" + btCheck + ", btAryTranData=" + btAryTranData
-				+ ", createDate=" + createDate + ", orderNumber=" + orderNumber
+		return "MessageTran [id=" + id + ", btPacketType=" + btPacketType + ", btDataLen=" + btDataLen + ", btReadId="
+				+ btReadId + ", btCmd=" + btCmd + ", btAryData=" + btAryData + ", btCheck=" + btCheck
+				+ ", btAryTranData=" + btAryTranData + ", createDate=" + createDate + ", orderNumber=" + orderNumber
 				+ ", state=" + state + ", type=" + type + "]";
 	}
-
-
 
 }

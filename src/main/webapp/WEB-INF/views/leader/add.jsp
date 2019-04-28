@@ -59,7 +59,9 @@
 				<td>
 					<label class="letter">职位：</label><select name="leaderTitle" id="leaderTitle" class="notNull"></select> 
 				</td>
-				<td></td>
+				<td>
+					<label class="letter">照片：</label><input type="file" name="img" class="headImg">
+				</td>
 			</tr>
 			<!-- <tr>
 				<td>

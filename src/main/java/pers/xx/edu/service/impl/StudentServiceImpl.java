@@ -4,22 +4,27 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import pers.xx.edu.dao.BaseDao;
 import pers.xx.edu.dao.StudentDao;
+import pers.xx.edu.entity.EduClass;
 import pers.xx.edu.entity.Faculty;
 import pers.xx.edu.entity.Major;
 import pers.xx.edu.entity.Student;
+import pers.xx.edu.service.EduClassService;
 import pers.xx.edu.service.FacultyService;
 import pers.xx.edu.service.MajorService;
 import pers.xx.edu.service.StudentService;
 import pers.xx.edu.utils.DateTimeUtils;
 import pers.xx.edu.utils.StringUtils;
+import pers.xx.edu.utils.UploadUtils;
 import pers.xx.edu.vo.StudentVo;
 
 /**
@@ -35,6 +40,9 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 
 	@Autowired
 	private MajorService majorService;
+
+	@Autowired
+	private EduClassService eduClassService;
 
 	@Resource(name = "studentDao")
 	@Override
@@ -58,7 +66,8 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 	 * @return
 	 */
 	@Override
-	public void edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId, Integer majorId) {
+	public void edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId, Integer majorId,
+			Integer stuClassId, CommonsMultipartFile img, HttpSession session) {
 		Student student = null;
 		Integer id = studentVo.getId();
 		if (id != null) {
@@ -88,11 +97,19 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 			Major major = majorService.getById(majorId);
 			student.setStuMajor(major);
 		}
+		if (stuClassId != null) {
+			EduClass eduClass = eduClassService.getById(stuClassId);
+			student.setStuClass(eduClass);
+		}
+		if (img != null && !img.isEmpty()) {
+			String savePath = UploadUtils.saveFile(img, session, "1");
+			student.setStuImg(savePath);
+		}
 		saveOrUpdate(student);
 	}
 
 	@Override
 	public Student login(String code, String password) {
-		return this.getBaseDao().login(code,password);
+		return this.getBaseDao().login(code, password);
 	}
 }

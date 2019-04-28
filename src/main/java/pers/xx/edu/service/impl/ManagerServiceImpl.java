@@ -4,10 +4,12 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import pers.xx.edu.dao.BaseDao;
 import pers.xx.edu.dao.ManagerDao;
@@ -15,6 +17,7 @@ import pers.xx.edu.entity.Manager;
 import pers.xx.edu.service.ManagerService;
 import pers.xx.edu.utils.DateTimeUtils;
 import pers.xx.edu.utils.StringUtils;
+import pers.xx.edu.utils.UploadUtils;
 import pers.xx.edu.vo.ManagerVo;
 
 /**
@@ -37,7 +40,7 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 	}
 
 	@Override
-	public void edit(ManagerVo managerVo, String managerEntranceDate, String managerBirth) {
+	public void edit(ManagerVo managerVo, String managerEntranceDate, String managerBirth,CommonsMultipartFile img,HttpSession session) {
 		Manager manager = null;
 		Integer id = managerVo.getId();
 		if (id != null) {
@@ -58,6 +61,10 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 			manager.setManagerBirth(birthDate);
 		} catch (ParseException e) {
 			System.err.println("时间格式不正确！");
+		}
+		if (img != null && !img.isEmpty()) {
+			String savePath = UploadUtils.saveFile(img, session, "1");
+			manager.setManagerImg(savePath);
 		}
 		saveOrUpdate(manager);
 	}

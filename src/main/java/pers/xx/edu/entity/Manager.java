@@ -1,5 +1,6 @@
 package pers.xx.edu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,8 +21,10 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 @Entity
 @Table(name="manager")
-public class Manager {
+public class Manager implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -65,6 +68,9 @@ public class Manager {
 	
 	@Column(name="manager_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String managerRemark;//备注
+	
+	@Column(name="manager_img",columnDefinition="varchar(255) COMMENT '管理员照片'")
+	private String managerImg;//管理员照片
 
 	public Integer getId() {
 		return id;
@@ -168,6 +174,14 @@ public class Manager {
 
 	public void setManagerEntranceDate(Date managerEntranceDate) {
 		this.managerEntranceDate = managerEntranceDate;
+	}
+
+	public String getManagerImg() {
+		return managerImg;
+	}
+
+	public void setManagerImg(String managerImg) {
+		this.managerImg = managerImg;
 	}
 	
 	

@@ -1,8 +1,10 @@
 package pers.xx.edu.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,7 @@ import pers.xx.edu.entity.User;
 import pers.xx.edu.service.ModuleRoleService;
 import pers.xx.edu.service.ModuleService;
 import pers.xx.edu.utils.ImageUtils;
+import pers.xx.edu.utils.JsonUtils;
 import pers.xx.edu.utils.Page;
 import pers.xx.edu.vo.ModuleVo;
 
@@ -235,5 +238,57 @@ public class SystemController {
 		}else{
 			return "{\"status\":\"success\"}";
 		}
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月19日 上午10:45:05
+	 * @description 获取父级菜单
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getParentModule",produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String getParentModule(HttpServletRequest request){
+		Map<String,Object> params = new HashMap<String,Object>();
+		List<Module> list = moduleService.getList(params, null);
+		List<String> Pmodule=new ArrayList<String>();
+		for(int i=0;i<list.size();i++ ){
+			if(list.get(i).getLevel().equals("0"))
+				Pmodule.add(list.get(i).getId()+":"+list.get(i).getName());
+		}
+		return JsonUtils.toStandardJson(Pmodule) ;
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月25日 下午3:55:06
+	 * @description 图片加载
+	 * @param path
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/loadImgOnline")
+	public void loadImg(String path, HttpServletRequest request,
+			HttpServletResponse response) {
+		// 读取本地图片输入流
+		try {
+			FileInputStream inputStream = new FileInputStream(path);
+			int i = inputStream.available();
+			// byte数组用于存放图片字节数据
+			byte[] buff = new byte[i];
+			inputStream.read(buff);
+			// 记得关闭输入流
+			inputStream.close();
+			// 设置发送到客户端的响应内容类型
+			response.setContentType("image/*");
+			OutputStream out = response.getOutputStream();
+			out.write(buff);
+			// 关闭响应输出流
+			out.close();
+		} catch (Exception e) {
+			System.out.println("图片不存在.");
+		}
+
 	}
 }

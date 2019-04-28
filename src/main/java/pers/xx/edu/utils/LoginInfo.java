@@ -13,6 +13,8 @@ public class LoginInfo {
 	
 	private String userName;//用户名称
 	
+	private String img;//照片
+	
 	private Role userRole;//用户角色
 
 	public Integer getUserId() {
@@ -37,6 +39,14 @@ public class LoginInfo {
 
 	public void setUserRole(Role userRole) {
 		this.userRole = userRole;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	

@@ -13,7 +13,7 @@
 	<div id="head">
 		<li id="crumbs">
 			<span>个人中心</span>
-			<span class="iconfont iconarrow-right"></span>
+			>
 			<span>修改密码</span>
 		</li>
 	</div>
@@ -30,18 +30,18 @@
 					<input type="hidden" name="originalPassword" id="originalPassword" value="${user.password}">
 					<span>旧密码：</span>
 					<input type="password" name="password" id="password" style="width: 180px;text-indent: 18px">
-					<span class="iconfont icon-mima1" style="position:absolute;left:535px;top:175px;width:auto;font-size:18px;"></span>
+					<span class="pwd iconfont iconxiugaimima"></span>
 				</li>
 				<li>
 					<span>新密码：</span>
 					<input type="password" name="newPassword" id="newPassword" maxlength="16" style="width: 180px;text-indent: 18px"/>
-					<span class="iconfont icon-mima1" style="position:absolute;left:535px;top:245px;width:auto;font-size:18px;"></span>
+					<span class="pwd iconfont iconxiugaimima" ></span>
 					<label class="hint" id="hint_newPsw">&nbsp;</label>
 				</li>
 				<li>
 					<span>确认密码：</span>
 					<input type="password" name="confirm" id="confirm" maxlength="16" style="width: 180px;text-indent: 18px"/>
-					<span class="iconfont icon-mima1" style="position:absolute;left:535px;top:315px;width:auto;font-size:18px;"></span>
+					<span class="pwd iconfont iconxiugaimima" ></span>
 					<label class="hint" id="hint_pswConfirm">&nbsp;两次密码不一致</label>
 				</li>
 			</ul>

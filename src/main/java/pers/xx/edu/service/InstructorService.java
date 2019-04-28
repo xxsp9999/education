@@ -1,5 +1,9 @@
 package pers.xx.edu.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import pers.xx.edu.entity.Instructor;
 import pers.xx.edu.vo.InstructorVo;
 
@@ -28,5 +32,25 @@ public interface InstructorService extends BaseService<Instructor> {
 	 * @param instructorEntranceDate
 	 * @param instructorBirth
 	 */
-	void edit(InstructorVo instructorVo, String instructorEntranceDate, String instructorBirth);
+	void edit(InstructorVo instructorVo,Integer facultyId,  String instructorEntranceDate, String instructorBirth,CommonsMultipartFile img,HttpSession session);
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月22日 下午4:13:40
+	 * @description 根据学院和年级获取导员Id
+	 * @param facultyId
+	 * @param gradeId
+	 * @return
+	 */
+	String getByFacultyIdAndGradeId(Integer facultyId,Integer gradeId);
+	
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月22日 下午4:43:53
+	 * @description 根据导员编号获取导员信息
+	 * @param number
+	 * @return
+	 */
+	Instructor getByInstructorNumber(String number);
 }
