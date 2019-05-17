@@ -21,10 +21,27 @@ public interface BaseService<T> {
 	public void save(T entity);
 	
 	/**
+	 * @author XieXing
+	 * @createDate 2019年5月4日 下午3:37:15
+	 * @description 单元测试保存
+	 * @param entity
+	 */
+	public void saveByUnit(T entity);
+	
+	/**
 	 * 更新
 	 * @param entity
 	 */
 	public void update(T entity);
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月4日 上午11:05:46
+	 * @description 批量保存数据
+	 * @param list
+	 * @return
+	 */
+	public int batchSave(List<T> list);
 	
 	/**
 	 * 保存或更新，根据实体的Id是不是为0来判断
@@ -71,6 +88,14 @@ public interface BaseService<T> {
 	 */
 	public Page<T> getPageList(Map<String,Object> params,Map<String,String> orderOrGroupBy);
 	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月6日 下午6:27:53
+	 * @description 根据条件获取数据
+	 * @param params
+	 * @return
+	 */
+	public Integer getCount(Map<String, Object> params);
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月15日 上午11:26:50

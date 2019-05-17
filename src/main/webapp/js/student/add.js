@@ -1,6 +1,6 @@
 /**XieXing */
 /** 点击学院获取相应专业*/
-function getMajorsByFacultyId(facId,majId){
+/*function getMajorsByFacultyId(facId,majId){
 	$.ajax({
 		url:path+"/major/getMajorsByFacultyId",
 		type:"post",
@@ -24,7 +24,7 @@ function getMajorsByFacultyId(facId,majId){
 			swal("","获取专业失败","error");
 		}
 	})
-}
+}*/
 //入学时间控件
 layui.use('laydate', function() {
 	var laydate = layui.laydate;
@@ -39,4 +39,3 @@ layui.use('laydate', function() {
 		elem : '#stuBirth'
 	});
 })
-

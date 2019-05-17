@@ -116,4 +116,19 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	public Page<T> getPageListNew(Map<String, Object> params, Map<String, String> orderOrGroupBy) {
 		return this.getBaseDao().getPageListNew(params, orderOrGroupBy);
 	}
+
+	@Override
+	public int batchSave(List<T> list) {
+		return this.getBaseDao().batchSave(list);
+	}
+
+	@Override
+	public void saveByUnit(T entity) {
+		this.getBaseDao().saveByUnit(entity);
+	}
+
+	@Override
+	public Integer getCount(Map<String, Object> params) {
+		return this.getBaseDao().getCount(params);
+	}
 }

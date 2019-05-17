@@ -1,5 +1,7 @@
 package pers.xx.edu.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +32,34 @@ public class TeacherDao extends BaseDao<Teacher>{
 			return null;
 		}
 		return (Teacher) query.list().get(0);
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月6日 上午10:55:56
+	 * @description 根据学院获取老师
+	 * @param facId
+	 * @return
+	 */
+	public List<Teacher> getByFacId(Integer facId) {
+		String hql = "from Teacher where teaFaculty = ?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, facId);
+		return query.list();
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月6日 上午10:57:51
+	 * @description 根据专业获取老师
+	 * @param majId
+	 * @return
+	 */
+	public List<Teacher> getByMajId(Integer majId) {
+		String hql = "from Teacher where teaMajor = ?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, majId);
+		return query.list();
 	}
 
 }

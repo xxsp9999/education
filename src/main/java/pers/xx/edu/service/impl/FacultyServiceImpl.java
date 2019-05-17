@@ -15,7 +15,7 @@ import pers.xx.edu.service.FacultyService;
  * @createDate 2019年4月9日 下午3:28:33
  * @description 学院接口实现类
  */
-@Transactional
+@Transactional()
 @Service("facultyService")
 public class FacultyServiceImpl extends BaseServiceImpl<Faculty> implements FacultyService{
 	@Resource(name = "facultyDao")

@@ -138,7 +138,7 @@
 			</script>
 			<ul class="breadcrumb">
 				<li class="gray-bac">
-					<a style="color:black" href="##">系统管理</a>
+					<a style="color:black" href="##">系统设置</a>
 				</li>
 				<li class="gray-bac">
 					<a style="color:black" href="##">模块管理</a>

@@ -28,7 +28,10 @@ public class Course implements Serializable{
 	private String cNo;//课程号
 	
 	@Column(name="c_name",columnDefinition="varchar(255) COMMENT '课程名'")
-	private String CName;//课程名
+	private String cName;//课程名
+	
+	@Column(name="c_English_name",columnDefinition="varchar(255) COMMENT '课程英文名'")
+	private String cEnglishName;//课程英文名
 	
 	@Column(name="c_score",columnDefinition="varchar(255) COMMENT '学分'")
 	private String cScore;//学分
@@ -44,10 +47,7 @@ public class Course implements Serializable{
 		return cNo;
 	}
 
-	public String getCName() {
-		return CName;
-	}
-
+	
 	public String getcScore() {
 		return cScore;
 	}
@@ -64,8 +64,12 @@ public class Course implements Serializable{
 		this.cNo = cNo;
 	}
 
-	public void setCName(String cName) {
-		CName = cName;
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 
 	public void setcScore(String cScore) {
@@ -74,6 +78,14 @@ public class Course implements Serializable{
 
 	public void setcRemark(String cRemark) {
 		this.cRemark = cRemark;
+	}
+
+	public String getcEnglishName() {
+		return cEnglishName;
+	}
+
+	public void setcEnglishName(String cEnglishName) {
+		this.cEnglishName = cEnglishName;
 	}
 	
 	

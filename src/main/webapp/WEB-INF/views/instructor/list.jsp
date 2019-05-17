@@ -23,14 +23,16 @@
 <div id="search" style="height:40px">
 	<li>
 		
-		<div class="layui-input-inline" style="vertical-align:unset;position:relative;">
+		<!-- <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test3" placeholder="开始时间">
 	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test4" placeholder="结束时间">
 	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
-	    </div>
+	    </div> -->
+	    <label>学院</label><select id="faculty" ></select>
+	    <!-- <label>年级</label><select id="gradeId"></select> -->
 	   	<div class="layui-input-inline" style="vertical-align:unset">
 		<input placeholder="搜索内容" name="content" id="content">
 		</div>
@@ -63,7 +65,7 @@ function drawTable(){
 			
 			width: jqTablew,
 			height: 350,
-			colNames: ['工号','姓名','性别','出生日期','电话','邮箱','身份证号码','入职时间','民族','家庭住址',"备注"],
+			colNames: ['工号','姓名','性别','出生日期','电话','邮箱','身份证号码','入职时间','民族','家庭住址','学院',"备注"],
 			colModel: [
 				{name: 'instructorNumber', index: 'instructorNumber', align: 'center'},
 				{name: 'instructorName', index: 'instructorName', align: 'center'},
@@ -75,6 +77,7 @@ function drawTable(){
 				{name: 'instructorEntranceDate', index: 'instructorEntranceDate', align: 'center'},
 				{name: 'instructorNationality', index: 'instructorNationality', align: 'center'},
 				{name: 'instructorAddr', index: 'instructorAddr', align: 'center'},
+				{name: 'instructorFaculty.facName', index: 'instructorFaculty.facName', align: 'center'},
 				{name: 'instructorRemark', index: 'instructorRemark', align: 'center'},
 			],
 			rowNum: 10,		//每页显示多少条
@@ -198,8 +201,10 @@ function drawTable(){
 	                   mtype: "post",
 	                   dataType: "json",
 	                   postData: {	                	   	             
-	                	   start: $("#test3").val(),
-	                    	 end: $("#test4").val(),
+	                	   //start: $("#test3").val(),
+	                    	// end: $("#test4").val(),
+	                       facId:$("#faculty").val(),
+	                       gradeId:$("#gradeId").val(),
 	                       content: $("#content").val(),
 	                     
 	                   }
@@ -272,6 +277,27 @@ layui.use('laydate', function(){
     }
   });
 	})
+	/**获取学院 */
+	$.ajax({
+		url:path+"/college/getAllFaculties",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#faculty").empty();
+			var str = "<option value=''>请选择</option>";
+			for(var i=0;i<data.length;i++){
+				str += "<option value="+data[i].id+" class='tmpFac'>"+data[i].facName+"</option>";
+			}
+			$("#faculty").append(str);
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
+	//getGrades("gradeId",null,null,null);
 </script>
 </body>
 </html>

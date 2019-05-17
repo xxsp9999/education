@@ -133,4 +133,14 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
 			return null;
 		}
 	}
+
+	@Override
+	public List<Teacher> getByFacId(Integer facId) {
+		return this.getBaseDao().getByFacId(facId);
+	}
+
+	@Override
+	public List<Teacher> getByMajId(Integer majId) {
+		return this.getBaseDao().getByMajId(majId);
+	}
 }

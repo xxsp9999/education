@@ -65,6 +65,18 @@ public class Student implements Serializable{
 	@Column(name="stu_nationality",columnDefinition="varchar(255) COMMENT '民族'")
 	private String stuNationality;//民族
 	
+	@ManyToOne
+	@JoinColumn(name="stu_province",columnDefinition="int(11) COMMENT '所在省份'")
+	private MyProvince stuProvince;//学生所在省份
+	
+	@ManyToOne
+	@JoinColumn(name="stu_city",columnDefinition="int(11) COMMENT '学生所在市'")
+	private MyCity stuCity;//学生所在市
+	
+	@ManyToOne
+	@JoinColumn(name="stu_county",columnDefinition="int(11) COMMENT '所在县（三级地址）'")
+	private MyCounty stuCounty;//学生所在县（三级地址）
+	
 	@Column(name="stu_addr",columnDefinition="varchar(255) COMMENT '学生家庭地址'")
 	private String stuAddr;//学生家庭地址
 	
@@ -221,5 +233,30 @@ public class Student implements Serializable{
 	public void setStuImg(String stuImg) {
 		this.stuImg = stuImg;
 	}
+
+	public MyProvince getStuProvince() {
+		return stuProvince;
+	}
+
+	public void setStuProvince(MyProvince stuProvince) {
+		this.stuProvince = stuProvince;
+	}
+
+	public MyCity getStuCity() {
+		return stuCity;
+	}
+
+	public void setStuCity(MyCity stuCity) {
+		this.stuCity = stuCity;
+	}
+
+	public MyCounty getStuCounty() {
+		return stuCounty;
+	}
+
+	public void setStuCounty(MyCounty stuCounty) {
+		this.stuCounty = stuCounty;
+	}
+	
 	
 }

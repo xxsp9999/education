@@ -20,7 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
 	
-	  window.UEDITOR_HOME_URL = "/HDO56Mall/ueditor/";
+	  window.UEDITOR_HOME_URL = "/education/ueditor/";
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 
     /**

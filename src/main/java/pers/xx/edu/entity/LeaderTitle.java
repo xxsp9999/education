@@ -32,6 +32,21 @@ public class LeaderTitle implements Serializable{
 	
 	@Column(name="lea_title_remark",columnDefinition="varchar(255) COMMENT '职务备注'")
 	private String leaTitleRemark;//职务备注
+	
+	
+
+	public LeaderTitle() {
+		super();
+	}
+
+	//如果写了类的构造函数，记得添加其默认的构造函数，否则会出错
+	public LeaderTitle(Integer id, String leaTitleName, String leaTitleNumber, String leaTitleRemark) {
+		super();
+		this.id = id;
+		this.leaTitleName = leaTitleName;
+		this.leaTitleNumber = leaTitleNumber;
+		this.leaTitleRemark = leaTitleRemark;
+	}
 
 	public Integer getId() {
 		return id;

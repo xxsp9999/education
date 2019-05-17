@@ -1,0 +1,82 @@
+.background-pic{
+    /*background: url(/education/images/echarts.png) no-repeat center center;*/
+    background-size:cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+/* 学生区域 */
+#studentArea{
+	width: 503px;
+	/* border:1px solid lightblue; */
+	margin: 1% 2.4%;
+	float:left;
+}
+#studentChart{
+	margin-top:5px;
+	width:500px;
+	height:500px;
+	
+	
+}
+#search select{
+	width: 113px;
+}
+
+/* #search label{
+	color:white;
+} */
+
+/* 各角色统计 */
+#allmemberArea{
+	width:600px;
+	height:550px;
+	margin-top: 1%;
+	border-right:1px solid lightblue;
+	float:left;
+}
+#allmember{
+	width:600px;
+	height:500px;
+	/* border:1px solid lightblue; */
+}
+/* 学生区域比重 */
+#studentMapArea{
+	width:600px;
+	height:500px;
+	border:1px solid lightblue;
+	float:left;
+}
+#studentMap{
+	width:600px;
+	height:500px;
+	border:1px solid lightblue;
+}
+
+
+/* 请假统计 */
+#leaveArea{
+	/* width:600px;
+	height:597px;
+	border:1px solid lightblue; */
+	float:left;
+}
+#leave{
+	width:600px;
+	height:500px;
+	border:1px solid lightblue;
+	float:left;
+	margin: 1% 2%;
+}
+#leave2{
+	width:600px;
+	height:500px;
+	border:1px solid lightblue;
+	float:left;
+	margin: 1% 2%;
+}

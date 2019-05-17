@@ -40,6 +40,14 @@ public class EduClass implements Serializable{
 	@JoinColumn(name="cla_headteacher",columnDefinition="int(11) COMMENT '班主任'")
 	private Teacher claHeadteacher;//班主任
 	
+	@ManyToOne
+	@JoinColumn(name="cla_faculty",columnDefinition="int(11) COMMENT '所属学院'")
+	private Faculty claFaculty;//所属学院
+	
+	@ManyToOne
+	@JoinColumn(name="cla_major",columnDefinition="int(11) COMMENT '所属专业'")
+	private Major claMajor;//所属专业
+	
 	@Column(name="cla_remark",columnDefinition="varchar(255) COMMENT '备注'")
 	private String claRemark;//备注
 
@@ -92,4 +100,20 @@ public class EduClass implements Serializable{
 		this.claHeadteacher = claHeadteacher;
 	}
 
+	public Faculty getClaFaculty() {
+		return claFaculty;
+	}
+
+	public void setClaFaculty(Faculty claFaculty) {
+		this.claFaculty = claFaculty;
+	}
+
+	public Major getClaMajor() {
+		return claMajor;
+	}
+
+	public void setClaMajor(Major claMajor) {
+		this.claMajor = claMajor;
+	}
+	
 }

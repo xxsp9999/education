@@ -33,6 +33,11 @@ public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
 
+//	@Autowired
+//	private GradeService gradeService;
+//	
+//	@Autowired 
+//	private InsGradeService insGradeService;
 	/**
 	 * @author XieXing
 	 * @create 2019年3月17日
@@ -74,7 +79,8 @@ public class InstructorController {
 	 */
 	@RequestMapping("/getList")
 	public void getCpList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int rows,
-			String content, String start, String end, HttpServletRequest request, PrintWriter out) {
+			String content, String start, String end, Integer facId, Integer gradeId, HttpServletRequest request,
+			PrintWriter out) {
 		Map<String, Object> params = new LinkedHashMap<>();// 值参数
 		params.put("page", page);
 		params.put("rows", rows);
@@ -92,6 +98,12 @@ public class InstructorController {
 				System.err.println("时间格式不正确！");
 			}
 		}
+		if (facId != null) {
+			params.put("instructorFaculty.id = ?", facId);
+		}
+		/*if(gradeId!=null) {
+			params.put("instructorFaculty.id = ?", facId);
+		}*/
 		if (StringUtils.isNotEmpty(content)) {
 			params.put(
 					"(instructorName like :content or instructorNumber like :content or instructorId like :content or instructorAddr like :content or instructorPhone like :content or instructorEmail like :content or instructorRemark like :content)",
@@ -100,12 +112,12 @@ public class InstructorController {
 		Map<String, String> orderOrGroupBy = new HashMap<>();// 排序参数
 		orderOrGroupBy.put("order by", "id desc");
 		Page<Instructor> pageBean = new Page<>();
-		pageBean = instructorService.getPageList(params, orderOrGroupBy);
+		pageBean = instructorService.getPageListNew(params, orderOrGroupBy);
 		out.print(pageBean.toJqGridString());
 		out.flush();
 		out.close();
 	}
-	
+
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月12日 上午11:18:49
@@ -116,8 +128,28 @@ public class InstructorController {
 	 * @return
 	 */
 	@RequestMapping("/edit")
-	public String edit(InstructorVo instructorVo, Integer facultyId,String instructorEntranceDate, String instructorBirth,@RequestParam(value="img",required=false)CommonsMultipartFile img,HttpSession session) {
-		instructorService.edit(instructorVo,facultyId, instructorEntranceDate, instructorBirth,img,session);
+	public String edit(InstructorVo instructorVo, Integer facultyId, String instructorEntranceDate,
+			String instructorBirth, @RequestParam(value = "img", required = false) CommonsMultipartFile img,
+			HttpSession session) {
+		instructorService.edit(instructorVo, facultyId, instructorEntranceDate, instructorBirth, img, session);
 		return "redirect:/instructor/toList";
 	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月7日 上午8:11:06
+	 * @description 导员-班级插入测试
+	 * @return
+	 */
+//	@ResponseBody
+//	@RequestMapping("/insertInsGradeTest")
+//	public ResponseInfo saveInsGrade() {
+//		Instructor instructor = instructorService.getById(1);
+//		Grade grade = gradeService.getById(1);
+//		InsGrade insGrade = new InsGrade();
+//		insGrade.setIgInstructor(instructor);
+//		insGrade.setIgGrade(grade);
+//		insGradeService.save(insGrade);
+//		return new ResponseInfo(true,"插入成功！");
+//	}
 }

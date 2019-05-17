@@ -22,24 +22,26 @@
 <!-- 搜索 -->
 <div id="search" style="height:40px">
 	<li>
-		
-		<div class="layui-input-inline" style="vertical-align:unset;position:relative;">
-	      <input type="text" class="layui-input" id="test3" placeholder="开始时间">
-	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
-	    </div>
-	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
-	      <input type="text" class="layui-input" id="test4" placeholder="结束时间">
-	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
-	    </div>
-	   	<div class="layui-input-inline" style="vertical-align:unset">
+	    <label>学院</label><select id="facultyId"></select>
+	    <label>专业</label><select id="majorId"></select>
+	    <label>年级</label><select id="gradeId"></select>
+	    <label>班级</label><select id="classId"></select>
+	    <label>民族</label><select id="nationalId"></select>
+	    <label>性别</label>
+	    <select id="sex">
+	    	<option value="">请选择</option>
+	    	<option>男</option>
+	    	<option>女</option>
+	    </select>
+	   	<!-- <div class="layui-input-inline" style="vertical-align:unset"> -->
 		<input placeholder="搜索内容" name="content" id="content">
-		</div>
+		<!-- </div> -->
 		<button id="searchBtn">查询</button>
 	</li>
 </div>
 
 	<!--jQgrid  -->
-	<h2 id="jqTableTitle">学生信息列表</h2>
+	<h2 id="jqTableTitle" style="width: 97.5%;margin: 0 2%;">学生信息列表</h2>
 	<div id="jqTable" style="width: 96%; margin: 0 auto;"></div>
 <script>
 	drawTable();
@@ -63,7 +65,7 @@ function drawTable(){
 			
 			width: jqTablew,
 			height: 350,
-			colNames: ['学号','姓名','性别','出生日期','院系','专业','电话','邮箱','身份证号码','入学时间','民族','家庭住址',"备注"],
+			colNames: ['学号','姓名','性别','出生日期','院系','专业','班级','年级','电话','邮箱','身份证号码','入学时间','民族','省级行政单位','二级行政单位','县/区','详细住址',"备注"],
 			colModel: [
 				{name: 'stuNumber', index: 'stuNumber', align: 'center'},
 				{name: 'stuName', index: 'stuName', align: 'center'},
@@ -71,11 +73,16 @@ function drawTable(){
 				{name: 'stuBirth', index: 'stuBirth', align: 'center'},
 				{name: 'stuFaculty.facName', index: 'stuFaculty.facName', align: 'center'},
 				{name: 'stuMajor.majorName', index: 'stuMajor.majorName', align: 'center'},
+				{name: 'stuClass.claName', index: 'stuClass.claName', align: 'center'},
+				{name: 'stuClass.claGrade.gradeName', index: 'stuClass.claGrade.gradeName', align: 'center'},
 				{name: 'stuPhone', index: 'stuPhone', align: 'center'},
 				{name: 'stuEmail', index: 'stuEmail', align: 'center'},
 				{name: 'stuId', index: 'stuId', align: 'center'},
 				{name: 'stuEntranceDate', index: 'stuEntranceDate', align: 'center'},
 				{name: 'stuNationality', index: 'stuNationality', align: 'center'},
+				{name: 'stuProvince.provinceName', index: 'stuProvince.provinceName', align: 'center'},
+				{name: 'stuCity.cityName', index: 'stuCity.cityName', align: 'center'},
+				{name: 'stuCounty.countyName', index: 'stuCounty.countyName', align: 'center'},
 				{name: 'stuAddr', index: 'stuAddr', align: 'center'},
 				{name: 'stuRemark', index: 'stuRemark', align: 'center'},
 			],
@@ -151,15 +158,15 @@ function drawTable(){
 			window.location.href="${pageContext.request.contextPath}/student/toAdd?id="+id+"&operate=update";
 		}
 	})/* .navButtonAdd('#pager', {
-		caption: '查看',
+		caption: '统计分析',
 		buttonicon: 'iconfont iconchakan',
 		onClickButton: function(){//按钮点击函数
 			var id = $("#table").jqGrid('getGridParam', "selarrrow");                                      
             if (id.length != 1) {
                 swal("", "请选择一条记录进行查看！", "error");
                 return false;
-            }
-			window.location.href="${pageContext.request.contextPath}/student/toAdd?id="+id+"&operate=show";
+            } 
+			window.location.href="${pageContext.request.contextPath}/student/toStudentDataShow";
 		}
 	}).navButtonAdd('#pager', {
 		caption: '删除',
@@ -200,8 +207,14 @@ function drawTable(){
 	                   mtype: "post",
 	                   dataType: "json",
 	                   postData: {	                	   	             
-	                	   start: $("#test3").val(),
-	                    	 end: $("#test4").val(),
+	                	   //start: $("#test3").val(),
+	                       // end: $("#test4").val(),
+	                       facultyId: $("#facultyId").val(),
+	                       majorId: $("#majorId").val(),
+	                       classId: $("#classId").val(),
+	                       gradeId: $("#gradeId").val(),
+	                       nationalId: $("#nationalId").val(),
+	                       sex: $("#sex").val(),
 	                       content: $("#content").val(),
 	                     
 	                   }
@@ -274,6 +287,9 @@ layui.use('laydate', function(){
     }
   });
 	})
+	getFuculties("facultyId",null,null,"majorId","classId",null);
+	getNationals("","nationalId");
+	getGrades("gradeId",null,"classId",null);
 </script>
 </body>
 </html>

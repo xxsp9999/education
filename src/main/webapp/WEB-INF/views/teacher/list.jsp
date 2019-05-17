@@ -23,14 +23,18 @@
 <div id="search" style="height:40px">
 	<li>
 		
-		<div class="layui-input-inline" style="vertical-align:unset;position:relative;">
+		<!-- <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test3" placeholder="开始时间">
 	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
 	      <input type="text" class="layui-input" id="test4" placeholder="结束时间">
 	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
-	    </div>
+	    </div> -->
+	    <label>学院</label><select id="faculty" ></select>
+	    <label>专业</label><select id="major" ></select>
+	    <label>职称</label><select id="teaTitle" ></select>
+	    <label>职务</label><select id="teaAdTitleId" ></select>
 	   	<div class="layui-input-inline" style="vertical-align:unset">
 		<input placeholder="搜索内容" name="content" id="content">
 		</div>
@@ -63,7 +67,7 @@ function drawTable(){
 			
 			width: jqTablew,
 			height: 350,
-			colNames: ['工号','姓名','性别','出生日期','职称','电话','邮箱','身份证号码','入职时间','民族','家庭住址',"备注"],
+			colNames: ['工号','姓名','性别','出生日期','职称','电话','邮箱','身份证号码','入职时间','民族','学院','专业','职务','家庭住址',"备注"],
 			colModel: [
 				{name: 'teaNumber', index: 'teaNumber', align: 'center'},
 				{name: 'teaName', index: 'teaName', align: 'center'},
@@ -75,6 +79,9 @@ function drawTable(){
 				{name: 'teaId', index: 'teaId', align: 'center'},
 				{name: 'teaEntranceDate', index: 'teaEntranceDate', align: 'center'},
 				{name: 'teaNationality', index: 'teaNationality', align: 'center'},
+				{name: 'teaFaculty.facName', index: 'teaFaculty.facName', align: 'center'},
+				{name: 'teaMajor.majorName', index: 'teaTitle.majorName', align: 'center'},
+				{name: 'teaAdTitle.leaTitleName', index: 'teaAdTitle.leaTitleName', align: 'center'},
 				{name: 'teaAddr', index: 'teaAddr', align: 'center'},
 				{name: 'teaRemark', index: 'teaRemark', align: 'center'},
 			],
@@ -199,9 +206,13 @@ function drawTable(){
 	                   mtype: "post",
 	                   dataType: "json",
 	                   postData: {	                	   	             
-	                	   start: $("#test3").val(),
-	                    	 end: $("#test4").val(),
-	                       content: $("#content").val(),
+	                	   //start: $("#test3").val(),
+	                    	// end: $("#test4").val(),
+	                       "facId":$("#faculty").val(),
+	                       "majId":$("#major").val(),
+	                       "teaTitle":$("#teaTitle").val(),
+	                       "teaAdTitleId":$("#teaAdTitleId").val(),
+	                       "content": $("#content").val(),
 	                     
 	                   }
 	         }).trigger("reloadGrid",[{page:1}]);
@@ -273,6 +284,98 @@ layui.use('laydate', function(){
     }
   });
 	})
+	/**获取职称 */
+	$.ajax({
+		url:path+"/teatitle/getAllTitles",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#teaTitle").empty();
+			var str = "<option value=''>请选择</option>";
+			var teaTitle = "${teacher.teaTitle.id}";
+			for(var i=0;i<data.length;i++){
+				if(teaTitle == data[i].id){
+					str += "<option value="+data[i].id+" selected>"+data[i].titleName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+">"+data[i].titleName+"</option>";
+				}
+			}
+			$("#teaTitle").append(str);
+		},
+		error:function(){
+			swal("","获取职称失败","error");
+		}
+	})
+	/**获取职务 */
+	$.ajax({
+		url:path+"/leadertitle/getAllTitles",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#teaAdTitleId").empty();
+			var str = "<option value=''>请选择</option>";
+			var leaderTitle = "${teacher.teaAdTitle.id}";
+			for(var i=0;i<data.length;i++){
+				if(leaderTitle == data[i].id){
+					str += "<option value="+data[i].id+" selected>"+data[i].leaTitleName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+">"+data[i].leaTitleName+"</option>";
+				}
+			}
+			$("#teaAdTitleId").append(str);
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
+	
+	
+	/**获取学院 */
+	$.ajax({
+		url:path+"/college/getAllFaculties",
+		type:"post",
+		dataType:"json",
+		data:{
+			
+		},
+		success:function(data){
+			$("#faculty").empty();
+			var str = "<option value=''>请选择</option>";
+			var facId = "${teacher.teaFaculty.id}";
+			var majId = "${teacher.teaMajor.id}";
+			debugger;
+			for(var i=0;i<data.length;i++){
+				if(facId == data[i].id){
+					str += "<option value="+data[i].id+" selected class='tmpFac'>"+data[i].facName+"</option>";
+				}else{
+					str += "<option value="+data[i].id+" class='tmpFac'>"+data[i].facName+"</option>";
+				}
+			}
+			$("#faculty").append(str);
+			if(facId!=null && facId.length>0){
+				getMajorsByFacultyId(facId,majId);
+			}
+			$("#faculty").on("change",function(){
+				var facId = $(this).val();
+				debugger;
+				if(facId!=""){
+					getMajorsByFacultyId(facId);
+				}else{
+					$("#major").empty();
+				}
+			})
+		},
+		error:function(){
+			swal("","获取学院失败","error");
+		}
+	})
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/teacher/add.js"></script>
 </body>
 </html>

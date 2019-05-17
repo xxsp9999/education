@@ -55,7 +55,7 @@ public class DateTimeUtils {
 	 * @description 格式化时间
 	 * @return
 	 */
-	public static String formateDate() {
+	public static String formateDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 		String dateString = sdf.format(new Date());
 		return dateString;

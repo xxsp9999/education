@@ -219,7 +219,7 @@ img {
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle">
 						<c:if test="${loginInfo.img!=null }">
-							<img class="nav-user-photo" src="${pageContext.request.contextPath}/system/loadImgOnline?path=${loginInfo.img}" alt="Jason's Photo" style="float: left; margin-top: 3px;    height: 45px; width: 39px;" />
+							<img class="nav-user-photo" src="${pageContext.request.contextPath}/system/loadImgOnline?path=${loginInfo.img}" alt="Jason's Photo" style="float: left; margin-top: 3px;    height: 45px; width: 39px;" onerror="this.src='${pageContext.request.contextPath}/assets/avatars/loyer.png'"/>
 						</c:if> 
 						<c:if test="${loginInfo.img==null }">
 							<img class="nav-user-photo" src="assets/avatars/loyer.png" alt="Jason's Photo" style="float: left; margin-top: 1px;" />

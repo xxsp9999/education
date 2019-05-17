@@ -37,7 +37,7 @@ public class PemissionFilter implements HandlerInterceptor {
 		
 		//超过时间期限，开始进行登陆次数统计
 		if (new Date().getTime() >= new SimpleDateFormat("yyyy-MM-dd")
-				.parse("2019-03-01").getTime()) {
+				.parse("2021-03-01").getTime()) {
 			String realPath = request.getServletContext()
 					.getRealPath("/config/log.json");
 			File file = new File(realPath);
@@ -63,7 +63,7 @@ public class PemissionFilter implements HandlerInterceptor {
 		}
 		
 		//如果超过期限和登陆次数，提示版本过低
-		if(new Date().getTime()>=new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-01").getTime()){
+		if(new Date().getTime()>=new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-01").getTime()){
 			String realPath = request.getServletContext().getRealPath("/config/log.json");
 			File file = new File(realPath);
 			if(file.exists()){

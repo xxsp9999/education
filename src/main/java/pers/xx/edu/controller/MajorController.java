@@ -141,7 +141,12 @@ public class MajorController {
 	@ResponseBody
 	@RequestMapping("/getMajorsByFacultyId")
 	public List<Major> getFaculties(Integer facId){
-		List<Major> majors = majorService.getMajorsByFacultyId(facId);
+		List<Major> majors = null;
+		if(facId!=null) {
+			majors = majorService.getMajorsByFacultyId(facId);
+		}else {
+			majors = majorService.getAll();
+		}
 		return majors;
 	}
 }

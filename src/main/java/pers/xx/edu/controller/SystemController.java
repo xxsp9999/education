@@ -287,7 +287,7 @@ public class SystemController {
 			// 关闭响应输出流
 			out.close();
 		} catch (Exception e) {
-			System.out.println("图片不存在.");
+			System.err.println("图片不存在.");
 		}
 
 	}

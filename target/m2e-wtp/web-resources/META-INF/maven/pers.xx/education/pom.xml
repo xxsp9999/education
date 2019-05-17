@@ -253,6 +253,12 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.17</version>
+		</dependency>
 
 		<!-- Zip压缩包 -->
 		<dependency>
@@ -283,7 +289,13 @@
 			<artifactId>javase</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-
+		<!--富文本框jar包 -->
+		<!-- https://mvnrepository.com/artifact/cn.songxinqiang/com.baidu.ueditor -->
+		<dependency>
+			<groupId>cn.songxinqiang</groupId>
+			<artifactId>com.baidu.ueditor</artifactId>
+			<version>1.1.2-offical</version>
+		</dependency>
 		<!-- 添加Activiti支持 -->
 		<dependency>
 			<groupId>org.activiti</groupId>

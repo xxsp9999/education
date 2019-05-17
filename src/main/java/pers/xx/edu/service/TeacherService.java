@@ -1,5 +1,6 @@
 package pers.xx.edu.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -46,4 +47,22 @@ public interface TeacherService extends BaseService<Teacher>{
 	 * @return
 	 */
 	Teacher getCheckTeacher(Map<String, Object> params);
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月6日 上午10:52:46
+	 * @description 根据学院获取老师
+	 * @param facId
+	 * @return
+	 */
+	public List<Teacher> getByFacId(Integer facId);
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月6日 上午10:53:04
+	 * @description 根据专业获取老师
+	 * @param majId
+	 * @return
+	 */
+	public List<Teacher> getByMajId(Integer majId);
 }

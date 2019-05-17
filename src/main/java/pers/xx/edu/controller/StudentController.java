@@ -1,7 +1,6 @@
 package pers.xx.edu.controller;
 
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import pers.xx.edu.entity.Student;
 import pers.xx.edu.service.StudentService;
-import pers.xx.edu.utils.DateTimeUtils;
 import pers.xx.edu.utils.Page;
 import pers.xx.edu.utils.StringUtils;
 import pers.xx.edu.vo.StudentVo;
@@ -75,11 +74,12 @@ public class StudentController {
 	 */
 	@RequestMapping("/getList")
 	public void getCpList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int rows,
-			String content, String start, String end, HttpServletRequest request, PrintWriter out) {
+			String content, String start, String end,Integer facultyId,Integer majorId,Integer classId,Integer gradeId,String nationalId,String sex, HttpServletRequest request, PrintWriter out) {
 		Map<String, Object> params = new LinkedHashMap<>();// 值参数
 		params.put("page", page);
 		params.put("rows", rows);
-		if (StringUtils.isNotEmpty(start)) {
+		//时间查询
+		/*if (StringUtils.isNotEmpty(start)) {
 			try {
 				params.put("stuEntranceDate >= ?", pers.xx.edu.utils.DateTimeUtils.deal(start));
 			} catch (ParseException e) {
@@ -92,6 +92,22 @@ public class StudentController {
 			} catch (ParseException e) {
 				System.err.println("时间格式不正确！");
 			}
+		}*/
+		
+		if(facultyId!=null) {
+			params.put("stuFaculty.id = ?", facultyId);
+		}
+		if(classId!=null) {
+			params.put("stuClass.id = ?", classId);
+		}
+		if(gradeId!=null) {
+			params.put("stuClass.claGrade.id = ?", gradeId);
+		}
+		if(StringUtils.isNotEmpty(nationalId)) {
+			params.put("stuNationality = ?", nationalId);
+		}
+		if(StringUtils.isNotEmpty(sex)) {
+			params.put("stuSex = ?", sex);
 		}
 		if (StringUtils.isNotEmpty(content)) {
 			params.put(
@@ -99,7 +115,7 @@ public class StudentController {
 					"%" + content + "%");
 		}
 		Map<String, String> orderOrGroupBy = new HashMap<>();// 排序参数
-		orderOrGroupBy.put("order by", "id desc");
+		orderOrGroupBy.put("order by", "id asc");
 		Page<Student> pageBean = new Page<>();
 		pageBean = studentService.getPageList(params, orderOrGroupBy);
 		out.print(pageBean.toJqGridString());
@@ -120,8 +136,32 @@ public class StudentController {
 	 */
 	@RequestMapping("/edit")
 	public String edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId,
-			Integer majorId,Integer stuClassId,@RequestParam(value="img",required=false)CommonsMultipartFile img,HttpSession session) {
-		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId,stuClassId,img,session);
+			Integer majorId,Integer stuClassId,Integer provinceId,Integer cityId,Integer countyId,@RequestParam(value="img",required=false)CommonsMultipartFile img,HttpSession session) {
+		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId,stuClassId,provinceId,cityId,countyId,img,session);
 		return "redirect:/student/toList";
 	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月30日 上午10:31:35
+	 * @description 跳转到学生数据展示页面
+	 * @return
+	 */
+	@RequestMapping("/toStudentDataShow")
+	public String toStudentDataShow() {
+		return "datashow/student";
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年4月30日 上午10:35:14
+	 * @description 根据条件获取学生数据
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getStudentAnalyseData",produces="application/json;charset=utf-8")
+	public Map<String, Object> getStudentAnalyseData(Integer facId,Integer majId,Integer stuClassId){
+		return studentService.getStudentAnalyseData(facId,majId,stuClassId);
+	}
+	
 }

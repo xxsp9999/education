@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -299,4 +301,17 @@ public class StringUtils {
         }
 
     }
+    
+    public static void main(String[] args) {
+		String[] arr = {"2","1","1","2","3","4","5"};
+		Map<String, Integer> map = new HashMap<>();
+		for(String a:arr) {
+			if(map.get(a)!=null) {
+				map.put(a,map.get(a)+1);
+			}else {
+				map.put(a,1);
+			}
+		}
+		System.out.println(map);
+	}
 }
