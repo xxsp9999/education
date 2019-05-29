@@ -1,5 +1,7 @@
 package pers.xx.edu.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +45,19 @@ public class StuCourseDao extends BaseDao<StuCourse>{
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
 		query.executeUpdate();
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月19日 下午7:31:17
+	 * @description 根据学生id获取老师课程id
+	 * @param stuId
+	 * @return
+	 */
+	public List<Integer> getTeaCourseIdsByStudentId(Integer stuId){
+		String hql = "select sc.scTeaCourse.id from StuCourse sc where sc.scStudent = ?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, stuId);
+		return query.list();
 	}
 }

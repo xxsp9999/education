@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pers.xx.edu.dao.BaseDao;
 import pers.xx.edu.dao.UserDao;
+import pers.xx.edu.entity.Company;
 import pers.xx.edu.entity.Instructor;
 import pers.xx.edu.entity.Leader;
 import pers.xx.edu.entity.Manager;
@@ -18,6 +19,7 @@ import pers.xx.edu.entity.Student;
 import pers.xx.edu.entity.Teacher;
 import pers.xx.edu.entity.User;
 import pers.xx.edu.enu.LoginType;
+import pers.xx.edu.service.CompanyService;
 import pers.xx.edu.service.InstructorService;
 import pers.xx.edu.service.LeaderService;
 import pers.xx.edu.service.ManagerService;
@@ -51,6 +53,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private CompanyService companyService;
+	
 
 	@Resource(name = "userDao")
 	protected void setBaseDao(BaseDao<User> baseDao) {
@@ -171,6 +177,20 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			count++;
 			return new LoginStatus(true, "登陆成功", LoginType.STUDENT.getTypeId());
 		}
+		
+		//从公司账户查询
+		Company company = companyService.login(number, StringUtils.StringToMd5(password));// 账号查询
+		if (company != null) {
+			request.getSession().setAttribute("company", company);
+			loginInfo.setUserId(company.getId());
+			loginInfo.setUserName(company.getCompanyName());
+			loginInfo.setImg(company.getCompanyLogo());
+			Role role = roleService.getById(LoginType.COMPANY.getTypeId());
+			loginInfo.setUserRole(role);
+			request.getSession().setAttribute("loginInfo", loginInfo);
+			count++;
+			return new LoginStatus(true, "登陆成功", LoginType.COMPANY.getTypeId());
+		}
 
 		if (count == 0) {
 			return new LoginStatus(false, "用户名或密码错误");
@@ -233,6 +253,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			if (StringUtils.StringToMd5(password).equals(manager.getManagerPassword())) {
 				manager.setManagerPassword(StringUtils.StringToMd5(newPassword));// 重置密码
 				managerService.update(manager);
+				return new ResponseInfo(true, "修改成功");
+			} else
+				return new ResponseInfo(false, "原密码输入错误！");
+		}
+		if (roleId == 7) {
+			Company company = (Company) session.getAttribute("company");
+			if (StringUtils.StringToMd5(password).equals(company.getCompanyPassword())) {
+				company.setCompanyPassword(StringUtils.StringToMd5(newPassword));// 重置密码
+				companyService.update(company);
 				return new ResponseInfo(true, "修改成功");
 			} else
 				return new ResponseInfo(false, "原密码输入错误！");

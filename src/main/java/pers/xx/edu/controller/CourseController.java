@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +29,13 @@ import pers.xx.edu.service.StuCourseService;
 import pers.xx.edu.service.TeaCourseService;
 import pers.xx.edu.service.TeacherService;
 import pers.xx.edu.utils.DateTimeUtils;
+import pers.xx.edu.utils.JsonUtils;
 import pers.xx.edu.utils.Page;
 import pers.xx.edu.utils.ResponseInfo;
 import pers.xx.edu.utils.StringUtils;
 import pers.xx.edu.utils.TermUtils;
 import pers.xx.edu.vo.SelectedCourseVo;
+import pers.xx.edu.vo.StuCourseVo;
 
 /**
  * @author XieXing
@@ -135,7 +138,7 @@ public class CourseController {
 	/**
 	 * @author XieXing
 	 * @createDate 2019年5月13日 下午5:27:32
-	 * @description 跳转到学生学课页面
+	 * @description 跳转到学生选课页面
 	 * @return
 	 */
 	@RequestMapping("/toStuChoose")
@@ -194,12 +197,18 @@ public class CourseController {
 	 */
 	@RequestMapping("/getStuCourseList")
 	public void getStuCourseList(@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "10") int rows, String content, String start, String end, Integer gradeId,
+			@RequestParam(defaultValue = "10") int rows, String content, String start, String end, Integer teaCourseId,
 			Integer teaId, HttpServletRequest request, PrintWriter out) {
 		Map<String, Object> params = new LinkedHashMap<>();// 值参数
 		params.put("page", page);
 		params.put("rows", rows);
-		// 学生登陆，只能看见自己选择的课程
+		Student student = (Student) request.getSession().getAttribute("student");
+		if (student != null) {
+			params.put("scStudent.id = ?", student.getId());
+		}
+		if (teaCourseId != null) {
+			params.put("scTeaCourse.id = ?", teaCourseId);
+		}
 		if (StringUtils.isNotEmpty(start)) {
 			try {
 				params.put("scDate >= ?", DateTimeUtils.deal(start));
@@ -213,10 +222,6 @@ public class CourseController {
 			} catch (ParseException e) {
 				System.err.println("时间格式不正确");
 			}
-		}
-		Student student = (Student) request.getSession().getAttribute("student");
-		if (student != null) {
-			params.put("scStudent.id = ?", student.getId());
 		}
 		if (StringUtils.isNotEmpty(content)) {
 			params.put(
@@ -241,6 +246,17 @@ public class CourseController {
 	@RequestMapping("/toStuCourses")
 	public String stuCourses() {
 		return "course/stucourses";
+	}
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月19日 下午5:25:35
+	 * @description 跳转到学生课程课件下载页面
+	 * @return
+	 */
+	@RequestMapping("/stuCoursewareDownloadList")
+	public String stuCoursewareDownloadList() {
+		return "course/stucoursewareDownload";
 	}
 
 	/**
@@ -545,11 +561,14 @@ public class CourseController {
 	 */
 	@RequestMapping("/getStudentsOfMyCourseList")
 	public void getStudentsOfMyCourseList(@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "10") int rows, String content, String start, String end, Integer gradeId,
+			@RequestParam(defaultValue = "10") int rows, String content, String start, String end, Integer teaCourseId,
 			Integer teaId, HttpServletRequest request, PrintWriter out) {
 		Map<String, Object> params = new LinkedHashMap<>();// 值参数
 		params.put("page", page);
 		params.put("rows", rows);
+		if (teaCourseId != null) {
+			params.put("scTeaCourse.id = ?", teaCourseId);
+		}
 		if (StringUtils.isNotEmpty(start)) {
 			try {
 				params.put("scDate >= ?", DateTimeUtils.deal(start));
@@ -662,12 +681,12 @@ public class CourseController {
 	 * @description 获取当前老师的所有课程
 	 */
 	@ResponseBody
-	@RequestMapping("/getTeacherAllCourses")
-	public List<SelectedCourseVo> getTeacherAllCourses(HttpSession session) {
+	@RequestMapping(value = "/getTeacherAllCourses", produces = "application/json;charset=utf-8")
+	public String getTeacherAllCourses(HttpSession session) {
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		if (teacher != null) {
 			List<SelectedCourseVo> selectedCourseVos = teaCourseService.getByTeacherId(teacher.getId());
-			return selectedCourseVos;
+			return JsonUtils.toJson(selectedCourseVos);
 		}
 		return null;
 	}
@@ -679,12 +698,12 @@ public class CourseController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/getStudentAllCourses")
+	@RequestMapping(value = "/getStudentAllCourses", produces = "application/json;charset=utf-8")
 	public List<SelectedCourseVo> getStudentAllCourses(HttpSession session) {
 		Map<String, Object> params = new HashMap<>();
 		Student student = (Student) session.getAttribute("student");
 		if (student != null) {
-			params.put("student.id", student.getId());
+			params.put("scStudent.id = ?", student.getId());
 			List<StuCourse> courses = stuCourseService.getList(params, null);
 			List<SelectedCourseVo> courseVos = new ArrayList<>();
 			for (StuCourse course : courses) {
@@ -694,6 +713,34 @@ public class CourseController {
 				courseVos.add(courseVo);
 			}
 			return courseVos;
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月29日 上午9:55:03
+	 * @description 获取学生成绩信息
+	 * @param session
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getStudentScores", produces = "application/json;charset=utf-8")
+	public String getStudentScores(Integer stuId) {
+		Map<String, Object> params = new HashMap<>();
+		if (stuId != null) {
+			params.put("scStudent.id = ?", stuId);
+			List<StuCourse> courses = stuCourseService.getList(params, null);
+			List<StuCourseVo> stuCourseVos = new ArrayList<>();
+			for (StuCourse course : courses) {
+				StuCourseVo stuCourseVo = new StuCourseVo();
+				stuCourseVo.setcNo(course.getScTeaCourse().getTcCourse().getcNo());
+				stuCourseVo.setcName(course.getScTeaCourse().getTcCourse().getcName());
+				BeanUtils.copyProperties(course, stuCourseVo);
+				stuCourseVos.add(stuCourseVo);
+			}
+			return JsonUtils.toJson(stuCourseVos);
 		}
 		return null;
 	}

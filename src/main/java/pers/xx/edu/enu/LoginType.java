@@ -9,7 +9,7 @@ package pers.xx.edu.enu;
 public enum LoginType {
 
 	USER("超级管理员", 1), STUDENT("学生", 2), TEACHER("老师", 3), INSTRUCTOR("导员", 4), LEADER("领导", 5),
-	MANAGER("管理员", 6);
+	MANAGER("管理员", 6),COMPANY("管理员", 7);
 
 	// 登录的类型(角色)
 	private String type;

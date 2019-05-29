@@ -61,22 +61,24 @@
 
 /* 请假统计 */
 #leaveArea{
-	/* width:600px;
-	height:597px;
-	border:1px solid lightblue; */
+	width:1500px;
+	/* border:1px solid lightblue; */
 	float:left;
 }
 #leave{
 	width:600px;
-	height:500px;
+	height:470px;
+	border:1px solid lightblue;
+	float:left;
+	margin: 1% -2%;
+}
+#leave2{
+	width:600px;
+	height:470px;
 	border:1px solid lightblue;
 	float:left;
 	margin: 1% 2%;
 }
-#leave2{
-	width:600px;
-	height:500px;
-	border:1px solid lightblue;
-	float:left;
-	margin: 1% 2%;
+#search{
+	margin-top: 2px;
 }

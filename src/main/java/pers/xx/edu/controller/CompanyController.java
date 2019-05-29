@@ -24,14 +24,19 @@ import pers.xx.edu.entity.Company;
 import pers.xx.edu.entity.MyCity;
 import pers.xx.edu.entity.MyCounty;
 import pers.xx.edu.entity.MyProvince;
+import pers.xx.edu.entity.Questionnaire;
 import pers.xx.edu.entity.Recruitment;
+import pers.xx.edu.entity.Student;
 import pers.xx.edu.service.CompanyService;
 import pers.xx.edu.service.MyCityService;
 import pers.xx.edu.service.MyCountyService;
 import pers.xx.edu.service.MyProvinceService;
+import pers.xx.edu.service.QuestionnaireService;
 import pers.xx.edu.service.RecruitmentService;
 import pers.xx.edu.utils.DateTimeUtils;
+import pers.xx.edu.utils.MailUtils;
 import pers.xx.edu.utils.Page;
+import pers.xx.edu.utils.ResponseInfo;
 import pers.xx.edu.utils.StringUtils;
 import pers.xx.edu.utils.UploadUtils;
 import pers.xx.edu.vo.CompanyVo;
@@ -46,20 +51,25 @@ import pers.xx.edu.vo.RecruitmentVo;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
+
 	@Autowired
 	private CompanyService companyService;
 
 	@Autowired
 	private RecruitmentService recruitmentService;
-	
+
 	@Autowired
 	private MyProvinceService myProvinceService;
-	
+
 	@Autowired
 	private MyCityService myCityService;
-	
+
 	@Autowired
 	private MyCountyService myCountyService;
+
+	@Autowired
+	private QuestionnaireService questionnaireService;
+
 	/**
 	 * @author XieXing
 	 * @createDate 2019年5月11日 下午3:05:08
@@ -78,12 +88,12 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping("/toCompanyAdd")
-	public String toCompanyAdd(Integer id,String operate,Map<String, Object> map) {
-		if(id!=null) {
+	public String toCompanyAdd(Integer id, String operate, Map<String, Object> map) {
+		if (id != null) {
 			Company company = companyService.getById(id);
-			map.put("company",company);
+			map.put("company", company);
 		}
-		map.put("operate",operate);
+		map.put("operate", operate);
 		return "company/add";
 	}
 
@@ -105,13 +115,17 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping("/toRecruitmentAdd")
-	public String toRecruitmentAdd(Integer id,String operate,Map<String, Object> map) {
-		if(id!=null) {
+	public String toRecruitmentAdd(Integer id, String operate, Map<String, Object> map) {
+		if (id != null) {
 			Recruitment recruitment = recruitmentService.getById(id);
 			map.put("recruitment", recruitment);
 		}
-		map.put("operate",operate);
-		return "recruitment/add";
+		map.put("operate", operate);
+		if ("detail".equals(operate)) {
+			return "recruitment/detail";
+		} else {
+			return "recruitment/add";
+		}
 	}
 
 	/**
@@ -149,7 +163,7 @@ public class CompanyController {
 		pageBean2.setRecords(pageBean.getRecords());
 		pageBean2.setTotal(pageBean.getTotal());
 		List<CompanyVo2> companyVo2s = new ArrayList<>();
-		for(Company company:pageBean.getRows()) {
+		for (Company company : pageBean.getRows()) {
 			CompanyVo2 companyVo2 = new CompanyVo2();
 			BeanUtils.copyProperties(company, companyVo2);
 			companyVo2s.add(companyVo2);
@@ -208,7 +222,7 @@ public class CompanyController {
 		pageBean2.setRecords(pageBean.getRecords());
 		pageBean2.setTotal(pageBean.getTotal());
 		List<RecruitmentVo> recruitmentVos = new ArrayList<>();
-		for(Recruitment recruitment:pageBean.getRows()) {
+		for (Recruitment recruitment : pageBean.getRows()) {
 			RecruitmentVo recruitmentVo = new RecruitmentVo();
 			BeanUtils.copyProperties(recruitment, recruitmentVo);
 			recruitmentVo.setCompanyName(recruitment.getRcCompany().getCompanyName());
@@ -234,25 +248,28 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping("/companyEdit")
-	public String companyEdit(CompanyVo companyVo,Integer provinceId,Integer cityId,Integer countyId, @RequestParam(value="logoFile",required=false)CommonsMultipartFile logoFile,@RequestParam(value="licenseFile",required=false)CommonsMultipartFile licenseFile,HttpSession session) {
+	public String companyEdit(CompanyVo companyVo, Integer provinceId, Integer cityId, Integer countyId,
+			@RequestParam(value = "logoFile", required = false) CommonsMultipartFile logoFile,
+			@RequestParam(value = "licenseFile", required = false) CommonsMultipartFile licenseFile,
+			HttpSession session) {
 		Company company = null;
 		Integer id = companyVo.getId();
-		if(id==null) {
+		if (id == null) {
 			company = new Company();
 			company.setCompanyPassword(StringUtils.StringToMd5("123456"));
-		}else {
+		} else {
 			company = companyService.getById(id);
 		}
 		BeanUtils.copyProperties(companyVo, company);
-		if(provinceId!=null) {
+		if (provinceId != null) {
 			MyProvince myProvince = myProvinceService.getById(provinceId);
 			company.setCompanyProvince(myProvince);
 		}
-		if(cityId!=null) {
+		if (cityId != null) {
 			MyCity myCity = myCityService.getById(cityId);
 			company.setCompanCity(myCity);
 		}
-		if(countyId!=null) {
+		if (countyId != null) {
 			MyCounty myCounty = myCountyService.getById(countyId);
 			company.setCompanyCounty(myCounty);
 		}
@@ -267,8 +284,7 @@ public class CompanyController {
 		companyService.saveOrUpdate(company);
 		return "redirect:/company/toCompanyList";
 	}
-	
-	
+
 	/**
 	 * @author XieXing
 	 * @createDate 2019年5月12日 下午4:44:19
@@ -278,8 +294,8 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping("/recruitmentEdit")
-	public String recruitmentEdit(Recruitment recruitment,Integer companyId) {
-		if(companyId!=null) {
+	public String recruitmentEdit(Recruitment recruitment, Integer companyId) {
+		if (companyId != null) {
 			Company company = companyService.getById(companyId);
 			recruitment.setRcCompany(company);
 		}
@@ -287,8 +303,7 @@ public class CompanyController {
 		recruitmentService.saveOrUpdate(recruitment);
 		return "redirect:/company/toRecruitmentList";
 	}
-	
-	
+
 	/**
 	 * @author XieXing
 	 * @createDate 2019年5月13日 下午2:16:12
@@ -297,7 +312,84 @@ public class CompanyController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getAllCompanies")
-	public List<Company> getAllCompanies(){
+	public List<Company> getAllCompanies() {
 		return companyService.getAll();
 	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月27日 下午4:23:12
+	 * @description 跳转到校招推荐页面
+	 * @return
+	 */
+	@RequestMapping("/toRecommendJobsPage")
+	public String toRecommendJobsPage() {
+		return "company/recommendJobsList";
+	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月27日 下午4:46:10
+	 * @description 求职问卷调查
+	 * @return
+	 */
+	@RequestMapping("/toQuestionnairePage")
+	public String toQuestionnairePage(HttpSession session, Map<String, Object> map) {
+		Student student = (Student) session.getAttribute("student");
+		if (student != null) {
+			Questionnaire questionnaire = questionnaireService.getByStuId(student.getId());
+			map.put("questionnaire", questionnaire);
+		}
+		return "company/questionnaire";
+	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月28日 下午3:40:05
+	 * @description 学生调查问卷编辑
+	 * @param session
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/questionnaireEdit")
+	public String questionnaireEdit(HttpSession session, String qnType, String qnContent, String qnAddress,
+			Map<String, Object> map) {
+		Student student = (Student) session.getAttribute("student");
+		if (student != null) {
+			Questionnaire questionnaire;
+			questionnaire = questionnaireService.getByStuId(student.getId());
+			if (questionnaire == null) {
+				questionnaire = new Questionnaire();
+			}
+			questionnaire.setQnStudent(student);
+			questionnaire.setQnType(qnType);
+			questionnaire.setQnContent(qnContent);
+			questionnaire.setQnAddress(qnAddress);
+			questionnaireService.saveOrUpdate(questionnaire);
+			map.put("questionnaire", questionnaire);
+		}
+		return "company/questionnaire";
+	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月28日 下午5:25:28
+	 * @description 投递简历
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/deliver")
+	public ResponseInfo deliver(Integer id,HttpSession session) {
+		Student student = (Student) session.getAttribute("student");
+		if (id != null) {
+			Recruitment recruitment = recruitmentService.getById(id);
+			Map<String, String> map = new HashMap<>();
+			map.put("recipientAddress", recruitment.getRcCompany().getCompanyEmail());
+			map.put("subject",student.getStuName()+"-"+recruitment.getRcJob());
+			map.put("content","你好，我叫"+student.getStuName()+"!<br>我对你们的在招职位"+recruitment.getRcJob()+"很感兴趣，这是我的简历链接<a href=''>"+student.getStuName()+"简历</a>");
+			MailUtils.sendMsg(map);
+		}
+		return new ResponseInfo(true,"发送成功！");
+	}
+
 }

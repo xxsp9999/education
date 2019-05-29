@@ -9,7 +9,7 @@ public class SelectedCourseVo {
 	
 	private Integer id;//id
 	
-	private String name;//课程名臣
+	private String name;//课程名称
 
 	public Integer getId() {
 		return id;

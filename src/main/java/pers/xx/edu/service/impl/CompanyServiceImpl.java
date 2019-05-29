@@ -28,4 +28,9 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company> implements Comp
 	protected CompanyDao getBaseDao() {
 		return (CompanyDao) super.getBaseDao();
 	}
+
+	@Override
+	public Company login(String code, String password) {
+		return this.getBaseDao().login(code, password);
+	}
 }

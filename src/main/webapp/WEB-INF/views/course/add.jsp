@@ -6,6 +6,7 @@
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/course/add.css">
+
 <meta charset="UTF-8">
 <title>课程信息编辑</title>
 </head>

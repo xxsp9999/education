@@ -31,7 +31,7 @@ public class Student implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;//主键id
 	
-	@Column(name="tea_name",columnDefinition="varchar(255) COMMENT '学生名字'")
+	@Column(name="stu_name",columnDefinition="varchar(255) COMMENT '学生名字'")
 	private String stuName;//姓名
 	
 	@Column(name="stu_number",columnDefinition="varchar(255) COMMENT '学号'")

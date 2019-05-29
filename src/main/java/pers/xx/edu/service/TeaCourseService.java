@@ -32,4 +32,14 @@ public interface TeaCourseService extends BaseService<TeaCourse>{
 	 * @return
 	 */
 	public List<SelectedCourseVo> getByTeacherId(Integer teacherId);
+	
+	
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月19日 下午3:55:30
+	 * @description 根据教师id获取教师选课id
+	 * @param teacherId
+	 * @return
+	 */
+	public List<Integer> getIdsByTeacherId(Integer teacherId);
 }

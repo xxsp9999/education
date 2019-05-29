@@ -14,12 +14,23 @@
 	href="${pageContext.request.contextPath}/css/recruitment/add.css">
 <meta charset="UTF-8">
 <title>招聘信息新增</title>
+<!-- 富文本框 要用的时候才去引入相应的js,否则会报"cannot read property offsetleft'of null"错误-->
+<script type="text/javascript" charset="utf-8"
+	src="${pageContext.request.contextPath }/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="${pageContext.request.contextPath }/ueditor/ueditor.all.min.js">
+	
+</script>
+<script type="text/javascript" charset="utf-8"
+	src="${pageContext.request.contextPath }/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript"
+		src="${pageContext.request.contextPath }/ueditor/public.js"></script>
 </head>
 <body>
 	<!--面包屑  -->
 	<div id="head">
 		<li id="crumbs"><span>招聘信息</span> > <c:if
-				test="${operate=='add'}">
+				test="${operate=='add' || operate==null}">
 				<span>招聘信息新增</span>
 			</c:if> <c:if test="${operate=='update'}">
 				<span>招聘信息修改</span>
@@ -36,10 +47,10 @@
 		</div> -->
 		<table>
 			<input type="hidden" name="id" value="${recruitment.id}">
+			<input type="hidden" name="companyId" value="${company.id}">
 			<tr>
-				<td><label class="letter">招聘单位：</label><select
-					name="companyId" id="companySel"
-					value="${recruitment.rcCompany.companyName}"></select></td>
+				<td><label class="letter">招聘单位：</label><input
+					value="${company.companyName}" readonly="readonly"/></td>
 				<td><label class="letter">招聘职位：</label><input
 					name="rcJob" id="rcJob" value="${recruitment.rcJob}"
 					required="required"></td>
@@ -80,7 +91,6 @@
 	}
 	//提示错误信息
 	//getErrorMsg();
-	var companyId = "${recruitment.rcCompany.id}";
-	getAllCompanies("companySel",companyId);
+	
 </script>
 </html>

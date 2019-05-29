@@ -42,4 +42,9 @@ public class TeaCourseServiceImpl extends BaseServiceImpl<TeaCourse> implements 
 		return this.getBaseDao().getByTeacherId(teacherId);
 	}
 
+	@Override
+	public List<Integer> getIdsByTeacherId(Integer teacherId) {
+		return this.getBaseDao().getIdsByTeacherId(teacherId);
+	}
+
 }

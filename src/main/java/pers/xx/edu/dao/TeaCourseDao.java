@@ -47,8 +47,24 @@ public class TeaCourseDao extends BaseDao<TeaCourse>{
 	 * @return
 	 */
 	public List<SelectedCourseVo> getByTeacherId(Integer teacherId){
-		String hql = "select tc.id,c.cName from TeaCourse tc,Teacher t,Course c where tc.tcTeacher = t.id and tc.tcCourse = c.id";
+		String hql = "select tc.id,c.cName from TeaCourse tc,Teacher t,Course c where tc.tcTeacher = t.id and tc.tcCourse = c.id and t.id=?";
 		Query query = getSession().createQuery(hql);
+		query.setInteger(0, teacherId);
+		return query.list();
+	}
+	
+	/**
+	 * 
+	 * @author XieXing
+	 * @createDate 2019年5月19日 下午3:57:54
+	 * @description 根据教师id获取教师选课id
+	 * @param teacherId
+	 * @return
+	 */
+	public List<Integer> getIdsByTeacherId(Integer teacherId){
+		String hql = "select tc.id from TeaCourse tc where tc.tcTeacher = ?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, teacherId);
 		return query.list();
 	}
 

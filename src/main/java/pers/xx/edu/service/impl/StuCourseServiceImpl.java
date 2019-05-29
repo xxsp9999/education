@@ -1,5 +1,7 @@
 package pers.xx.edu.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -37,5 +39,10 @@ public class StuCourseServiceImpl extends BaseServiceImpl<StuCourse> implements 
 	@Override
 	public void deleteByTeaCourseIds(Integer id) {
 		this.getBaseDao().deleteByTeaCourseIds(id);
+	}
+
+	@Override
+	public List<Integer> getTeaCourseIdsByStudentId(Integer id) {
+		return this.getBaseDao().getTeaCourseIdsByStudentId(id);
 	}
 }

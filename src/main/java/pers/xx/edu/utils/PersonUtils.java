@@ -32,6 +32,9 @@ public class PersonUtils {
 		if(roleId==6) {
 			return "manager";
 		}
+		if(roleId==7) {
+			return "company";
+		}
 		return null;
 	}
 

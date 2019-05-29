@@ -21,6 +21,7 @@
 				var result=eval('('+result+')');
 				if(result.success){
 					$.messager.alert("系统系统","提交成功！");
+					window.location.href="${pageContext.request.contextPath}/leave/checkList"
 				}else{
 					$.messager.alert("系统系统","提交失败，请联系管理员！");
 					return;

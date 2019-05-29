@@ -476,11 +476,14 @@ public class MyTest {
 	 */
 	//@Test 
 	public void addTeaCourse() {
+		List<Teacher> teachers = teacherService.getAll();
+		List<Course> courses = courseService.getAll();
 		List<TeaCourse> teaCourses = new ArrayList<>();
-		List<StuCourse> stuCourses = new ArrayList<>();
+		
 	}
 	//@Test
 	public void testGetByTid() {
+		List<StuCourse> stuCourses = new ArrayList<>();
 		List<SelectedCourseVo> list = teaCourseService.getByTeacherId(1);
 		System.out.println(list);
 	}

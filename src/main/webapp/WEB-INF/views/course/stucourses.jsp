@@ -36,7 +36,7 @@
 	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
-	    	 <label>课程</label><select id="nationalId"></select>
+	    	 <label>课程</label><select id="teaCourseId"></select>
 	    </div>
 	   	<div class="layui-input-inline" style="vertical-align:unset">
 		<input placeholder="搜索内容" name="content" id="content">
@@ -71,7 +71,7 @@ function drawTable(){
 			
 			width: jqTablew,
 			height: 350,
-			colNames: ['课程代码','课程中文名','课程外文名','课程学分','分数','状态','选课时间','备注'],
+			colNames: ['课程代码','课程中文名','课程外文名','课程学分','分数','状态','上课教师','选课时间','备注'],
 			colModel: [
 				{name: 'scTeaCourse.tcCourse.cNo', index: 'scCourse.cNo', align: 'center'},
 				{name: 'scTeaCourse.tcCourse.cName', index: 'scCourse.cName', align: 'center'},
@@ -79,7 +79,9 @@ function drawTable(){
 				{name: 'scTeaCourse.tcCourse.cScore', index: 'scCourse.cScore', align: 'center'},
 				{name: 'scScore', index: 'scScore', align: 'center'},
 				{name: 'scState', index: 'scState', align: 'center'},
+				{name: 'scTeaCourse.tcTeacher.teaName', index: 'scCourse.cScore', align: 'center'},
 				{name: 'scDate', index: 'scDate', align: 'center'},
+				
 				{name: 'scRemark', index: 'scRemark', align: 'center'},
 			],
 			rowNum: 10,		//每页显示多少条
@@ -241,6 +243,7 @@ function drawTable(){
 	                   postData: {	                	   	             
 	                	   start: $("#test3").val(),
 	                    	 end: $("#test4").val(),
+	                    	 teaCourseId:$("#teaCourseId").val(),
 	                       content: $("#content").val(),
 	                     
 	                   }
@@ -312,6 +315,28 @@ layui.use('laydate', function(){
     	}
     }
   });
+	})
+	
+	//获取学生的课程
+	debugger;
+	$.ajax({
+		url : path + "/course/getStudentAllCourses",
+		type : "post",
+		dataType : "json",
+		data : {
+
+		},
+		success : function(data) {
+			$("#teaCourseId").empty();
+			var str = "<option value=''>请选择</option>";
+			for(var i=0;i<data.length;i++){
+				str += "<option value="+data[i].id+">"+data[i].name+"</option>";
+			}
+			$("#teaCourseId").append(str);
+		},
+		error : function() {
+			swal("", "网络错误", "error");
+		}
 	})
 </script>
 </body>

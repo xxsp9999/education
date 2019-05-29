@@ -36,7 +36,7 @@
 	      <span class="iconfont icontime" style="position:absolute;right:5px;top:-2px;"></span>
 	    </div>
 	    <div class="layui-input-inline" style="vertical-align:unset;position:relative;">
-	    	 <label>课程</label><select id="nationalId"></select>
+	    	 <label>课程</label><select id="teaCourseId"></select>
 	    </div>
 	   	<div class="layui-input-inline" style="vertical-align:unset">
 			<input placeholder="搜索内容" name="content" id="content">
@@ -217,6 +217,7 @@ function drawTable(){
 	                   postData: {	                	   	             
 	                	   start: $("#test3").val(),
 	                    	 end: $("#test4").val(),
+	                    	 teaCourseId:$("#teaCourseId").val(),
 	                       content: $("#content").val(),
 	                     
 	                   }
@@ -355,6 +356,15 @@ layui.use('laydate', function(){
 		    	 layer.closeAll();
 		    }});
 		
+	})
+	//获取教师的课程
+	$.post("${pageContext.request.contextPath}/course/getTeacherAllCourses",{},function(result){
+		$("#teaCourseId").empty();
+		var str = "<option value=''>请选择</option>";
+		for(var i=0;i<result.length;i++){
+			str += "<option value="+result[i][0]+">"+result[i][1]+"</option>";
+		}
+		$("#teaCourseId").append(str);
 	})
 </script>
 </body>

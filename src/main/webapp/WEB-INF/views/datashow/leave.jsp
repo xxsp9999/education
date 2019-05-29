@@ -36,30 +36,31 @@
 		<div id="search">
 			<form class="form-inline">
 				<div class="form-group">
-					<label for="facultySel">学院</label> <select class="form-control"
+					<label for="facultySel">学院</label> <select class="form-control" style="width:150px"
 						id="facultySel"></select>
 				</div>
 				<div class="form-group">
-					<label for="majorSel">专业</label> <select class="form-control"
-						id="majorSel"></select>
+					<label for="majorSel">专业</label> <select class="form-control" style="width:150px"
+						id="majorSel" ></select>
 				</div>
 				<div class="form-group">
-					<label for="gradeSel">年级</label> <select class="form-control"
-						id="gradeSel"></select>
+					<label for="gradeSel">年级</label> <select class="form-control" style="width:150px"
+						id="gradeSel" ></select>
 				</div>
 				<div class="form-group">
-					<label for="stuClassSel">班级</label> <select class="form-control"
-						id="stuClassSel"></select>
+					<label for="stuClassSel">班级</label> <select class="form-control" style="width:150px"
+						id="stuClassSel" ></select>
 				</div>
 				<div class="form-group">
 					<label for="leaveInfoType">请假类型</label> <select
-						class="form-control" id="leaveInfoType">
+						class="form-control" id="leaveInfoType" style="width:150px">
 						<option value="">请选择</option>
 						<option>事假</option>
 						<option>病假</option>
 						<option>法定假日</option>
 					</select>
 				</div>
+				<br><br>
 				<div class="form-group">
 					<label for="stuClassSel">开始时间</label> <input type="text"
 						name="start" id="start" class="form-control"> <span
@@ -69,7 +70,7 @@
 					<label for="stuClassSel">结束时间</label> <input type="text" name="end"
 						id="end" class="form-control"> <span
 						class="iconfont icontime"
-						style="position: absolute; right: 64px; top: 7px;"></span>
+						style="position: relative;right: 23px;top: 2px;"></span>
 				</div>
 				<div class="form-group">
 					<label for="stuClassSel">内容</label> <input type="text"

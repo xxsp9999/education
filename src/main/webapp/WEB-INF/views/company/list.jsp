@@ -67,7 +67,7 @@ function drawTable(){
 			
 			width: jqTablew,
 			height: 350,
-			colNames: ['登陆账号','企业名称','联系电话','企业邮箱','统一社会信用代码','组织机构代码','企业网址','企业地址','备注'],
+			colNames: ['登陆账号','企业名称','联系电话','企业邮箱','统一社会信用代码','组织机构代码','企业地址','企业网址','备注'],
 			colModel: [
 				{name: 'companyNumber', index: 'companyNumber', align: 'center'},
 				{name: 'companyName', index: 'companyName', align: 'center'},

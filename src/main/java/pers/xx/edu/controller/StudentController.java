@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import pers.xx.edu.entity.Instructor;
 import pers.xx.edu.entity.Student;
 import pers.xx.edu.service.StudentService;
 import pers.xx.edu.utils.Page;
@@ -51,6 +52,23 @@ public class StudentController {
 
 	/**
 	 * @author XieXing
+	 * @createDate 2019年5月19日 下午4:45:01
+	 * @description 跳转到详情查看页面
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/toDetail")
+	public String toDetail(Integer id, Map<String, Object> map) {
+		if (id != null) {
+			Student student = studentService.getById(id);
+			map.put("student", student);
+		}
+		return "student/detail";
+	}
+
+	/**
+	 * @author XieXing
 	 * @create 2019年3月17日
 	 * @description 跳转到学生信息列表页面
 	 * @return
@@ -58,6 +76,28 @@ public class StudentController {
 	@RequestMapping("/toList")
 	public String toList() {
 		return "student/list";
+	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月27日 下午3:58:44
+	 * @description 企业查看学生列表页面
+	 * @return
+	 */
+	@RequestMapping("/toListWithCompany")
+	public String toListWithCompany() {
+		return "student/listwithcompany";
+	}
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月19日 下午4:48:55
+	 * @description 权限更少的学生信息页面
+	 * @return
+	 */
+	@RequestMapping("/toListLessPower")
+	public String toListLessPower() {
+		return "student/listLessPower";
 	}
 
 	/**
@@ -74,39 +114,36 @@ public class StudentController {
 	 */
 	@RequestMapping("/getList")
 	public void getCpList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int rows,
-			String content, String start, String end,Integer facultyId,Integer majorId,Integer classId,Integer gradeId,String nationalId,String sex, HttpServletRequest request, PrintWriter out) {
+			String content, String start, String end, Integer facultyId, Integer majorId, Integer classId,
+			Integer gradeId, String nationalId, String sex, HttpServletRequest request, PrintWriter out) {
 		Map<String, Object> params = new LinkedHashMap<>();// 值参数
 		params.put("page", page);
 		params.put("rows", rows);
-		//时间查询
-		/*if (StringUtils.isNotEmpty(start)) {
-			try {
-				params.put("stuEntranceDate >= ?", pers.xx.edu.utils.DateTimeUtils.deal(start));
-			} catch (ParseException e) {
-				System.err.println("时间格式不正确！");
-			}
+		// 时间查询
+		/*
+		 * if (StringUtils.isNotEmpty(start)) { try { params.put("stuEntranceDate >= ?",
+		 * pers.xx.edu.utils.DateTimeUtils.deal(start)); } catch (ParseException e) {
+		 * System.err.println("时间格式不正确！"); } } if (StringUtils.isNotEmpty(end)) { try {
+		 * params.put("stuEntranceDate < ?", DateTimeUtils.deal(end)); } catch
+		 * (ParseException e) { System.err.println("时间格式不正确！"); } }
+		 */
+		Instructor instructor = (Instructor) request.getSession().getAttribute("instructor");
+		if (instructor != null) {
+			params.put("stuFaculty.id = ?", instructor.getInstructorFaculty().getId());
 		}
-		if (StringUtils.isNotEmpty(end)) {
-			try {
-				params.put("stuEntranceDate < ?", DateTimeUtils.deal(end));
-			} catch (ParseException e) {
-				System.err.println("时间格式不正确！");
-			}
-		}*/
-		
-		if(facultyId!=null) {
+		if (facultyId != null) {
 			params.put("stuFaculty.id = ?", facultyId);
 		}
-		if(classId!=null) {
+		if (classId != null) {
 			params.put("stuClass.id = ?", classId);
 		}
-		if(gradeId!=null) {
+		if (gradeId != null) {
 			params.put("stuClass.claGrade.id = ?", gradeId);
 		}
-		if(StringUtils.isNotEmpty(nationalId)) {
+		if (StringUtils.isNotEmpty(nationalId)) {
 			params.put("stuNationality = ?", nationalId);
 		}
-		if(StringUtils.isNotEmpty(sex)) {
+		if (StringUtils.isNotEmpty(sex)) {
 			params.put("stuSex = ?", sex);
 		}
 		if (StringUtils.isNotEmpty(content)) {
@@ -135,12 +172,14 @@ public class StudentController {
 	 * @return
 	 */
 	@RequestMapping("/edit")
-	public String edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId,
-			Integer majorId,Integer stuClassId,Integer provinceId,Integer cityId,Integer countyId,@RequestParam(value="img",required=false)CommonsMultipartFile img,HttpSession session) {
-		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId,stuClassId,provinceId,cityId,countyId,img,session);
+	public String edit(StudentVo studentVo, String stuEntranceDate, String stuBirth, Integer facultyId, Integer majorId,
+			Integer stuClassId, Integer provinceId, Integer cityId, Integer countyId,
+			@RequestParam(value = "img", required = false) CommonsMultipartFile img, HttpSession session) {
+		studentService.edit(studentVo, stuEntranceDate, stuBirth, facultyId, majorId, stuClassId, provinceId, cityId,
+				countyId, img, session);
 		return "redirect:/student/toList";
 	}
-	
+
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月30日 上午10:31:35
@@ -151,7 +190,7 @@ public class StudentController {
 	public String toStudentDataShow() {
 		return "datashow/student";
 	}
-	
+
 	/**
 	 * @author XieXing
 	 * @createDate 2019年4月30日 上午10:35:14
@@ -159,9 +198,24 @@ public class StudentController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getStudentAnalyseData",produces="application/json;charset=utf-8")
-	public Map<String, Object> getStudentAnalyseData(Integer facId,Integer majId,Integer stuClassId){
-		return studentService.getStudentAnalyseData(facId,majId,stuClassId);
+	@RequestMapping(value = "/getStudentAnalyseData", produces = "application/json;charset=utf-8")
+	public Map<String, Object> getStudentAnalyseData(Integer facId, Integer majId, Integer stuClassId) {
+		return studentService.getStudentAnalyseData(facId, majId, stuClassId);
 	}
-	
+
+	/**
+	 * @author XieXing
+	 * @createDate 2019年5月29日 上午8:49:31
+	 * @description 跳转到学生分数页面
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/toScore")
+	public String toScore(Integer id, Map<String, Object> map) {
+		if (id != null) {
+			Student student = studentService.getById(id);
+			map.put("student",student);
+		}
+		return "student/score";
+	}
 }

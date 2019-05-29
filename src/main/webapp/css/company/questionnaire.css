@@ -1,0 +1,28 @@
+table {
+	width: 69%;
+    text-align: center;
+    margin: 1% 14%;
+    font-size: 20px;
+}
+
+table tr {
+	height: 60px;
+	line-height: 60px;
+}
+
+table tr td {
+	border: 1px solid #316182;
+}
+
+textarea {
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+}
+button{
+	font-size:20px ;
+	color:white;
+	background: #316182;
+	border-radius: 5px;
+}

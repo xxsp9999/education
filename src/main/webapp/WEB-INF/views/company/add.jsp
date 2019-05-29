@@ -30,7 +30,7 @@
 	<!--面包屑  -->
 	<div id="head">
 		<li id="crumbs"><span>企业信息</span> > <c:if
-				test="${operate=='add'}">
+				test="${operate=='add' || operate==null}">
 				<span>企业信息新增</span>
 			</c:if> <c:if test="${operate=='update'}">
 				<span>企业信息修改</span>
@@ -82,7 +82,7 @@
 					class="headImg"></td>
 				<td>
 					<c:if test="${company!=null&&company.companyLogo!=null}">
-						<li href="">查看上传文件</li>
+						<button type="button" onclick="javascript:download('${company.companyLogo}')">查看上传文件</button>
 					</c:if>
 					<c:if test="${company!=null&&company.companyLogo==null}">
 						<label style="color: red">未上传文件</label>
@@ -96,7 +96,7 @@
 					style="margin-top: -11%;"></td>
 				<td>
 					<c:if test="${company!=null&&company.companyLicense!=null}">
-						<li href="">查看上传文件</li>
+						<button type="button" onclick="javascript:download('${company.companyLicense}')">查看上传文件</button>
 					</c:if>
 					<c:if test="${company!=null&&company.companyLicense==null}">
 						<label style="color: red">未上传文件</label>
@@ -152,7 +152,10 @@
 	}
 	//提示错误信息
 	//getErrorMsg();
-
+	//文件下载
+	function download(path){
+		window.location.href="${pageContext.request.contextPath}/downLoad?path="+path;
+	}
 	//获取地址
 	var provinceId = "${student.stuProvince.id}";
 	var cityId = "${student.stuCity.id}";

@@ -27,7 +27,6 @@
 	
 	function openFinishTaskTab(taskId){
 		$.post("${pageContext.request.contextPath}/task/redirectPage",{taskId:taskId},function(result){
-			debugger;
 			url="${pageContext.request.contextPath}"+result.url+"?taskId="+taskId;
 			//window.parent.openTab('办理任务',url,'icon-check');
 			location.href=url;
@@ -56,7 +55,7 @@
  <div>
  	&nbsp;任务名称&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchTask()"/>
  	<a href="javascript:searchTask()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
- 	<a href="javascript:tipTask()" class="easyui-linkbutton" iconCls="icon-tip" plain="true">请假统计</a>
+ 	<!-- <a href="javascript:tipTask()" class="easyui-linkbutton" iconCls="icon-tip" plain="true">请假统计</a> -->
  </div>
 </div>
 
